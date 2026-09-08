@@ -1,7 +1,38 @@
 ---
-title: "AD688 Career Evaluation Product"
+title: "Career Evaluation Product — Group 1"
 ---
 
-This is a Quarto website.
+## Project Scope
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+| | |
+|---|---|
+| **Team** | AD688 Group 1 |
+| **Career pathway** | Business Intelligence / Data Analyst |
+| **Industry code** | NAICS 2022 — **5221** Depository Credit Intermediation (6-digit: 522110 Commercial Banking) |
+| **Industry label** | U.S. depository banking |
+| **Data source** | MET Employability Career Match API |
+
+## Product Question
+
+> Which skills, locations, and role variants give an early-career candidate the strongest entry into Business Intelligence / Data Analyst roles in U.S. depository banking (NAICS 5221), and which skills are missing from a current student profile?
+
+## Why This Industry
+
+Depository credit intermediation (NAICS 5221) is one of the largest non-technology employers of analytics talent in the United States: retail and commercial banks run continuous reporting, credit risk, fraud, and regulatory analytics functions that are staffed by business intelligence and data analyst roles rather than by research scientists. Because banking analytics is shaped by regulatory reporting and legacy data warehouses, its skill profile differs from the software sector — SQL, data governance, and domain knowledge often outweigh machine-learning depth. That contrast makes 5221 a well-defined scope for a product that advises a job seeker on where to apply and what to learn next.
+
+## Team
+
+| Name | GitHub | Role this module |
+|---|---|---|
+| Fuad Babaiev | [fuadbbv](https://github.com/fuadbbv) | Repository and site setup, project scoping |
+
+## Roadmap
+
+| Module | Deliverable |
+|---|---|
+| M1 | Project scope, industry selection, rationale, initial site |
+| M2 | Data preparation and market baseline |
+| M3 | Skill-gap analysis and career evaluation scorecard |
+| M4 | Checkpoint — no new step |
+| M5 | Final analytics, recommendations, report |
+| M6 | Final presentation |

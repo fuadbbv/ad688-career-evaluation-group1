@@ -1,5 +1,33 @@
 ---
-title: "About"
+title: "Introduction"
 ---
 
-About this site
+## Problem
+
+Students finishing an analytics degree face a market that looks uniform from the outside and is not. Job titles overlap, postings list long and inconsistent skill requirements, and the same title can mean very different work in different industries. A candidate deciding where to apply has no structured way to tell which industry rewards their current profile, which skills would raise their chances most, and what compensation and location trade-offs they are actually facing.
+
+## Rationale
+
+The U.S. Bureau of Labor Statistics projects employment of data scientists to grow 35 percent between 2025 and 2035, far above the average for all occupations, with a 2025 median wage of \$120,230 [@bls2026datascientists]. Aggregate growth of this kind, however, tells an individual job seeker very little: it does not say which industry to target, which skills separate an interview from a rejection, or where an entry-level opening is realistically attainable.
+
+Depository credit intermediation (NAICS 5221) covers commercial banks, savings institutions, and credit unions [@census2022naics], and credit intermediation is one of the largest employment segments within finance [@bls2026creditintermediation]. Banks employ analysts continuously for regulatory reporting, credit risk, fraud detection, and customer analytics, which makes the segment large enough to analyse and specific enough to give actionable advice.
+
+Prior research supports scoping the analysis to job postings. Content analyses of analytics job advertisements show that employer requirements cluster into distinct technical, analytical, and business-domain groups, and that the mix varies systematically by role and context [@verma2019skills]. Studies of entry-level analytics hiring similarly find a gap between what programmes teach and what employers ask for in postings [@stanton2020entrylevel]. A product that reads postings directly, rather than relying on generic career advice, addresses that gap.
+
+## Product Framing
+
+The deliverable is a career evaluation product for a job seeker, not a general labour-market report. Every analysis in later modules is included only if it helps a student decide **where to apply**, **what to learn next**, and **how to position themselves** for BI/Data Analyst roles in NAICS 5221.
+
+## What We Expect to Find
+
+- Postings will emphasise SQL, Excel, and BI tooling (Power BI, Tableau) more consistently than machine-learning frameworks.
+- Regulatory and domain vocabulary (risk, compliance, reporting) will appear frequently enough to act as a differentiator for candidates.
+- Remote openings will be less common than in the software sector, and concentrated in a small number of metropolitan areas.
+- The gap between market demand and a typical student profile will sit in domain knowledge and data governance rather than in programming.
+
+These are expectations, not conclusions; Modules 2 and 3 test them against the MET Employability Career Match data.
+
+## References
+
+::: {#refs}
+:::

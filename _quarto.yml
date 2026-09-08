@@ -1,21 +1,22 @@
 project:
   type: website
+  output-dir: _site
 
 website:
   title: "AD688 Career Evaluation Product"
+  description: "Group 1 — BI/Data Analyst roles in U.S. depository banking (NAICS 5221)"
   navbar:
     left:
       - href: index.qmd
-        text: Home
-      - about.qmd
+        text: Overview
+      - href: introduction.qmd
+        text: Introduction
+
+bibliography: references.bib
+csl: csl/econometrica.csl
 
 format:
   html:
-    theme:
-      - cosmo
-      - brand
+    theme: cosmo
     css: styles.css
     toc: true
-
-
-
