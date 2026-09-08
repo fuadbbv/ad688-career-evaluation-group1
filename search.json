@@ -1,0 +1,86 @@
+[
+  {
+    "objectID": "introduction.html",
+    "href": "introduction.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "Students finishing an analytics degree face a market that looks uniform from the outside and is not. Job titles overlap, postings list long and inconsistent skill requirements, and the same title can mean very different work in different industries. A candidate deciding where to apply has no structured way to tell which industry rewards their current profile, which skills would raise their chances most, and what compensation and location trade-offs they are actually facing."
+  },
+  {
+    "objectID": "introduction.html#problem",
+    "href": "introduction.html#problem",
+    "title": "Introduction",
+    "section": "",
+    "text": "Students finishing an analytics degree face a market that looks uniform from the outside and is not. Job titles overlap, postings list long and inconsistent skill requirements, and the same title can mean very different work in different industries. A candidate deciding where to apply has no structured way to tell which industry rewards their current profile, which skills would raise their chances most, and what compensation and location trade-offs they are actually facing."
+  },
+  {
+    "objectID": "introduction.html#rationale",
+    "href": "introduction.html#rationale",
+    "title": "Introduction",
+    "section": "Rationale",
+    "text": "Rationale\nThe U.S. Bureau of Labor Statistics projects employment of data scientists to grow 35 percent between 2025 and 2035, far above the average for all occupations, with a 2025 median wage of $120,230 (U.S. Bureau of Labor Statistics (2026a)). Aggregate growth of this kind, however, tells an individual job seeker very little: it does not say which industry to target, which skills separate an interview from a rejection, or where an entry-level opening is realistically attainable.\nDepository credit intermediation (NAICS 5221) covers commercial banks, savings institutions, and credit unions (U.S. Census Bureau (2022)), and credit intermediation is one of the largest employment segments within finance (U.S. Bureau of Labor Statistics (2026b)). Banks employ analysts continuously for regulatory reporting, credit risk, fraud detection, and customer analytics, which makes the segment large enough to analyse and specific enough to give actionable advice.\nPrior research supports scoping the analysis to job postings. Content analyses of analytics job advertisements show that employer requirements cluster into distinct technical, analytical, and business-domain groups, and that the mix varies systematically by role and context (Verma et al. (2019)). Studies of entry-level analytics hiring similarly find a gap between what programmes teach and what employers ask for in postings (Stanton and Stanton (2020)). A product that reads postings directly, rather than relying on generic career advice, addresses that gap."
+  },
+  {
+    "objectID": "introduction.html#product-framing",
+    "href": "introduction.html#product-framing",
+    "title": "Introduction",
+    "section": "Product Framing",
+    "text": "Product Framing\nThe deliverable is a career evaluation product for a job seeker, not a general labour-market report. Every analysis in later modules is included only if it helps a student decide where to apply, what to learn next, and how to position themselves for BI/Data Analyst roles in NAICS 5221."
+  },
+  {
+    "objectID": "introduction.html#what-we-expect-to-find",
+    "href": "introduction.html#what-we-expect-to-find",
+    "title": "Introduction",
+    "section": "What We Expect to Find",
+    "text": "What We Expect to Find\n\nPostings will emphasise SQL, Excel, and BI tooling (Power BI, Tableau) more consistently than machine-learning frameworks.\nRegulatory and domain vocabulary (risk, compliance, reporting) will appear frequently enough to act as a differentiator for candidates.\nRemote openings will be less common than in the software sector, and concentrated in a small number of metropolitan areas.\nThe gap between market demand and a typical student profile will sit in domain knowledge and data governance rather than in programming.\n\nThese are expectations, not conclusions; Modules 2 and 3 test them against the MET Employability Career Match data."
+  },
+  {
+    "objectID": "introduction.html#references",
+    "href": "introduction.html#references",
+    "title": "Introduction",
+    "section": "References",
+    "text": "References\n\n\nStanton, W. W., and A. D. Stanton. (2020): “Helping business students acquire the skills needed for a career in analytics: A comprehensive industry assessment of entry-level requirements,” Decision Sciences Journal of Innovative Education,.\n\n\nU.S. Bureau of Labor Statistics. (2026a): “Data Scientists: Occupational Outlook Handbook,”https://www.bls.gov/ooh/math/data-scientists.htm.\n\n\n---. (2026b): “Credit Intermediation and Related Activities: NAICS 522,”https://www.bls.gov/iag/tgs/iag522.htm.\n\n\nU.S. Census Bureau. (2022): “North American Industry Classification System (NAICS) 2022, Sector 52: Finance and Insurance,”https://www.census.gov/naics/.\n\n\nVerma, A., K. M. Yurov, P. L. Lane, and Y. V. Yurova. (2019): “An investigation of skill requirements for business and data analytics positions: A content analysis of job advertisements,” Journal of Education for Business, 94."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Career Evaluation Product — Group 1",
+    "section": "",
+    "text": "Team\nAD688 Group 1\n\n\nCareer pathway\nBusiness Intelligence / Data Analyst\n\n\nIndustry code\nNAICS 2022 — 5221 Depository Credit Intermediation (6-digit: 522110 Commercial Banking)\n\n\nIndustry label\nU.S. depository banking\n\n\nData source\nMET Employability Career Match API"
+  },
+  {
+    "objectID": "index.html#project-scope",
+    "href": "index.html#project-scope",
+    "title": "Career Evaluation Product — Group 1",
+    "section": "",
+    "text": "Team\nAD688 Group 1\n\n\nCareer pathway\nBusiness Intelligence / Data Analyst\n\n\nIndustry code\nNAICS 2022 — 5221 Depository Credit Intermediation (6-digit: 522110 Commercial Banking)\n\n\nIndustry label\nU.S. depository banking\n\n\nData source\nMET Employability Career Match API"
+  },
+  {
+    "objectID": "index.html#product-question",
+    "href": "index.html#product-question",
+    "title": "Career Evaluation Product — Group 1",
+    "section": "Product Question",
+    "text": "Product Question\n\nWhich skills, locations, and role variants give an early-career candidate the strongest entry into Business Intelligence / Data Analyst roles in U.S. depository banking (NAICS 5221), and which skills are missing from a current student profile?"
+  },
+  {
+    "objectID": "index.html#why-this-industry",
+    "href": "index.html#why-this-industry",
+    "title": "Career Evaluation Product — Group 1",
+    "section": "Why This Industry",
+    "text": "Why This Industry\nDepository credit intermediation (NAICS 5221) is one of the largest non-technology employers of analytics talent in the United States: retail and commercial banks run continuous reporting, credit risk, fraud, and regulatory analytics functions that are staffed by business intelligence and data analyst roles rather than by research scientists. Because banking analytics is shaped by regulatory reporting and legacy data warehouses, its skill profile differs from the software sector — SQL, data governance, and domain knowledge often outweigh machine-learning depth. That contrast makes 5221 a well-defined scope for a product that advises a job seeker on where to apply and what to learn next."
+  },
+  {
+    "objectID": "index.html#team",
+    "href": "index.html#team",
+    "title": "Career Evaluation Product — Group 1",
+    "section": "Team",
+    "text": "Team\n\n\n\nName\nGitHub\nRole this module\n\n\n\n\nFuad Babaiev\nfuadbbv\nRepository and site setup, project scoping"
+  },
+  {
+    "objectID": "index.html#roadmap",
+    "href": "index.html#roadmap",
+    "title": "Career Evaluation Product — Group 1",
+    "section": "Roadmap",
+    "text": "Roadmap\n\n\n\nModule\nDeliverable\n\n\n\n\nM1\nProject scope, industry selection, rationale, initial site\n\n\nM2\nData preparation and market baseline\n\n\nM3\nSkill-gap analysis and career evaluation scorecard\n\n\nM4\nCheckpoint — no new step\n\n\nM5\nFinal analytics, recommendations, report\n\n\nM6\nFinal presentation"
+  }
+]
