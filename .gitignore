@@ -1,0 +1,23 @@
+/.quarto/
+**/*.quarto_ipynb
+
+# Secrets
+.env
+.env.local
+
+# Quarto
+/.quarto/
+/_site/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Data (не тащим тяжёлое сырьё в публичный репо)
+data/raw/*
+!data/raw/.gitkeep
+
+# macOS
+.DS_Store
