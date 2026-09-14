@@ -26,7 +26,8 @@ Depository credit intermediation (NAICS 5221) is one of the largest non-technolo
 |---|---|---|
 | Fuad Babaiev | [fuadbbv](https://github.com/fuadbbv) | Repository and site setup, project scoping |
 | Katie Bowles | [kmbowles00](https://github.com/kmbowles00) | Repository and site setup |
-| Jonathan Chen | ||
+| Jonathan Chen | | |
+
 ## Roadmap
 
 | Module | Deliverable |
