@@ -45,7 +45,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-445b8638c3d06994fee0907d791121c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-7c0f67eba7e864f644f943ef9a6fd48f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -130,6 +130,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#project-scope" id="toc-project-scope" class="nav-link active" data-scroll-target="#project-scope">Project Scope</a></li>
   <li><a href="#product-question" id="toc-product-question" class="nav-link" data-scroll-target="#product-question">Product Question</a></li>
   <li><a href="#why-this-industry" id="toc-why-this-industry" class="nav-link" data-scroll-target="#why-this-industry">Why This Industry</a></li>
+  <li><a href="#scope-revision-module-2" id="toc-scope-revision-module-2" class="nav-link" data-scroll-target="#scope-revision-module-2">Scope Revision (Module 2)</a></li>
   <li><a href="#team" id="toc-team" class="nav-link" data-scroll-target="#team">Team</a></li>
   <li><a href="#roadmap" id="toc-roadmap" class="nav-link" data-scroll-target="#roadmap">Roadmap</a></li>
   </ul>
@@ -175,11 +176,11 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="odd">
 <td><strong>Industry Code</strong></td>
-<td>NAICS 2022 — <strong>5221</strong> Depository Credit Intermediation (6-digit: 522110 Commercial Banking)</td>
+<td>NAICS 2022 — <strong>523</strong> Securities, Commodity Contracts, and Other Financial Investments and Related Activities</td>
 </tr>
 <tr class="even">
 <td><strong>Industry Label</strong></td>
-<td>U.S. Depository Banking</td>
+<td>U.S. securities, investment and asset management</td>
 </tr>
 <tr class="odd">
 <td><strong>Data Source</strong></td>
@@ -191,12 +192,16 @@ ul.task-list li input[type="checkbox"] {
 <section id="product-question" class="level2">
 <h2 class="anchored" data-anchor-id="product-question">Product Question</h2>
 <blockquote class="blockquote">
-<p>Which skills, locations, and role variants give an early-career candidate the strongest entry into Business Intelligence / Data Analyst roles in U.S. depository banking (NAICS 5221), and which skills are missing from a current student profile?</p>
+<p>Which skills, locations, and role variants give an early-career candidate the strongest entry into Business Intelligence / Data Analyst roles at U.S. securities and investment firms (NAICS 523), and which skills are missing from a current student profile?</p>
 </blockquote>
 </section>
 <section id="why-this-industry" class="level2">
 <h2 class="anchored" data-anchor-id="why-this-industry">Why This Industry</h2>
-<p>Depository credit intermediation (NAICS 5221) is one of the largest non-technology employers of analytics talent in the United States: retail and commercial banks run continuous reporting, credit risk, fraud, and regulatory analytics functions that are staffed by business intelligence and data analyst roles rather than by research scientists. Because banking analytics is shaped by regulatory reporting and legacy data warehouses, its skill profile differs from the software sector — SQL, data governance, and domain knowledge often outweigh machine-learning depth. That contrast makes 5221 a well-defined scope for a product that advises a job seeker on where to apply and what to learn next.</p>
+<p>Securities, commodity contracts, and other financial investment activities (NAICS 523) run continuous reporting, risk, performance-attribution, and client-analytics functions that are staffed by business intelligence and data analyst roles rather than by research scientists. Because investment analytics is shaped by regulatory reporting and legacy data infrastructure, its skill profile differs from the software sector — SQL, data governance, and domain knowledge often matter as much as machine-learning depth. The subsector is also the single largest source of analytics postings within Finance and Insurance in our data source, which makes the scope both coherent and large enough to support a decision-oriented product.</p>
+</section>
+<section id="scope-revision-module-2" class="level2">
+<h2 class="anchored" data-anchor-id="scope-revision-module-2">Scope Revision (Module 2)</h2>
+<p>Module 1 anchored the project to NAICS 5221, Depository Credit Intermediation. When we pulled the data in Module 2, that code returned <strong>59 postings in total</strong>, of which 13 carried salary information — too thin to support skill-gap and compensation analysis later in the project. We measured the neighbouring industry codes and moved the anchor to <strong>NAICS 523</strong>, which keeps the project inside Finance and Insurance while providing <strong>15,176 postings</strong>, of which <strong>6,199</strong> match our career pathway. The measurement and the filter rule are documented on the Data Preparation page.</p>
 </section>
 <section id="team" class="level2">
 <h2 class="anchored" data-anchor-id="team">Team</h2>
@@ -212,17 +217,17 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <td>Fuad Babaiev</td>
 <td><a href="https://github.com/fuadbbv">fuadbbv</a></td>
-<td>Repository and site setup, project scoping</td>
+<td>Dataset build (Step 3.1), site structure and publishing (Step 3.4)</td>
 </tr>
 <tr class="even">
 <td>Katie Bowles</td>
 <td><a href="https://github.com/kmbowles00">kmbowles00</a></td>
-<td>Repository and site setup</td>
+<td>Market baseline page (Step 3.3), standup documentation</td>
 </tr>
 <tr class="odd">
 <td>Jonathan Chen</td>
 <td></td>
-<td></td>
+<td>Data cleaning (Step 3.2)</td>
 </tr>
 </tbody>
 </table>
@@ -230,36 +235,48 @@ ul.task-list li input[type="checkbox"] {
 <section id="roadmap" class="level2">
 <h2 class="anchored" data-anchor-id="roadmap">Roadmap</h2>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>Module</th>
 <th>Deliverable</th>
+<th>Status</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>M1</td>
 <td>Project scope, industry selection, rationale, initial site</td>
+<td>Complete</td>
 </tr>
 <tr class="even">
 <td>M2</td>
 <td>Data preparation and market baseline</td>
+<td>In progress</td>
 </tr>
 <tr class="odd">
 <td>M3</td>
 <td>Skill-gap analysis and career evaluation scorecard</td>
+<td></td>
 </tr>
 <tr class="even">
 <td>M4</td>
 <td>Checkpoint — no new step</td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>M5</td>
 <td>Final analytics, recommendations, report</td>
+<td></td>
 </tr>
 <tr class="even">
 <td>M6</td>
 <td>Final presentation</td>
+<td></td>
 </tr>
 </tbody>
 </table>

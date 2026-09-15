@@ -1,47 +1,5 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Career Evaluation Product — Group 1",
-    "section": "",
-    "text": "Team\nAD688 Group 1\n\n\nCareer Pathway\nBusiness Intelligence / Data Analyst\n\n\nIndustry Code\nNAICS 2022 — 5221 Depository Credit Intermediation (6-digit: 522110 Commercial Banking)\n\n\nIndustry Label\nU.S. Depository Banking\n\n\nData Source\nMET Employability Career Match API"
-  },
-  {
-    "objectID": "index.html#project-scope",
-    "href": "index.html#project-scope",
-    "title": "Career Evaluation Product — Group 1",
-    "section": "",
-    "text": "Team\nAD688 Group 1\n\n\nCareer Pathway\nBusiness Intelligence / Data Analyst\n\n\nIndustry Code\nNAICS 2022 — 5221 Depository Credit Intermediation (6-digit: 522110 Commercial Banking)\n\n\nIndustry Label\nU.S. Depository Banking\n\n\nData Source\nMET Employability Career Match API"
-  },
-  {
-    "objectID": "index.html#product-question",
-    "href": "index.html#product-question",
-    "title": "Career Evaluation Product — Group 1",
-    "section": "Product Question",
-    "text": "Product Question\n\nWhich skills, locations, and role variants give an early-career candidate the strongest entry into Business Intelligence / Data Analyst roles in U.S. depository banking (NAICS 5221), and which skills are missing from a current student profile?"
-  },
-  {
-    "objectID": "index.html#why-this-industry",
-    "href": "index.html#why-this-industry",
-    "title": "Career Evaluation Product — Group 1",
-    "section": "Why This Industry",
-    "text": "Why This Industry\nDepository credit intermediation (NAICS 5221) is one of the largest non-technology employers of analytics talent in the United States: retail and commercial banks run continuous reporting, credit risk, fraud, and regulatory analytics functions that are staffed by business intelligence and data analyst roles rather than by research scientists. Because banking analytics is shaped by regulatory reporting and legacy data warehouses, its skill profile differs from the software sector — SQL, data governance, and domain knowledge often outweigh machine-learning depth. That contrast makes 5221 a well-defined scope for a product that advises a job seeker on where to apply and what to learn next."
-  },
-  {
-    "objectID": "index.html#team",
-    "href": "index.html#team",
-    "title": "Career Evaluation Product — Group 1",
-    "section": "Team",
-    "text": "Team\n\n\n\nName\nGitHub\nRole this module\n\n\n\n\nFuad Babaiev\nfuadbbv\nRepository and site setup, project scoping\n\n\nKatie Bowles\nkmbowles00\nRepository and site setup\n\n\nJonathan Chen"
-  },
-  {
-    "objectID": "index.html#roadmap",
-    "href": "index.html#roadmap",
-    "title": "Career Evaluation Product — Group 1",
-    "section": "Roadmap",
-    "text": "Roadmap\n\n\n\nModule\nDeliverable\n\n\n\n\nM1\nProject scope, industry selection, rationale, initial site\n\n\nM2\nData preparation and market baseline\n\n\nM3\nSkill-gap analysis and career evaluation scorecard\n\n\nM4\nCheckpoint — no new step\n\n\nM5\nFinal analytics, recommendations, report\n\n\nM6\nFinal presentation"
-  },
-  {
     "objectID": "introduction.html",
     "href": "introduction.html",
     "title": "Introduction",
@@ -60,14 +18,21 @@
     "href": "introduction.html#rationale",
     "title": "Introduction",
     "section": "Rationale",
-    "text": "Rationale\nThe U.S. Bureau of Labor Statistics projects employment of data scientists to grow 35 percent between 2025 and 2035, far above the average for all occupations, with a 2025 median wage of $120,230 (U.S. Bureau of Labor Statistics (2026a)). Aggregate growth of this kind, however, tells an individual job seeker very little: it does not say which industry to target, which skills separate an interview from a rejection, or where an entry-level opening is realistically attainable.\nDepository credit intermediation (NAICS 5221) covers commercial banks, savings institutions, and credit unions (U.S. Census Bureau (2022)), and credit intermediation is one of the largest employment segments within finance (U.S. Bureau of Labor Statistics (2026b)). Banks employ analysts continuously for regulatory reporting, credit risk, fraud detection, and customer analytics, which makes the segment large enough to analyse and specific enough to give actionable advice.\nPrior research supports scoping the analysis to job postings. Content analyses of analytics job advertisements show that employer requirements cluster into distinct technical, analytical, and business-domain groups, and that the mix varies systematically by role and context (Verma et al. (2019)). Studies of entry-level analytics hiring similarly find a gap between what programmes teach and what employers ask for in postings (Stanton and Stanton (2020)). A product that reads postings directly, rather than relying on generic career advice, addresses that gap."
+    "text": "Rationale\nThe U.S. Bureau of Labor Statistics projects employment of data scientists to grow 35 percent between 2025 and 2035, far above the average for all occupations, with a 2025 median wage of $120,230 (U.S. Bureau of Labor Statistics (2026a)). Aggregate growth of this kind, however, tells an individual job seeker very little: it does not say which industry to target, which skills separate an interview from a rejection, or where an entry-level opening is realistically attainable.\nSecurities, commodity contracts, and other financial investments (NAICS 523) covers investment banks, brokerages, asset managers, and related financial-investment activities (U.S. Census Bureau (2022)), and the subsector employed roughly 1.17 million people in the United States as of August 2026 (U.S. Bureau of Labor Statistics (2026b)). These firms employ analysts continuously for regulatory reporting, risk, performance measurement, and client analytics, which makes the segment large enough to analyse and specific enough to give actionable advice.\nPrior research supports scoping the analysis to job postings. Content analyses of analytics job advertisements show that employer requirements cluster into distinct technical, analytical, and business-domain groups, and that the mix varies systematically by role and context (Verma et al. (2019)). Studies of entry-level analytics hiring similarly find a gap between what programmes teach and what employers ask for in postings (Stanton and Stanton (2020)). A product that reads postings directly, rather than relying on generic career advice, addresses that gap."
+  },
+  {
+    "objectID": "introduction.html#scope-revision",
+    "href": "introduction.html#scope-revision",
+    "title": "Introduction",
+    "section": "Scope Revision",
+    "text": "Scope Revision\nThe project originally anchored to NAICS 5221, Depository Credit Intermediation. Pulling that slice returned only 59 postings, with salary present on 13 of them, which would not support the compensation and skill-gap analysis planned for Modules 3 and 5. We measured the adjacent industry codes and re-anchored to NAICS 523. The career pathway, the product question, and the underlying argument are unchanged; only the industry scope moved, and it remains inside Finance and Insurance. The evidence behind the decision is reported on the Data Preparation page."
   },
   {
     "objectID": "introduction.html#product-framing",
     "href": "introduction.html#product-framing",
     "title": "Introduction",
     "section": "Product Framing",
-    "text": "Product Framing\nThe deliverable is a career evaluation product for a job seeker, not a general labour-market report. Every analysis in later modules is included only if it helps a student decide where to apply, what to learn next, and how to position themselves for BI/Data Analyst roles in NAICS 5221."
+    "text": "Product Framing\nThe deliverable is a career evaluation product for a job seeker, not a general labour-market report. Every analysis in later modules is included only if it helps a student decide where to apply, what to learn next, and how to position themselves for BI/Data Analyst roles in NAICS 523."
   },
   {
     "objectID": "introduction.html#what-we-expect-to-find",
@@ -81,6 +46,55 @@
     "href": "introduction.html#references",
     "title": "Introduction",
     "section": "References",
-    "text": "References\n\n\nStanton, W. W., and A. D. Stanton. (2020): “Helping business students acquire the skills needed for a career in analytics: A comprehensive industry assessment of entry-level requirements,” Decision Sciences Journal of Innovative Education,.\n\n\nU.S. Bureau of Labor Statistics. (2026a): “Data Scientists: Occupational Outlook Handbook,”https://www.bls.gov/ooh/math/data-scientists.htm.\n\n\n---. (2026b): “Credit Intermediation and Related Activities: NAICS 522,”https://www.bls.gov/iag/tgs/iag522.htm.\n\n\nU.S. Census Bureau. (2022): “North American Industry Classification System (NAICS) 2022, Sector 52: Finance and Insurance,”https://www.census.gov/naics/.\n\n\nVerma, A., K. M. Yurov, P. L. Lane, and Y. V. Yurova. (2019): “An investigation of skill requirements for business and data analytics positions: A content analysis of job advertisements,” Journal of Education for Business, 94."
+    "text": "References\n\n\nStanton, W. W., and A. D. Stanton. (2020): “Helping business students acquire the skills needed for a career in analytics: A comprehensive industry assessment of entry-level requirements,” Decision Sciences Journal of Innovative Education,.\n\n\nU.S. Bureau of Labor Statistics. (2026a): “Data Scientists: Occupational Outlook Handbook,”https://www.bls.gov/ooh/math/data-scientists.htm.\n\n\n---. (2026b): “Securities, Commodity Contracts, and Other Financial Investments and Related Activities: NAICS 523,”https://www.bls.gov/iag/tgs/iag523.htm.\n\n\nU.S. Census Bureau. (2022): “North American Industry Classification System (NAICS) 2022, Sector 52: Finance and Insurance,”https://www.census.gov/naics/.\n\n\nVerma, A., K. M. Yurov, P. L. Lane, and Y. V. Yurova. (2019): “An investigation of skill requirements for business and data analytics positions: A content analysis of job advertisements,” Journal of Education for Business, 94."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Career Evaluation Product — Group 1",
+    "section": "",
+    "text": "Team\nAD688 Group 1\n\n\nCareer Pathway\nBusiness Intelligence / Data Analyst\n\n\nIndustry Code\nNAICS 2022 — 523 Securities, Commodity Contracts, and Other Financial Investments and Related Activities\n\n\nIndustry Label\nU.S. securities, investment and asset management\n\n\nData Source\nMET Employability Career Match API"
+  },
+  {
+    "objectID": "index.html#project-scope",
+    "href": "index.html#project-scope",
+    "title": "Career Evaluation Product — Group 1",
+    "section": "",
+    "text": "Team\nAD688 Group 1\n\n\nCareer Pathway\nBusiness Intelligence / Data Analyst\n\n\nIndustry Code\nNAICS 2022 — 523 Securities, Commodity Contracts, and Other Financial Investments and Related Activities\n\n\nIndustry Label\nU.S. securities, investment and asset management\n\n\nData Source\nMET Employability Career Match API"
+  },
+  {
+    "objectID": "index.html#product-question",
+    "href": "index.html#product-question",
+    "title": "Career Evaluation Product — Group 1",
+    "section": "Product Question",
+    "text": "Product Question\n\nWhich skills, locations, and role variants give an early-career candidate the strongest entry into Business Intelligence / Data Analyst roles at U.S. securities and investment firms (NAICS 523), and which skills are missing from a current student profile?"
+  },
+  {
+    "objectID": "index.html#why-this-industry",
+    "href": "index.html#why-this-industry",
+    "title": "Career Evaluation Product — Group 1",
+    "section": "Why This Industry",
+    "text": "Why This Industry\nSecurities, commodity contracts, and other financial investment activities (NAICS 523) run continuous reporting, risk, performance-attribution, and client-analytics functions that are staffed by business intelligence and data analyst roles rather than by research scientists. Because investment analytics is shaped by regulatory reporting and legacy data infrastructure, its skill profile differs from the software sector — SQL, data governance, and domain knowledge often matter as much as machine-learning depth. The subsector is also the single largest source of analytics postings within Finance and Insurance in our data source, which makes the scope both coherent and large enough to support a decision-oriented product."
+  },
+  {
+    "objectID": "index.html#scope-revision-module-2",
+    "href": "index.html#scope-revision-module-2",
+    "title": "Career Evaluation Product — Group 1",
+    "section": "Scope Revision (Module 2)",
+    "text": "Scope Revision (Module 2)\nModule 1 anchored the project to NAICS 5221, Depository Credit Intermediation. When we pulled the data in Module 2, that code returned 59 postings in total, of which 13 carried salary information — too thin to support skill-gap and compensation analysis later in the project. We measured the neighbouring industry codes and moved the anchor to NAICS 523, which keeps the project inside Finance and Insurance while providing 15,176 postings, of which 6,199 match our career pathway. The measurement and the filter rule are documented on the Data Preparation page."
+  },
+  {
+    "objectID": "index.html#team",
+    "href": "index.html#team",
+    "title": "Career Evaluation Product — Group 1",
+    "section": "Team",
+    "text": "Team\n\n\n\nName\nGitHub\nRole this module\n\n\n\n\nFuad Babaiev\nfuadbbv\nDataset build (Step 3.1), site structure and publishing (Step 3.4)\n\n\nKatie Bowles\nkmbowles00\nMarket baseline page (Step 3.3), standup documentation\n\n\nJonathan Chen\n\nData cleaning (Step 3.2)"
+  },
+  {
+    "objectID": "index.html#roadmap",
+    "href": "index.html#roadmap",
+    "title": "Career Evaluation Product — Group 1",
+    "section": "Roadmap",
+    "text": "Roadmap\n\n\n\n\n\n\n\n\nModule\nDeliverable\nStatus\n\n\n\n\nM1\nProject scope, industry selection, rationale, initial site\nComplete\n\n\nM2\nData preparation and market baseline\nIn progress\n\n\nM3\nSkill-gap analysis and career evaluation scorecard\n\n\n\nM4\nCheckpoint — no new step\n\n\n\nM5\nFinal analytics, recommendations, report\n\n\n\nM6\nFinal presentation"
   }
 ]

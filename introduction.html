@@ -64,7 +64,7 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-445b8638c3d06994fee0907d791121c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-7c0f67eba7e864f644f943ef9a6fd48f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -148,6 +148,7 @@ div.csl-indent {
   <ul>
   <li><a href="#problem" id="toc-problem" class="nav-link active" data-scroll-target="#problem">Problem</a></li>
   <li><a href="#rationale" id="toc-rationale" class="nav-link" data-scroll-target="#rationale">Rationale</a></li>
+  <li><a href="#scope-revision" id="toc-scope-revision" class="nav-link" data-scroll-target="#scope-revision">Scope Revision</a></li>
   <li><a href="#product-framing" id="toc-product-framing" class="nav-link" data-scroll-target="#product-framing">Product Framing</a></li>
   <li><a href="#what-we-expect-to-find" id="toc-what-we-expect-to-find" class="nav-link" data-scroll-target="#what-we-expect-to-find">What We Expect to Find</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
@@ -183,12 +184,16 @@ div.csl-indent {
 <section id="rationale" class="level2">
 <h2 class="anchored" data-anchor-id="rationale">Rationale</h2>
 <p>The U.S. Bureau of Labor Statistics projects employment of data scientists to grow 35 percent between 2025 and 2035, far above the average for all occupations, with a 2025 median wage of $120,230 <span class="citation" data-cites="bls2026datascientists">(<a href="#ref-bls2026datascientists" role="doc-biblioref">U.S. Bureau of Labor Statistics (2026a)</a>)</span>. Aggregate growth of this kind, however, tells an individual job seeker very little: it does not say which industry to target, which skills separate an interview from a rejection, or where an entry-level opening is realistically attainable.</p>
-<p>Depository credit intermediation (NAICS 5221) covers commercial banks, savings institutions, and credit unions <span class="citation" data-cites="census2022naics">(<a href="#ref-census2022naics" role="doc-biblioref">U.S. Census Bureau (2022)</a>)</span>, and credit intermediation is one of the largest employment segments within finance <span class="citation" data-cites="bls2026creditintermediation">(<a href="#ref-bls2026creditintermediation" role="doc-biblioref">U.S. Bureau of Labor Statistics (2026b)</a>)</span>. Banks employ analysts continuously for regulatory reporting, credit risk, fraud detection, and customer analytics, which makes the segment large enough to analyse and specific enough to give actionable advice.</p>
+<p>Securities, commodity contracts, and other financial investments (NAICS 523) covers investment banks, brokerages, asset managers, and related financial-investment activities <span class="citation" data-cites="census2022naics">(<a href="#ref-census2022naics" role="doc-biblioref">U.S. Census Bureau (2022)</a>)</span>, and the subsector employed roughly 1.17 million people in the United States as of August 2026 <span class="citation" data-cites="bls2026securities">(<a href="#ref-bls2026securities" role="doc-biblioref">U.S. Bureau of Labor Statistics (2026b)</a>)</span>. These firms employ analysts continuously for regulatory reporting, risk, performance measurement, and client analytics, which makes the segment large enough to analyse and specific enough to give actionable advice.</p>
 <p>Prior research supports scoping the analysis to job postings. Content analyses of analytics job advertisements show that employer requirements cluster into distinct technical, analytical, and business-domain groups, and that the mix varies systematically by role and context <span class="citation" data-cites="verma2019skills">(<a href="#ref-verma2019skills" role="doc-biblioref">Verma et al. (2019)</a>)</span>. Studies of entry-level analytics hiring similarly find a gap between what programmes teach and what employers ask for in postings <span class="citation" data-cites="stanton2020entrylevel">(<a href="#ref-stanton2020entrylevel" role="doc-biblioref">Stanton and Stanton (2020)</a>)</span>. A product that reads postings directly, rather than relying on generic career advice, addresses that gap.</p>
+</section>
+<section id="scope-revision" class="level2">
+<h2 class="anchored" data-anchor-id="scope-revision">Scope Revision</h2>
+<p>The project originally anchored to NAICS 5221, Depository Credit Intermediation. Pulling that slice returned only 59 postings, with salary present on 13 of them, which would not support the compensation and skill-gap analysis planned for Modules 3 and 5. We measured the adjacent industry codes and re-anchored to NAICS 523. The career pathway, the product question, and the underlying argument are unchanged; only the industry scope moved, and it remains inside Finance and Insurance. The evidence behind the decision is reported on the Data Preparation page.</p>
 </section>
 <section id="product-framing" class="level2">
 <h2 class="anchored" data-anchor-id="product-framing">Product Framing</h2>
-<p>The deliverable is a career evaluation product for a job seeker, not a general labour-market report. Every analysis in later modules is included only if it helps a student decide <strong>where to apply</strong>, <strong>what to learn next</strong>, and <strong>how to position themselves</strong> for BI/Data Analyst roles in NAICS 5221.</p>
+<p>The deliverable is a career evaluation product for a job seeker, not a general labour-market report. Every analysis in later modules is included only if it helps a student decide <strong>where to apply</strong>, <strong>what to learn next</strong>, and <strong>how to position themselves</strong> for BI/Data Analyst roles in NAICS 523.</p>
 </section>
 <section id="what-we-expect-to-find" class="level2">
 <h2 class="anchored" data-anchor-id="what-we-expect-to-find">What We Expect to Find</h2>
@@ -209,8 +214,8 @@ div.csl-indent {
 <div id="ref-bls2026datascientists" class="csl-entry" role="listitem">
 <span class="smallcaps">U.S. Bureau of Labor Statistics</span>. (2026a): <span>“Data Scientists: Occupational Outlook Handbook,”</span><a href="https://www.bls.gov/ooh/math/data-scientists.htm" class="uri">https://www.bls.gov/ooh/math/data-scientists.htm</a>.
 </div>
-<div id="ref-bls2026creditintermediation" class="csl-entry" role="listitem">
-<span class="smallcaps">---</span>. (2026b): <span>“Credit Intermediation and Related Activities: NAICS 522,”</span><a href="https://www.bls.gov/iag/tgs/iag522.htm" class="uri">https://www.bls.gov/iag/tgs/iag522.htm</a>.
+<div id="ref-bls2026securities" class="csl-entry" role="listitem">
+<span class="smallcaps">---</span>. (2026b): <span>“Securities, Commodity Contracts, and Other Financial Investments and Related Activities: NAICS 523,”</span><a href="https://www.bls.gov/iag/tgs/iag523.htm" class="uri">https://www.bls.gov/iag/tgs/iag523.htm</a>.
 </div>
 <div id="ref-census2022naics" class="csl-entry" role="listitem">
 <span class="smallcaps">U.S. Census Bureau</span>. (2022): <span>“North American Industry Classification System (NAICS) 2022, Sector 52: Finance and Insurance,”</span><a href="https://www.census.gov/naics/" class="uri">https://www.census.gov/naics/</a>.
