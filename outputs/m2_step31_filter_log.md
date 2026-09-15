@@ -1,6 +1,6 @@
 # Step 3.1 - Filtered Industry-Career Dataset
 
-Generated: 2026-09-15 01:29
+Generated: 2026-09-15 13:14
 
 ## Scope
 - Industry: NAICS 523 (Securities, Commodity Contracts and Other Financial Investments)

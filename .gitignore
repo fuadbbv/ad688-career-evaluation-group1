@@ -17,6 +17,7 @@ __pycache__/
 
 # Data (не тащим тяжёлое сырьё в публичный репо)
 data/raw/*
+data/interim/*
 !data/raw/.gitkeep
 
 # macOS
