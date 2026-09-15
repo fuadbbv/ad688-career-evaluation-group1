@@ -10,13 +10,17 @@ Students finishing an analytics degree face a market that looks uniform from the
 
 The U.S. Bureau of Labor Statistics projects employment of data scientists to grow 35 percent between 2025 and 2035, far above the average for all occupations, with a 2025 median wage of \$120,230 [@bls2026datascientists]. Aggregate growth of this kind, however, tells an individual job seeker very little: it does not say which industry to target, which skills separate an interview from a rejection, or where an entry-level opening is realistically attainable.
 
-Depository credit intermediation (NAICS 5221) covers commercial banks, savings institutions, and credit unions [@census2022naics], and credit intermediation is one of the largest employment segments within finance [@bls2026creditintermediation]. Banks employ analysts continuously for regulatory reporting, credit risk, fraud detection, and customer analytics, which makes the segment large enough to analyse and specific enough to give actionable advice.
+Securities, commodity contracts, and other financial investments (NAICS 523) covers investment banks, brokerages, asset managers, and related financial-investment activities [@census2022naics], and the subsector employed roughly 1.17 million people in the United States as of August 2026 [@bls2026securities]. These firms employ analysts continuously for regulatory reporting, risk, performance measurement, and client analytics, which makes the segment large enough to analyse and specific enough to give actionable advice.
 
 Prior research supports scoping the analysis to job postings. Content analyses of analytics job advertisements show that employer requirements cluster into distinct technical, analytical, and business-domain groups, and that the mix varies systematically by role and context [@verma2019skills]. Studies of entry-level analytics hiring similarly find a gap between what programmes teach and what employers ask for in postings [@stanton2020entrylevel]. A product that reads postings directly, rather than relying on generic career advice, addresses that gap.
 
+## Scope Revision
+
+The project originally anchored to NAICS 5221, Depository Credit Intermediation. Pulling that slice returned only 59 postings, with salary present on 13 of them, which would not support the compensation and skill-gap analysis planned for Modules 3 and 5. We measured the adjacent industry codes and re-anchored to NAICS 523. The career pathway, the product question, and the underlying argument are unchanged; only the industry scope moved, and it remains inside Finance and Insurance. The evidence behind the decision is reported on the Data Preparation page.
+
 ## Product Framing
 
-The deliverable is a career evaluation product for a job seeker, not a general labour-market report. Every analysis in later modules is included only if it helps a student decide **where to apply**, **what to learn next**, and **how to position themselves** for BI/Data Analyst roles in NAICS 5221.
+The deliverable is a career evaluation product for a job seeker, not a general labour-market report. Every analysis in later modules is included only if it helps a student decide **where to apply**, **what to learn next**, and **how to position themselves** for BI/Data Analyst roles in NAICS 523.
 
 ## What We Expect to Find
 

@@ -1,10 +1,12 @@
 project:
   type: website
   output-dir: _site
+  render:
+    - "*.qmd"
 
 website:
   title: "AD688 Career Evaluation Product"
-  description: "Group 1 — BI/Data Analyst roles in U.S. depository banking (NAICS 5221)"
+  description: "Group 1 — BI/Data Analyst roles in U.S. securities and investment firms (NAICS 523)"
   navbar:
     left:
       - href: index.qmd

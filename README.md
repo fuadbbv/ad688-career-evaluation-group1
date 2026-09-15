@@ -1,6 +1,6 @@
 # AD688 — Career Evaluation Product (Group 1)
 
-Career evaluation product for job seekers targeting **Business Intelligence / Data Analyst** roles in **U.S. depository banking (NAICS 5221)**.
+Career evaluation product for job seekers targeting **Business Intelligence / Data Analyst** roles in **U.S. securities and investment firms (NAICS 523)**.
 
 **Live site:** https://fuadbbv.github.io/ad688-career-evaluation-group1/
 

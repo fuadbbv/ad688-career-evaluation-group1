@@ -8,33 +8,37 @@ title: "Career Evaluation Product — Group 1"
 |---|---|
 | **Team** | AD688 Group 1 |
 | **Career Pathway** | Business Intelligence / Data Analyst |
-| **Industry Code** | NAICS 2022 — **5221** Depository Credit Intermediation (6-digit: 522110 Commercial Banking) |
-| **Industry Label** | U.S. Depository Banking |
+| **Industry Code** | NAICS 2022 — **523** Securities, Commodity Contracts, and Other Financial Investments and Related Activities |
+| **Industry Label** | U.S. securities, investment and asset management |
 | **Data Source** | MET Employability Career Match API |
 
 ## Product Question
 
-> Which skills, locations, and role variants give an early-career candidate the strongest entry into Business Intelligence / Data Analyst roles in U.S. depository banking (NAICS 5221), and which skills are missing from a current student profile?
+> Which skills, locations, and role variants give an early-career candidate the strongest entry into Business Intelligence / Data Analyst roles at U.S. securities and investment firms (NAICS 523), and which skills are missing from a current student profile?
 
 ## Why This Industry
 
-Depository credit intermediation (NAICS 5221) is one of the largest non-technology employers of analytics talent in the United States: retail and commercial banks run continuous reporting, credit risk, fraud, and regulatory analytics functions that are staffed by business intelligence and data analyst roles rather than by research scientists. Because banking analytics is shaped by regulatory reporting and legacy data warehouses, its skill profile differs from the software sector — SQL, data governance, and domain knowledge often outweigh machine-learning depth. That contrast makes 5221 a well-defined scope for a product that advises a job seeker on where to apply and what to learn next.
+Securities, commodity contracts, and other financial investment activities (NAICS 523) run continuous reporting, risk, performance-attribution, and client-analytics functions that are staffed by business intelligence and data analyst roles rather than by research scientists. Because investment analytics is shaped by regulatory reporting and legacy data infrastructure, its skill profile differs from the software sector — SQL, data governance, and domain knowledge often matter as much as machine-learning depth. The subsector is also the single largest source of analytics postings within Finance and Insurance in our data source, which makes the scope both coherent and large enough to support a decision-oriented product.
+
+## Scope Revision (Module 2)
+
+Module 1 anchored the project to NAICS 5221, Depository Credit Intermediation. When we pulled the data in Module 2, that code returned **59 postings in total**, of which 13 carried salary information — too thin to support skill-gap and compensation analysis later in the project. We measured the neighbouring industry codes and moved the anchor to **NAICS 523**, which keeps the project inside Finance and Insurance while providing **15,176 postings**, of which **6,199** match our career pathway. The measurement and the filter rule are documented on the Data Preparation page.
 
 ## Team
 
 | Name | GitHub | Role this module |
 |---|---|---|
-| Fuad Babaiev | [fuadbbv](https://github.com/fuadbbv) | Repository and site setup, project scoping |
-| Katie Bowles | [kmbowles00](https://github.com/kmbowles00) | Repository and site setup |
-| Jonathan Chen | | |
+| Fuad Babaiev | [fuadbbv](https://github.com/fuadbbv) | Dataset build (Step 3.1), site structure and publishing (Step 3.4) |
+| Katie Bowles | [kmbowles00](https://github.com/kmbowles00) | Market baseline page (Step 3.3), standup documentation |
+| Jonathan Chen | | Data cleaning (Step 3.2) |
 
 ## Roadmap
 
-| Module | Deliverable |
-|---|---|
-| M1 | Project scope, industry selection, rationale, initial site |
-| M2 | Data preparation and market baseline |
-| M3 | Skill-gap analysis and career evaluation scorecard |
-| M4 | Checkpoint — no new step |
-| M5 | Final analytics, recommendations, report |
-| M6 | Final presentation |
+| Module | Deliverable | Status |
+|---|---|---|
+| M1 | Project scope, industry selection, rationale, initial site | Complete |
+| M2 | Data preparation and market baseline | In progress |
+| M3 | Skill-gap analysis and career evaluation scorecard | |
+| M4 | Checkpoint — no new step | |
+| M5 | Final analytics, recommendations, report | |
+| M6 | Final presentation | |
