@@ -1,0 +1,35 @@
+import os, json, requests
+from dotenv import load_dotenv
+
+load_dotenv()
+KEY = os.environ.get("EMPLOYABILITY_API_KEY", "")
+BASE = os.environ.get("EMPLOYABILITY_API_BASE_URL", "").rstrip("/")
+PREFIX = os.environ.get("EMPLOYABILITY_API_PATH_PREFIX", "").strip("/")
+if PREFIX and not BASE.endswith(PREFIX):
+    BASE = f"{BASE}/{PREFIX}"
+
+print("BASE:", BASE)
+print("KEY length:", len(KEY), "| starts with:", KEY[:4] if KEY else "(empty)")
+
+def show(label, url, headers=None, params=None):
+    print(f"\n{'='*60}\n{label}\n{url}")
+    try:
+        r = requests.get(url, headers=headers or {}, params=params or {}, timeout=60)
+    except Exception as e:
+        print("EXCEPTION:", e); return
+    print("status:", r.status_code)
+    print("body (first 900 chars):")
+    print(r.text[:900])
+
+
+
+
+≈≈≈≈≈# 1. Публичная схема — ключ не нужен. Проверяем, что сервис вообще живой.
+root = BASE.rsplit("/student", 1)[0]
+show("SCHEMA (public)", f"{root}/schema/")
+
+# 2. jobs с ключом
+show("JOBS + key", f"{BASE}/jobs/", {"X-API-Key": KEY}, {"limit": 2})
+
+# 3. job-facts с ключом
+show("JOB-FACTS + key", f"{BASE}/job-facts/", {"X-API-Key": KEY}, {"l
