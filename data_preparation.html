@@ -26,7 +26,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -122,8 +141,28 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#why-this-page-exists" id="toc-why-this-page-exists" class="nav-link active" data-scroll-target="#why-this-page-exists">Why This Page Exists</a></li>
+  <li><a href="#data-source" id="toc-data-source" class="nav-link" data-scroll-target="#data-source">Data Source</a></li>
+  <li><a href="#industry-and-career-scope" id="toc-industry-and-career-scope" class="nav-link" data-scroll-target="#industry-and-career-scope">Industry and Career Scope</a>
+  <ul class="collapse">
+  <li><a href="#scope-revision-from-naics-5221-to-523" id="toc-scope-revision-from-naics-5221-to-523" class="nav-link" data-scroll-target="#scope-revision-from-naics-5221-to-523">Scope revision: from NAICS 5221 to 523</a></li>
+  <li><a href="#why-a-three-digit-code" id="toc-why-a-three-digit-code" class="nav-link" data-scroll-target="#why-a-three-digit-code">Why a three-digit code</a></li>
+  </ul></li>
+  <li><a href="#role-definition" id="toc-role-definition" class="nav-link" data-scroll-target="#role-definition">Role Definition</a></li>
+  <li><a href="#filter-funnel" id="toc-filter-funnel" class="nav-link" data-scroll-target="#filter-funnel">Filter Funnel</a></li>
+  <li><a href="#derived-fields-added-during-extraction" id="toc-derived-fields-added-during-extraction" class="nav-link" data-scroll-target="#derived-fields-added-during-extraction">Derived Fields Added During Extraction</a></li>
+  <li><a href="#cleaning-decisions" id="toc-cleaning-decisions" class="nav-link" data-scroll-target="#cleaning-decisions">Cleaning Decisions</a></li>
+  <li><a href="#data-quality-and-limitations" id="toc-data-quality-and-limitations" class="nav-link" data-scroll-target="#data-quality-and-limitations">Data Quality and Limitations</a></li>
+  <li><a href="#output" id="toc-output" class="nav-link" data-scroll-target="#output">Output</a></li>
+  <li><a href="#reproducing-this-step" id="toc-reproducing-this-step" class="nav-link" data-scroll-target="#reproducing-this-step">Reproducing This Step</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -147,8 +186,302 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="why-this-page-exists" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-page-exists">Why This Page Exists</h2>
+<p>Every figure on the Market Baseline page comes from one table. This page documents how that table was built: what we pulled, what we kept, what we removed, and what we repaired. Anyone reading our conclusions should be able to judge how much weight the evidence can carry.</p>
+</section>
+<section id="data-source" class="level2">
+<h2 class="anchored" data-anchor-id="data-source">Data Source</h2>
+<p>All postings come from the <strong>MET Employability Career Match API</strong> <span class="citation" data-cites="met2026careermatch">(<a href="#ref-met2026careermatch" role="doc-biblioref">Boston University Metropolitan College (2026)</a>)</span>, specifically the <code>/api/v1/student/jobs/</code> endpoint, which returns active, deduplicated, student-visible job postings with employer, location, salary, occupation, and skill fields attached.</p>
+<p>Requests are authenticated with a personal API key sent in an <code>X-API-Key</code> header. The key lives in a local <code>.env</code> file that is excluded from version control; the repository contains only <code>.env.example</code> with empty values.</p>
+<p>We also evaluated the <code>/job-facts/</code> endpoint, which the API documentation recommends for classroom analysis. It returned no rows for our industry, so the <code>/jobs/</code> endpoint is our source.</p>
+</section>
+<section id="industry-and-career-scope" class="level2">
+<h2 class="anchored" data-anchor-id="industry-and-career-scope">Industry and Career Scope</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>Industry code</td>
+<td>NAICS 2022 — <strong>523</strong>, Securities, Commodity Contracts, and Other Financial Investments and Related Activities <span class="citation" data-cites="census2022naics">(<a href="#ref-census2022naics" role="doc-biblioref">U.S. Census Bureau (2022)</a>)</span></td>
+</tr>
+<tr class="even">
+<td>Career pathway</td>
+<td>Business Intelligence / Data Analyst</td>
+</tr>
+<tr class="odd">
+<td>Date window</td>
+<td>Postings published on or after <strong>1 September 2025</strong> (a rolling twelve-month window)</td>
+</tr>
+<tr class="even">
+<td>Extraction date</td>
+<td>15 September 2026</td>
+</tr>
+</tbody>
+</table>
+<p>The date window keeps the analysis current. Hiring requirements shift, and a posting from three years ago describes a market our target user is no longer applying into.</p>
+<section id="scope-revision-from-naics-5221-to-523" class="level3">
+<h3 class="anchored" data-anchor-id="scope-revision-from-naics-5221-to-523">Scope revision: from NAICS 5221 to 523</h3>
+<p>Module 1 anchored this project to <strong>NAICS 5221, Depository Credit Intermediation</strong>. When we pulled the data in Module 2, that code returned <strong>59 postings in total</strong> — not a first page, but the entire available universe — and only 13 of them carried salary information. That is not enough to support a salary distribution, a skill-gap analysis, or a scorecard in later modules.</p>
+<p>We measured the neighbouring codes before deciding, counting both total postings and postings matching our career pathway:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Industry code</th>
+<th>Total postings</th>
+<th>Analytics-pathway postings</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5221 Depository Credit Intermediation</td>
+<td>59</td>
+<td>27</td>
+</tr>
+<tr class="even">
+<td>5241 Insurance Carriers</td>
+<td>7,573</td>
+<td>1,507</td>
+</tr>
+<tr class="odd">
+<td>52 Finance and Insurance (whole sector)</td>
+<td>27,893</td>
+<td>7,824</td>
+</tr>
+<tr class="even">
+<td><strong>523 Securities and Investments</strong></td>
+<td><strong>15,176</strong></td>
+<td><strong>4,787</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Within the whole Finance and Insurance sector, NAICS 523 accounts for roughly two-thirds of all analytics postings. Taking the sector as a whole would therefore have meant studying securities and investments anyway, but with a blurred label and an incoherent mix of employers. We chose the explicit code instead.</p>
+<p>The career pathway, the product question, and the underlying argument did not change. Only the industry anchor moved, and it stayed inside Finance and Insurance.</p>
+</section>
+<section id="why-a-three-digit-code" class="level3">
+<h3 class="anchored" data-anchor-id="why-a-three-digit-code">Why a three-digit code</h3>
+<p>The assignment asks for four- or six-digit NAICS codes where possible. We tested <code>5231</code> and <code>5239</code>, the four-digit codes beneath 523, and both returned zero rows: this dataset does not carry four-digit granularity for the securities subsector, though it does for insurance. NAICS 523 is therefore the most specific code available for the industry we selected.</p>
+</section>
+</section>
+<section id="role-definition" class="level2">
+<h2 class="anchored" data-anchor-id="role-definition">Role Definition</h2>
+<p>The assignment allows title keywords, SOC or O*NET mappings, skills logic, or a combination, provided the choice is explained. We use a <strong>combination</strong>, for two reasons found in the data itself:</p>
+<p><strong>Job titles are inconsistent.</strong> Filtering on a single title such as “Data Analyst” returns a few hundred rows and discards obvious matches like Business Intelligence Analyst, Reporting Analyst, and Analytics Engineer.</p>
+<p><strong>The occupational coding is noisy.</strong> A large share of genuine analytics postings sit under the broad SOC “Management Analysts”, while some clearly unrelated roles carry the word “analyst” in the title. Neither signal is reliable on its own.</p>
+<p>A posting is therefore kept when <strong>either</strong> condition holds:</p>
+<ul>
+<li>its SOC name matches one of: data scientist, database architect, statistician, mathematician, operations research, market research analyst, financial and investment analyst, credit analyst, management analyst</li>
+<li><strong>or</strong> its title contains one of: analyst, analytics, data, business intelligence, BI, reporting, SQL, data science, machine learning</li>
+</ul>
+<p>Information-security roles are then removed. They match the word “analyst” but belong to a different career pathway, and including them would distort the skill profile our product reports.</p>
+</section>
+<section id="filter-funnel" class="level2">
+<h2 class="anchored" data-anchor-id="filter-funnel">Filter Funnel</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Postings</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Retrieved for NAICS 523 within the date window</td>
+<td>15,176</td>
+</tr>
+<tr class="even">
+<td>Matched the role definition</td>
+<td>6,263</td>
+</tr>
+<tr class="odd">
+<td>Removed: information-security roles</td>
+<td>−64</td>
+</tr>
+<tr class="even">
+<td>Removed: duplicate <code>job_id</code></td>
+<td>−0</td>
+</tr>
+<tr class="odd">
+<td><strong>Analytical dataset</strong></td>
+<td><strong>6,199</strong></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="derived-fields-added-during-extraction" class="level2">
+<h2 class="anchored" data-anchor-id="derived-fields-added-during-extraction">Derived Fields Added During Extraction</h2>
+<p>The API does not expose experience or education as structured fields, so three columns were derived from the posting text and one from a nested object:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>How it was produced</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>skills_text</code></td>
+<td>Skill names flattened from a nested list into a semicolon-separated string</td>
+</tr>
+<tr class="even">
+<td><code>skills_count</code></td>
+<td>Number of skills attached to the posting</td>
+</tr>
+<tr class="odd">
+<td><code>experience_years_raw</code></td>
+<td>First “N years” figure found in the description, by regular expression</td>
+</tr>
+<tr class="even">
+<td><code>education_level_raw</code></td>
+<td>Highest degree keyword found in the description (PhD, Master, Bachelor, Associate, High School)</td>
+</tr>
+<tr class="odd">
+<td><code>organization_name</code></td>
+<td>Employer name lifted out of the nested organization object</td>
+</tr>
+</tbody>
+</table>
+<p>The two <code>_raw</code> columns are a first pass. A posting that says “5 years of experience preferred, 3 years required” yields one number, and phrasing that does not follow the pattern yields nothing. They are treated as an approximate signal, not a measurement.</p>
+</section>
+<section id="cleaning-decisions" class="level2">
+<h2 class="anchored" data-anchor-id="cleaning-decisions">Cleaning Decisions</h2>
+<p>Cleaning is deliberately conservative. Where a value is implausible we blank it rather than guess a replacement, and where a whole posting is questionable we keep it and record the gap. Deleting rows narrows the sample; blanking a single field costs us only that field.</p>
+<p><strong>Duplicates.</strong> Postings are deduplicated on <code>job_id</code>. The API already returns a deduplicated feed, and no duplicates remained in our slice.</p>
+<p><strong>Rows with missing essentials.</strong> A posting is dropped if it has no identifier, title, employer, or publication date, because it cannot be attributed or placed in the date window. No rows failed this test.</p>
+<p><em>A note on an error we caught here.</em> The first cleaning run removed 932 of 6,199 postings as missing a publication date, while the source file showed that column fully populated. The cause was a parsing quirk rather than missing data: timestamps arrive in two shapes, some carrying fractional seconds and some not, and the date parser inferred a single format from the first values and rejected the rest. Setting the parser to accept any ISO-8601 timestamp restored all 932 rows. We mention it because a 15 percent silent loss would have skewed every figure downstream.</p>
+<p><strong>Dates.</strong> All dates are parsed to UTC. Where an expiry date fell before the publication date the expiry was blanked, since one of the two must be wrong and we cannot tell which. One posting was affected.</p>
+<p><strong>Salary.</strong> Reversed ranges, where the minimum exceeded the maximum, are swapped. Annual salaries below $10,000 or above $1,000,000 are blanked as data errors rather than genuine offers — 44 postings were affected. Postings without a salary keep every other field and are simply excluded from salary statistics. Hourly and annual figures are kept in separate columns and are <strong>not</strong> combined, because converting an hourly rate to an annual one requires an assumption about hours that the postings do not supply.</p>
+<p><strong>Experience and education.</strong> Left as extracted, with the approximation clearly labelled by the <code>_raw</code> suffix. They are usable for broad comparisons — whether a segment asks for more experience than another — but not for precise thresholds.</p>
+<p><strong>Skills.</strong> Stored as a semicolon-separated string with a count. Skill names are not yet normalised, so casing and synonyms (SQL, sql, Structured Query Language) remain distinct. That normalisation belongs to the skill-gap work in Module 3, where it has an analytical purpose.</p>
+<p><strong>Remote status.</strong> Reported exactly as the source provides it: remote, hybrid, onsite, or unknown. “Unknown” is kept as its own category and never folded into “onsite”, because an unlabelled posting is not evidence of an onsite role.</p>
+<p><strong>Location.</strong> Text fields are trimmed of stray whitespace. ZIP codes are padded to five digits and the placeholder <code>00000</code> is treated as missing. Coordinates outside the latitude and longitude bounds of the United States are blanked rather than deleted, so the posting survives with its other fields intact.</p>
+<p><strong>Industry and occupation codes.</strong> Kept as provided. The industry codes in this dataset are aggregated rather than plain NAICS 2022 codes, which is recorded in the data dictionary so no one later mistakes them for official codes.</p>
+<p><strong>Text and types.</strong> HTML markup and repeated whitespace are stripped from descriptions. Every column is then cast to an explicit type — dates, booleans, integers, floats, and categories — so that later analysis cannot silently treat a number as text.</p>
+</section>
+<section id="data-quality-and-limitations" class="level2">
+<h2 class="anchored" data-anchor-id="data-quality-and-limitations">Data Quality and Limitations</h2>
+<p>Coverage in the cleaned analytical panel, 6,199 postings:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Populated</th>
+<th>Share</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Occupation code (SOC)</td>
+<td>6,092</td>
+<td>98%</td>
+</tr>
+<tr class="even">
+<td>Skills listed</td>
+<td>5,742</td>
+<td>93%</td>
+</tr>
+<tr class="odd">
+<td>Remote status known (not “unknown”)</td>
+<td>2,992</td>
+<td>48%</td>
+</tr>
+<tr class="even">
+<td>Experience signal found</td>
+<td>4,093</td>
+<td>66%</td>
+</tr>
+<tr class="odd">
+<td>Education signal found</td>
+<td>3,675</td>
+<td>59%</td>
+</tr>
+<tr class="even">
+<td>US state code</td>
+<td>1,761</td>
+<td>28%</td>
+</tr>
+<tr class="odd">
+<td>Annual salary</td>
+<td>1,206</td>
+<td>19%</td>
+</tr>
+<tr class="even">
+<td>Hourly salary</td>
+<td>258</td>
+<td>4%</td>
+</tr>
+</tbody>
+</table>
+<p>Three limitations follow, and they shape how the Market Baseline page should be read.</p>
+<p><strong>Salary coverage is low, and it is not specific to our industry.</strong> We checked the whole Finance and Insurance sector and found the same pattern everywhere, so this is a property of the source data rather than a consequence of our scope. Any statement about pay in this project describes the roughly one posting in five that discloses pay — a self-selected group that may skew toward larger or more regulated employers.</p>
+<p><strong>Geography is thin.</strong> Fewer than three postings in ten carry a US state code, and a substantial number of postings are outside the United States altogether. Location analysis is therefore restricted to postings that identify a state, and the counts behind each state are much smaller than the headline row count suggests.</p>
+<p><strong>Remote status is frequently unrecorded.</strong> Roughly half of postings are labelled “unknown”. Any remote-versus-onsite comparison describes the labelled half only.</p>
+<p>By contrast, occupation codes and skill lists are close to complete, so the skill-gap work planned for Module 3 rests on firmer ground than the compensation analysis does.</p>
+</section>
+<section id="output" class="level2">
+<h2 class="anchored" data-anchor-id="output">Output</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>Extracted dataset</td>
+<td><code>data/interim/jobs_naics523_filtered_20260915.csv.gz</code> — 6,199 rows, 48 columns</td>
+</tr>
+<tr class="even">
+<td><strong>Cleaned analytical panel</strong></td>
+<td><strong><code>data/processed/career_market_panel.csv</code> — 6,199 rows, 43 columns</strong></td>
+</tr>
+<tr class="odd">
+<td>Data dictionary</td>
+<td><code>outputs/data_dictionary.md</code> and <code>outputs/data_dictionary.csv</code></td>
+</tr>
+<tr class="even">
+<td>Extraction log</td>
+<td><code>outputs/m2_step31_filter_log.md</code></td>
+</tr>
+<tr class="odd">
+<td>Cleaning log</td>
+<td><code>outputs/m2_step32_cleaning_log.md</code></td>
+</tr>
+</tbody>
+</table>
+<p>The panel excludes the full posting text and four nested metadata blobs. They are not needed for analysis and would multiply the file size; they remain available in the extracted dataset.</p>
+<p>Raw API responses are kept locally and excluded from version control.</p>
+</section>
+<section id="reproducing-this-step" class="level2">
+<h2 class="anchored" data-anchor-id="reproducing-this-step">Reproducing This Step</h2>
+<ol type="1">
+<li>Copy <code>.env.example</code> to <code>.env</code> and add a MET Employability API key</li>
+<li><code>pip install -r requirements.txt</code></li>
+<li><code>python notebooks/10_build_dataset.py</code> — extraction and filtering</li>
+<li><code>python notebooks/12_data_cleaning.py</code> — cleaning, typing, and the analytical panel</li>
+<li><code>python notebooks/14_data_dictionary.py</code> — data dictionary</li>
+</ol>
+<p>All work runs on the course AWS EC2 environment.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-met2026careermatch" class="csl-entry" role="listitem">
+<span class="smallcaps">Boston University Metropolitan College</span>. (2026): <span>“MET Employability Career Match API,”</span><a href="https://met-employability-services.azurewebsites.net" class="uri">https://met-employability-services.azurewebsites.net</a>.
+</div>
+<div id="ref-census2022naics" class="csl-entry" role="listitem">
+<span class="smallcaps">U.S. Census Bureau</span>. (2022): <span>“North American Industry Classification System (NAICS) 2022, Sector 52: Finance and Insurance,”</span><a href="https://www.census.gov/naics/" class="uri">https://www.census.gov/naics/</a>.
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

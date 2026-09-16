@@ -49,6 +49,90 @@
     "text": "References\n\n\nStanton, W. W., and A. D. Stanton. (2020): “Helping business students acquire the skills needed for a career in analytics: A comprehensive industry assessment of entry-level requirements,” Decision Sciences Journal of Innovative Education,.\n\n\nU.S. Bureau of Labor Statistics. (2026a): “Data Scientists: Occupational Outlook Handbook,”https://www.bls.gov/ooh/math/data-scientists.htm.\n\n\n---. (2026b): “Securities, Commodity Contracts, and Other Financial Investments and Related Activities: NAICS 523,”https://www.bls.gov/iag/tgs/iag523.htm.\n\n\nU.S. Census Bureau. (2022): “North American Industry Classification System (NAICS) 2022, Sector 52: Finance and Insurance,”https://www.census.gov/naics/.\n\n\nVerma, A., K. M. Yurov, P. L. Lane, and Y. V. Yurova. (2019): “An investigation of skill requirements for business and data analytics positions: A content analysis of job advertisements,” Journal of Education for Business, 94."
   },
   {
+    "objectID": "data_preparation.html",
+    "href": "data_preparation.html",
+    "title": "Data Preparation",
+    "section": "",
+    "text": "Every figure on the Market Baseline page comes from one table. This page documents how that table was built: what we pulled, what we kept, what we removed, and what we repaired. Anyone reading our conclusions should be able to judge how much weight the evidence can carry."
+  },
+  {
+    "objectID": "data_preparation.html#why-this-page-exists",
+    "href": "data_preparation.html#why-this-page-exists",
+    "title": "Data Preparation",
+    "section": "",
+    "text": "Every figure on the Market Baseline page comes from one table. This page documents how that table was built: what we pulled, what we kept, what we removed, and what we repaired. Anyone reading our conclusions should be able to judge how much weight the evidence can carry."
+  },
+  {
+    "objectID": "data_preparation.html#data-source",
+    "href": "data_preparation.html#data-source",
+    "title": "Data Preparation",
+    "section": "Data Source",
+    "text": "Data Source\nAll postings come from the MET Employability Career Match API (Boston University Metropolitan College (2026)), specifically the /api/v1/student/jobs/ endpoint, which returns active, deduplicated, student-visible job postings with employer, location, salary, occupation, and skill fields attached.\nRequests are authenticated with a personal API key sent in an X-API-Key header. The key lives in a local .env file that is excluded from version control; the repository contains only .env.example with empty values.\nWe also evaluated the /job-facts/ endpoint, which the API documentation recommends for classroom analysis. It returned no rows for our industry, so the /jobs/ endpoint is our source."
+  },
+  {
+    "objectID": "data_preparation.html#industry-and-career-scope",
+    "href": "data_preparation.html#industry-and-career-scope",
+    "title": "Data Preparation",
+    "section": "Industry and Career Scope",
+    "text": "Industry and Career Scope\n\n\n\n\n\n\n\nIndustry code\nNAICS 2022 — 523, Securities, Commodity Contracts, and Other Financial Investments and Related Activities (U.S. Census Bureau (2022))\n\n\nCareer pathway\nBusiness Intelligence / Data Analyst\n\n\nDate window\nPostings published on or after 1 September 2025 (a rolling twelve-month window)\n\n\nExtraction date\n15 September 2026\n\n\n\nThe date window keeps the analysis current. Hiring requirements shift, and a posting from three years ago describes a market our target user is no longer applying into.\n\nScope revision: from NAICS 5221 to 523\nModule 1 anchored this project to NAICS 5221, Depository Credit Intermediation. When we pulled the data in Module 2, that code returned 59 postings in total — not a first page, but the entire available universe — and only 13 of them carried salary information. That is not enough to support a salary distribution, a skill-gap analysis, or a scorecard in later modules.\nWe measured the neighbouring codes before deciding, counting both total postings and postings matching our career pathway:\n\n\n\nIndustry code\nTotal postings\nAnalytics-pathway postings\n\n\n\n\n5221 Depository Credit Intermediation\n59\n27\n\n\n5241 Insurance Carriers\n7,573\n1,507\n\n\n52 Finance and Insurance (whole sector)\n27,893\n7,824\n\n\n523 Securities and Investments\n15,176\n4,787\n\n\n\nWithin the whole Finance and Insurance sector, NAICS 523 accounts for roughly two-thirds of all analytics postings. Taking the sector as a whole would therefore have meant studying securities and investments anyway, but with a blurred label and an incoherent mix of employers. We chose the explicit code instead.\nThe career pathway, the product question, and the underlying argument did not change. Only the industry anchor moved, and it stayed inside Finance and Insurance.\n\n\nWhy a three-digit code\nThe assignment asks for four- or six-digit NAICS codes where possible. We tested 5231 and 5239, the four-digit codes beneath 523, and both returned zero rows: this dataset does not carry four-digit granularity for the securities subsector, though it does for insurance. NAICS 523 is therefore the most specific code available for the industry we selected."
+  },
+  {
+    "objectID": "data_preparation.html#role-definition",
+    "href": "data_preparation.html#role-definition",
+    "title": "Data Preparation",
+    "section": "Role Definition",
+    "text": "Role Definition\nThe assignment allows title keywords, SOC or O*NET mappings, skills logic, or a combination, provided the choice is explained. We use a combination, for two reasons found in the data itself:\nJob titles are inconsistent. Filtering on a single title such as “Data Analyst” returns a few hundred rows and discards obvious matches like Business Intelligence Analyst, Reporting Analyst, and Analytics Engineer.\nThe occupational coding is noisy. A large share of genuine analytics postings sit under the broad SOC “Management Analysts”, while some clearly unrelated roles carry the word “analyst” in the title. Neither signal is reliable on its own.\nA posting is therefore kept when either condition holds:\n\nits SOC name matches one of: data scientist, database architect, statistician, mathematician, operations research, market research analyst, financial and investment analyst, credit analyst, management analyst\nor its title contains one of: analyst, analytics, data, business intelligence, BI, reporting, SQL, data science, machine learning\n\nInformation-security roles are then removed. They match the word “analyst” but belong to a different career pathway, and including them would distort the skill profile our product reports."
+  },
+  {
+    "objectID": "data_preparation.html#filter-funnel",
+    "href": "data_preparation.html#filter-funnel",
+    "title": "Data Preparation",
+    "section": "Filter Funnel",
+    "text": "Filter Funnel\n\n\n\nStage\nPostings\n\n\n\n\nRetrieved for NAICS 523 within the date window\n15,176\n\n\nMatched the role definition\n6,263\n\n\nRemoved: information-security roles\n−64\n\n\nRemoved: duplicate job_id\n−0\n\n\nAnalytical dataset\n6,199"
+  },
+  {
+    "objectID": "data_preparation.html#derived-fields-added-during-extraction",
+    "href": "data_preparation.html#derived-fields-added-during-extraction",
+    "title": "Data Preparation",
+    "section": "Derived Fields Added During Extraction",
+    "text": "Derived Fields Added During Extraction\nThe API does not expose experience or education as structured fields, so three columns were derived from the posting text and one from a nested object:\n\n\n\n\n\n\n\nColumn\nHow it was produced\n\n\n\n\nskills_text\nSkill names flattened from a nested list into a semicolon-separated string\n\n\nskills_count\nNumber of skills attached to the posting\n\n\nexperience_years_raw\nFirst “N years” figure found in the description, by regular expression\n\n\neducation_level_raw\nHighest degree keyword found in the description (PhD, Master, Bachelor, Associate, High School)\n\n\norganization_name\nEmployer name lifted out of the nested organization object\n\n\n\nThe two _raw columns are a first pass. A posting that says “5 years of experience preferred, 3 years required” yields one number, and phrasing that does not follow the pattern yields nothing. They are treated as an approximate signal, not a measurement."
+  },
+  {
+    "objectID": "data_preparation.html#cleaning-decisions",
+    "href": "data_preparation.html#cleaning-decisions",
+    "title": "Data Preparation",
+    "section": "Cleaning Decisions",
+    "text": "Cleaning Decisions\nCleaning is deliberately conservative. Where a value is implausible we blank it rather than guess a replacement, and where a whole posting is questionable we keep it and record the gap. Deleting rows narrows the sample; blanking a single field costs us only that field.\nDuplicates. Postings are deduplicated on job_id. The API already returns a deduplicated feed, and no duplicates remained in our slice.\nRows with missing essentials. A posting is dropped if it has no identifier, title, employer, or publication date, because it cannot be attributed or placed in the date window. No rows failed this test.\nA note on an error we caught here. The first cleaning run removed 932 of 6,199 postings as missing a publication date, while the source file showed that column fully populated. The cause was a parsing quirk rather than missing data: timestamps arrive in two shapes, some carrying fractional seconds and some not, and the date parser inferred a single format from the first values and rejected the rest. Setting the parser to accept any ISO-8601 timestamp restored all 932 rows. We mention it because a 15 percent silent loss would have skewed every figure downstream.\nDates. All dates are parsed to UTC. Where an expiry date fell before the publication date the expiry was blanked, since one of the two must be wrong and we cannot tell which. One posting was affected.\nSalary. Reversed ranges, where the minimum exceeded the maximum, are swapped. Annual salaries below $10,000 or above $1,000,000 are blanked as data errors rather than genuine offers — 44 postings were affected. Postings without a salary keep every other field and are simply excluded from salary statistics. Hourly and annual figures are kept in separate columns and are not combined, because converting an hourly rate to an annual one requires an assumption about hours that the postings do not supply.\nExperience and education. Left as extracted, with the approximation clearly labelled by the _raw suffix. They are usable for broad comparisons — whether a segment asks for more experience than another — but not for precise thresholds.\nSkills. Stored as a semicolon-separated string with a count. Skill names are not yet normalised, so casing and synonyms (SQL, sql, Structured Query Language) remain distinct. That normalisation belongs to the skill-gap work in Module 3, where it has an analytical purpose.\nRemote status. Reported exactly as the source provides it: remote, hybrid, onsite, or unknown. “Unknown” is kept as its own category and never folded into “onsite”, because an unlabelled posting is not evidence of an onsite role.\nLocation. Text fields are trimmed of stray whitespace. ZIP codes are padded to five digits and the placeholder 00000 is treated as missing. Coordinates outside the latitude and longitude bounds of the United States are blanked rather than deleted, so the posting survives with its other fields intact.\nIndustry and occupation codes. Kept as provided. The industry codes in this dataset are aggregated rather than plain NAICS 2022 codes, which is recorded in the data dictionary so no one later mistakes them for official codes.\nText and types. HTML markup and repeated whitespace are stripped from descriptions. Every column is then cast to an explicit type — dates, booleans, integers, floats, and categories — so that later analysis cannot silently treat a number as text."
+  },
+  {
+    "objectID": "data_preparation.html#data-quality-and-limitations",
+    "href": "data_preparation.html#data-quality-and-limitations",
+    "title": "Data Preparation",
+    "section": "Data Quality and Limitations",
+    "text": "Data Quality and Limitations\nCoverage in the cleaned analytical panel, 6,199 postings:\n\n\n\nField\nPopulated\nShare\n\n\n\n\nOccupation code (SOC)\n6,092\n98%\n\n\nSkills listed\n5,742\n93%\n\n\nRemote status known (not “unknown”)\n2,992\n48%\n\n\nExperience signal found\n4,093\n66%\n\n\nEducation signal found\n3,675\n59%\n\n\nUS state code\n1,761\n28%\n\n\nAnnual salary\n1,206\n19%\n\n\nHourly salary\n258\n4%\n\n\n\nThree limitations follow, and they shape how the Market Baseline page should be read.\nSalary coverage is low, and it is not specific to our industry. We checked the whole Finance and Insurance sector and found the same pattern everywhere, so this is a property of the source data rather than a consequence of our scope. Any statement about pay in this project describes the roughly one posting in five that discloses pay — a self-selected group that may skew toward larger or more regulated employers.\nGeography is thin. Fewer than three postings in ten carry a US state code, and a substantial number of postings are outside the United States altogether. Location analysis is therefore restricted to postings that identify a state, and the counts behind each state are much smaller than the headline row count suggests.\nRemote status is frequently unrecorded. Roughly half of postings are labelled “unknown”. Any remote-versus-onsite comparison describes the labelled half only.\nBy contrast, occupation codes and skill lists are close to complete, so the skill-gap work planned for Module 3 rests on firmer ground than the compensation analysis does."
+  },
+  {
+    "objectID": "data_preparation.html#output",
+    "href": "data_preparation.html#output",
+    "title": "Data Preparation",
+    "section": "Output",
+    "text": "Output\n\n\n\n\n\n\n\nExtracted dataset\ndata/interim/jobs_naics523_filtered_20260915.csv.gz — 6,199 rows, 48 columns\n\n\nCleaned analytical panel\ndata/processed/career_market_panel.csv — 6,199 rows, 43 columns\n\n\nData dictionary\noutputs/data_dictionary.md and outputs/data_dictionary.csv\n\n\nExtraction log\noutputs/m2_step31_filter_log.md\n\n\nCleaning log\noutputs/m2_step32_cleaning_log.md\n\n\n\nThe panel excludes the full posting text and four nested metadata blobs. They are not needed for analysis and would multiply the file size; they remain available in the extracted dataset.\nRaw API responses are kept locally and excluded from version control."
+  },
+  {
+    "objectID": "data_preparation.html#reproducing-this-step",
+    "href": "data_preparation.html#reproducing-this-step",
+    "title": "Data Preparation",
+    "section": "Reproducing This Step",
+    "text": "Reproducing This Step\n\nCopy .env.example to .env and add a MET Employability API key\npip install -r requirements.txt\npython notebooks/10_build_dataset.py — extraction and filtering\npython notebooks/12_data_cleaning.py — cleaning, typing, and the analytical panel\npython notebooks/14_data_dictionary.py — data dictionary\n\nAll work runs on the course AWS EC2 environment."
+  },
+  {
+    "objectID": "data_preparation.html#references",
+    "href": "data_preparation.html#references",
+    "title": "Data Preparation",
+    "section": "References",
+    "text": "References\n\n\nBoston University Metropolitan College. (2026): “MET Employability Career Match API,”https://met-employability-services.azurewebsites.net.\n\n\nU.S. Census Bureau. (2022): “North American Industry Classification System (NAICS) 2022, Sector 52: Finance and Insurance,”https://www.census.gov/naics/."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Career Evaluation Product — Group 1",
