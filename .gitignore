@@ -6,7 +6,6 @@
 .env.local
 
 # Quarto
-/.quarto/
 /_site/
 
 # Python
@@ -15,10 +14,11 @@ __pycache__/
 *.pyc
 .ipynb_checkpoints/
 
-# Data (не тащим тяжёлое сырьё в публичный репо)
+# Data - raw API pulls stay local, curated datasets are versioned
 data/raw/*
-data/interim/*
 !data/raw/.gitkeep
+!data/interim/.gitkeep
+!data/processed/.gitkeep
 
 # macOS
 .DS_Store
