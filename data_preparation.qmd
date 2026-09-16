@@ -71,8 +71,6 @@ Information-security roles are then removed. They match the word "analyst" but b
 | Removed: duplicate `job_id` | −0 |
 | **Analytical dataset** | **6,199** |
 
-The final table has 6,199 rows and 48 columns.
-
 ## Derived Fields Added During Extraction
 
 The API does not expose experience or education as structured fields, so three columns were derived from the posting text and one from a nested object:
@@ -89,48 +87,76 @@ The two `_raw` columns are a first pass. A posting that says "5 years of experie
 
 ## Cleaning Decisions
 
-*This section documents Step 3.2 and is completed once the cleaning pass is final. It will cover, in plain language, how each of the following was handled: salary fields, experience requirements, education requirements, skill fields, remote and onsite indicators, location fields, and industry and occupation codes — together with the treatment of duplicates, missing values, extreme outliers, and inconsistent labels.*
+Cleaning is deliberately conservative. Where a value is implausible we blank it rather than guess a replacement, and where a whole posting is questionable we keep it and record the gap. Deleting rows narrows the sample; blanking a single field costs us only that field.
+
+**Duplicates.** Postings are deduplicated on `job_id`. The API already returns a deduplicated feed, and no duplicates remained in our slice.
+
+**Rows with missing essentials.** A posting is dropped if it has no identifier, title, employer, or publication date, because it cannot be attributed or placed in the date window. No rows failed this test.
+
+*A note on an error we caught here.* The first cleaning run removed 932 of 6,199 postings as missing a publication date, while the source file showed that column fully populated. The cause was a parsing quirk rather than missing data: timestamps arrive in two shapes, some carrying fractional seconds and some not, and the date parser inferred a single format from the first values and rejected the rest. Setting the parser to accept any ISO-8601 timestamp restored all 932 rows. We mention it because a 15 percent silent loss would have skewed every figure downstream.
+
+**Dates.** All dates are parsed to UTC. Where an expiry date fell before the publication date the expiry was blanked, since one of the two must be wrong and we cannot tell which. One posting was affected.
+
+**Salary.** Reversed ranges, where the minimum exceeded the maximum, are swapped. Annual salaries below \$10,000 or above \$1,000,000 are blanked as data errors rather than genuine offers — 44 postings were affected. Postings without a salary keep every other field and are simply excluded from salary statistics. Hourly and annual figures are kept in separate columns and are **not** combined, because converting an hourly rate to an annual one requires an assumption about hours that the postings do not supply.
+
+**Experience and education.** Left as extracted, with the approximation clearly labelled by the `_raw` suffix. They are usable for broad comparisons — whether a segment asks for more experience than another — but not for precise thresholds.
+
+**Skills.** Stored as a semicolon-separated string with a count. Skill names are not yet normalised, so casing and synonyms (SQL, sql, Structured Query Language) remain distinct. That normalisation belongs to the skill-gap work in Module 3, where it has an analytical purpose.
+
+**Remote status.** Reported exactly as the source provides it: remote, hybrid, onsite, or unknown. "Unknown" is kept as its own category and never folded into "onsite", because an unlabelled posting is not evidence of an onsite role.
+
+**Location.** Text fields are trimmed of stray whitespace. ZIP codes are padded to five digits and the placeholder `00000` is treated as missing. Coordinates outside the latitude and longitude bounds of the United States are blanked rather than deleted, so the posting survives with its other fields intact.
+
+**Industry and occupation codes.** Kept as provided. The industry codes in this dataset are aggregated rather than plain NAICS 2022 codes, which is recorded in the data dictionary so no one later mistakes them for official codes.
+
+**Text and types.** HTML markup and repeated whitespace are stripped from descriptions. Every column is then cast to an explicit type — dates, booleans, integers, floats, and categories — so that later analysis cannot silently treat a number as text.
 
 ## Data Quality and Limitations
 
-Coverage in the extracted dataset, before cleaning:
+Coverage in the cleaned analytical panel, 6,199 postings:
 
-| Field | Populated | Share of 6,199 |
+| Field | Populated | Share |
 |---|---|---|
-| Annual salary | 1,250 | 20% |
-| Hourly salary | 258 | 4% |
-| US state | 1,761 | 28% |
+| Occupation code (SOC) | 6,092 | 98% |
+| Skills listed | 5,742 | 93% |
 | Remote status known (not "unknown") | 2,992 | 48% |
 | Experience signal found | 4,093 | 66% |
 | Education signal found | 3,675 | 59% |
+| US state code | 1,761 | 28% |
+| Annual salary | 1,206 | 19% |
+| Hourly salary | 258 | 4% |
 
-Three limitations follow from this, and they shape how the Market Baseline page should be read.
+Three limitations follow, and they shape how the Market Baseline page should be read.
 
-**Salary coverage is low, and it is not specific to our industry.** We checked the whole Finance and Insurance sector and found the same pattern everywhere, so this is a property of the source data rather than a consequence of our scope. Any statement about pay in this project describes the subset of postings that disclose pay, which is a self-selected group and may skew toward larger or more regulated employers.
+**Salary coverage is low, and it is not specific to our industry.** We checked the whole Finance and Insurance sector and found the same pattern everywhere, so this is a property of the source data rather than a consequence of our scope. Any statement about pay in this project describes the roughly one posting in five that discloses pay — a self-selected group that may skew toward larger or more regulated employers.
 
-**Geography is thin.** Most postings carry no US state code, and a substantial number are outside the United States. Location analysis is therefore restricted to the postings that identify a US state, and the counts behind each state are smaller than the headline row count suggests.
+**Geography is thin.** Fewer than three postings in ten carry a US state code, and a substantial number of postings are outside the United States altogether. Location analysis is therefore restricted to postings that identify a state, and the counts behind each state are much smaller than the headline row count suggests.
 
-**Remote status is frequently unrecorded.** Roughly half of postings are labelled "unknown" rather than remote, hybrid, or onsite. "Unknown" is reported as its own category rather than being folded into "onsite", since we cannot tell which it is.
+**Remote status is frequently unrecorded.** Roughly half of postings are labelled "unknown". Any remote-versus-onsite comparison describes the labelled half only.
 
-Two further caveats worth stating: the industry codes in this dataset are aggregated rather than plain NAICS 2022 codes, and the occupational coding on individual postings is imperfect, which is exactly why the role filter combines two signals instead of trusting one.
+By contrast, occupation codes and skill lists are close to complete, so the skill-gap work planned for Module 3 rests on firmer ground than the compensation analysis does.
 
 ## Output
 
 | | |
 |---|---|
 | Extracted dataset | `data/interim/jobs_naics523_filtered_20260915.csv.gz` — 6,199 rows, 48 columns |
-| Cleaned analytical panel | `data/processed/career_market_panel.csv` |
+| **Cleaned analytical panel** | **`data/processed/career_market_panel.csv` — 6,199 rows, 43 columns** |
+| Data dictionary | `outputs/data_dictionary.md` and `outputs/data_dictionary.csv` |
 | Extraction log | `outputs/m2_step31_filter_log.md` |
 | Cleaning log | `outputs/m2_step32_cleaning_log.md` |
 
-Raw API responses are kept locally and excluded from version control; they are large and are not needed to reproduce the analysis.
+The panel excludes the full posting text and four nested metadata blobs. They are not needed for analysis and would multiply the file size; they remain available in the extracted dataset.
+
+Raw API responses are kept locally and excluded from version control.
 
 ## Reproducing This Step
 
 1. Copy `.env.example` to `.env` and add a MET Employability API key
 2. `pip install -r requirements.txt`
 3. `python notebooks/10_build_dataset.py` — extraction and filtering
-4. `python notebooks/12_data_cleaning.py` — cleaning and type assignment
+4. `python notebooks/12_data_cleaning.py` — cleaning, typing, and the analytical panel
+5. `python notebooks/14_data_dictionary.py` — data dictionary
 
 All work runs on the course AWS EC2 environment.
 
