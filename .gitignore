@@ -17,6 +17,7 @@ __pycache__/
 # Data - raw API pulls stay local, curated datasets are versioned
 data/raw/*
 !data/raw/.gitkeep
+.vdoc*
 !data/interim/.gitkeep
 !data/processed/.gitkeep
 
