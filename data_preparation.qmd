@@ -1,3 +1,140 @@
 ---
 title: "Data Preparation"
 ---
+
+## Why This Page Exists
+
+Every figure on the Market Baseline page comes from one table. This page documents how that table was built: what we pulled, what we kept, what we removed, and what we repaired. Anyone reading our conclusions should be able to judge how much weight the evidence can carry.
+
+## Data Source
+
+All postings come from the **MET Employability Career Match API** [@met2026careermatch], specifically the `/api/v1/student/jobs/` endpoint, which returns active, deduplicated, student-visible job postings with employer, location, salary, occupation, and skill fields attached.
+
+Requests are authenticated with a personal API key sent in an `X-API-Key` header. The key lives in a local `.env` file that is excluded from version control; the repository contains only `.env.example` with empty values.
+
+We also evaluated the `/job-facts/` endpoint, which the API documentation recommends for classroom analysis. It returned no rows for our industry, so the `/jobs/` endpoint is our source.
+
+## Industry and Career Scope
+
+| | |
+|---|---|
+| Industry code | NAICS 2022 — **523**, Securities, Commodity Contracts, and Other Financial Investments and Related Activities [@census2022naics] |
+| Career pathway | Business Intelligence / Data Analyst |
+| Date window | Postings published on or after **1 September 2025** (a rolling twelve-month window) |
+| Extraction date | 15 September 2026 |
+
+The date window keeps the analysis current. Hiring requirements shift, and a posting from three years ago describes a market our target user is no longer applying into.
+
+### Scope revision: from NAICS 5221 to 523
+
+Module 1 anchored this project to **NAICS 5221, Depository Credit Intermediation**. When we pulled the data in Module 2, that code returned **59 postings in total** — not a first page, but the entire available universe — and only 13 of them carried salary information. That is not enough to support a salary distribution, a skill-gap analysis, or a scorecard in later modules.
+
+We measured the neighbouring codes before deciding, counting both total postings and postings matching our career pathway:
+
+| Industry code | Total postings | Analytics-pathway postings |
+|---|---|---|
+| 5221 Depository Credit Intermediation | 59 | 27 |
+| 5241 Insurance Carriers | 7,573 | 1,507 |
+| 52 Finance and Insurance (whole sector) | 27,893 | 7,824 |
+| **523 Securities and Investments** | **15,176** | **4,787** |
+
+Within the whole Finance and Insurance sector, NAICS 523 accounts for roughly two-thirds of all analytics postings. Taking the sector as a whole would therefore have meant studying securities and investments anyway, but with a blurred label and an incoherent mix of employers. We chose the explicit code instead.
+
+The career pathway, the product question, and the underlying argument did not change. Only the industry anchor moved, and it stayed inside Finance and Insurance.
+
+### Why a three-digit code
+
+The assignment asks for four- or six-digit NAICS codes where possible. We tested `5231` and `5239`, the four-digit codes beneath 523, and both returned zero rows: this dataset does not carry four-digit granularity for the securities subsector, though it does for insurance. NAICS 523 is therefore the most specific code available for the industry we selected.
+
+## Role Definition
+
+The assignment allows title keywords, SOC or O\*NET mappings, skills logic, or a combination, provided the choice is explained. We use a **combination**, for two reasons found in the data itself:
+
+**Job titles are inconsistent.** Filtering on a single title such as "Data Analyst" returns a few hundred rows and discards obvious matches like Business Intelligence Analyst, Reporting Analyst, and Analytics Engineer.
+
+**The occupational coding is noisy.** A large share of genuine analytics postings sit under the broad SOC "Management Analysts", while some clearly unrelated roles carry the word "analyst" in the title. Neither signal is reliable on its own.
+
+A posting is therefore kept when **either** condition holds:
+
+- its SOC name matches one of: data scientist, database architect, statistician, mathematician, operations research, market research analyst, financial and investment analyst, credit analyst, management analyst
+- **or** its title contains one of: analyst, analytics, data, business intelligence, BI, reporting, SQL, data science, machine learning
+
+Information-security roles are then removed. They match the word "analyst" but belong to a different career pathway, and including them would distort the skill profile our product reports.
+
+## Filter Funnel
+
+| Stage | Postings |
+|---|---|
+| Retrieved for NAICS 523 within the date window | 15,176 |
+| Matched the role definition | 6,263 |
+| Removed: information-security roles | −64 |
+| Removed: duplicate `job_id` | −0 |
+| **Analytical dataset** | **6,199** |
+
+The final table has 6,199 rows and 48 columns.
+
+## Derived Fields Added During Extraction
+
+The API does not expose experience or education as structured fields, so three columns were derived from the posting text and one from a nested object:
+
+| Column | How it was produced |
+|---|---|
+| `skills_text` | Skill names flattened from a nested list into a semicolon-separated string |
+| `skills_count` | Number of skills attached to the posting |
+| `experience_years_raw` | First "N years" figure found in the description, by regular expression |
+| `education_level_raw` | Highest degree keyword found in the description (PhD, Master, Bachelor, Associate, High School) |
+| `organization_name` | Employer name lifted out of the nested organization object |
+
+The two `_raw` columns are a first pass. A posting that says "5 years of experience preferred, 3 years required" yields one number, and phrasing that does not follow the pattern yields nothing. They are treated as an approximate signal, not a measurement.
+
+## Cleaning Decisions
+
+*This section documents Step 3.2 and is completed once the cleaning pass is final. It will cover, in plain language, how each of the following was handled: salary fields, experience requirements, education requirements, skill fields, remote and onsite indicators, location fields, and industry and occupation codes — together with the treatment of duplicates, missing values, extreme outliers, and inconsistent labels.*
+
+## Data Quality and Limitations
+
+Coverage in the extracted dataset, before cleaning:
+
+| Field | Populated | Share of 6,199 |
+|---|---|---|
+| Annual salary | 1,250 | 20% |
+| Hourly salary | 258 | 4% |
+| US state | 1,761 | 28% |
+| Remote status known (not "unknown") | 2,992 | 48% |
+| Experience signal found | 4,093 | 66% |
+| Education signal found | 3,675 | 59% |
+
+Three limitations follow from this, and they shape how the Market Baseline page should be read.
+
+**Salary coverage is low, and it is not specific to our industry.** We checked the whole Finance and Insurance sector and found the same pattern everywhere, so this is a property of the source data rather than a consequence of our scope. Any statement about pay in this project describes the subset of postings that disclose pay, which is a self-selected group and may skew toward larger or more regulated employers.
+
+**Geography is thin.** Most postings carry no US state code, and a substantial number are outside the United States. Location analysis is therefore restricted to the postings that identify a US state, and the counts behind each state are smaller than the headline row count suggests.
+
+**Remote status is frequently unrecorded.** Roughly half of postings are labelled "unknown" rather than remote, hybrid, or onsite. "Unknown" is reported as its own category rather than being folded into "onsite", since we cannot tell which it is.
+
+Two further caveats worth stating: the industry codes in this dataset are aggregated rather than plain NAICS 2022 codes, and the occupational coding on individual postings is imperfect, which is exactly why the role filter combines two signals instead of trusting one.
+
+## Output
+
+| | |
+|---|---|
+| Extracted dataset | `data/interim/jobs_naics523_filtered_20260915.csv.gz` — 6,199 rows, 48 columns |
+| Cleaned analytical panel | `data/processed/career_market_panel.csv` |
+| Extraction log | `outputs/m2_step31_filter_log.md` |
+| Cleaning log | `outputs/m2_step32_cleaning_log.md` |
+
+Raw API responses are kept locally and excluded from version control; they are large and are not needed to reproduce the analysis.
+
+## Reproducing This Step
+
+1. Copy `.env.example` to `.env` and add a MET Employability API key
+2. `pip install -r requirements.txt`
+3. `python notebooks/10_build_dataset.py` — extraction and filtering
+4. `python notebooks/12_data_cleaning.py` — cleaning and type assignment
+
+All work runs on the course AWS EC2 environment.
+
+## References
+
+::: {#refs}
+:::
