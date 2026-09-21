@@ -1,0 +1,254 @@
+[
+  {
+    "objectID": "introduction.html",
+    "href": "introduction.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "Students finishing an analytics degree face a market that looks uniform from the outside and is not. Job titles overlap, postings list long and inconsistent skill requirements, and the same title can mean very different work in different industries. A candidate deciding where to apply has no structured way to tell which industry rewards their current profile, which skills would raise their chances most, and what compensation and location trade-offs they are actually facing."
+  },
+  {
+    "objectID": "introduction.html#problem",
+    "href": "introduction.html#problem",
+    "title": "Introduction",
+    "section": "",
+    "text": "Students finishing an analytics degree face a market that looks uniform from the outside and is not. Job titles overlap, postings list long and inconsistent skill requirements, and the same title can mean very different work in different industries. A candidate deciding where to apply has no structured way to tell which industry rewards their current profile, which skills would raise their chances most, and what compensation and location trade-offs they are actually facing."
+  },
+  {
+    "objectID": "introduction.html#rationale",
+    "href": "introduction.html#rationale",
+    "title": "Introduction",
+    "section": "Rationale",
+    "text": "Rationale\nThe U.S. Bureau of Labor Statistics projects employment of data scientists to grow 35 percent between 2025 and 2035, far above the average for all occupations, with a 2025 median wage of $120,230 (U.S. Bureau of Labor Statistics (2026a)). Aggregate growth of this kind, however, tells an individual job seeker very little: it does not say which industry to target, which skills separate an interview from a rejection, or where an entry-level opening is realistically attainable.\nSecurities, commodity contracts, and other financial investments (NAICS 523) covers investment banks, brokerages, asset managers, and related financial-investment activities (U.S. Census Bureau (2022)), and the subsector employed roughly 1.17 million people in the United States as of August 2026 (U.S. Bureau of Labor Statistics (2026b)). These firms employ analysts continuously for regulatory reporting, risk, performance measurement, and client analytics, which makes the segment large enough to analyse and specific enough to give actionable advice.\nPrior research supports scoping the analysis to job postings. Content analyses of analytics job advertisements show that employer requirements cluster into distinct technical, analytical, and business-domain groups, and that the mix varies systematically by role and context (Verma et al. (2019)). Studies of entry-level analytics hiring similarly find a gap between what programmes teach and what employers ask for in postings (Stanton and Stanton (2020)). A product that reads postings directly, rather than relying on generic career advice, addresses that gap."
+  },
+  {
+    "objectID": "introduction.html#scope-revision",
+    "href": "introduction.html#scope-revision",
+    "title": "Introduction",
+    "section": "Scope Revision",
+    "text": "Scope Revision\nThe project originally anchored to NAICS 5221, Depository Credit Intermediation. Pulling that slice returned only 59 postings, with salary present on 13 of them, which would not support the compensation and skill-gap analysis planned for Modules 3 and 5. We measured the adjacent industry codes and re-anchored to NAICS 523. The career pathway, the product question, and the underlying argument are unchanged; only the industry scope moved, and it remains inside Finance and Insurance. The evidence behind the decision is reported on the Data Preparation page."
+  },
+  {
+    "objectID": "introduction.html#product-framing",
+    "href": "introduction.html#product-framing",
+    "title": "Introduction",
+    "section": "Product Framing",
+    "text": "Product Framing\nThe deliverable is a career evaluation product for a job seeker, not a general labour-market report. Every analysis in later modules is included only if it helps a student decide where to apply, what to learn next, and how to position themselves for BI/Data Analyst roles in NAICS 523."
+  },
+  {
+    "objectID": "introduction.html#what-we-expect-to-find",
+    "href": "introduction.html#what-we-expect-to-find",
+    "title": "Introduction",
+    "section": "What We Expect to Find",
+    "text": "What We Expect to Find\n\nPostings will emphasise SQL, Excel, and BI tooling (Power BI, Tableau) more consistently than machine-learning frameworks.\nRegulatory and domain vocabulary (risk, compliance, reporting) will appear frequently enough to act as a differentiator for candidates.\nRemote openings will be less common than in the software sector, and concentrated in a small number of metropolitan areas.\nThe gap between market demand and a typical student profile will sit in domain knowledge and data governance rather than in programming.\n\nThese are expectations, not conclusions; Modules 2 and 3 test them against the MET Employability Career Match data."
+  },
+  {
+    "objectID": "introduction.html#references",
+    "href": "introduction.html#references",
+    "title": "Introduction",
+    "section": "References",
+    "text": "References\n\n\nStanton, W. W., and A. D. Stanton. (2020): “Helping business students acquire the skills needed for a career in analytics: A comprehensive industry assessment of entry-level requirements,” Decision Sciences Journal of Innovative Education,.\n\n\nU.S. Bureau of Labor Statistics. (2026a): “Data Scientists: Occupational Outlook Handbook,”https://www.bls.gov/ooh/math/data-scientists.htm.\n\n\n---. (2026b): “Securities, Commodity Contracts, and Other Financial Investments and Related Activities: NAICS 523,”https://www.bls.gov/iag/tgs/iag523.htm.\n\n\nU.S. Census Bureau. (2022): “North American Industry Classification System (NAICS) 2022, Sector 52: Finance and Insurance,”https://www.census.gov/naics/.\n\n\nVerma, A., K. M. Yurov, P. L. Lane, and Y. V. Yurova. (2019): “An investigation of skill requirements for business and data analytics positions: A content analysis of job advertisements,” Journal of Education for Business, 94."
+  },
+  {
+    "objectID": "data_preparation.html",
+    "href": "data_preparation.html",
+    "title": "Data Preparation",
+    "section": "",
+    "text": "Every figure on the Market Baseline page comes from one table. This page documents how that table was built: what we pulled, what we kept, what we removed, and what we repaired. Anyone reading our conclusions should be able to judge how much weight the evidence can carry."
+  },
+  {
+    "objectID": "data_preparation.html#why-this-page-exists",
+    "href": "data_preparation.html#why-this-page-exists",
+    "title": "Data Preparation",
+    "section": "",
+    "text": "Every figure on the Market Baseline page comes from one table. This page documents how that table was built: what we pulled, what we kept, what we removed, and what we repaired. Anyone reading our conclusions should be able to judge how much weight the evidence can carry."
+  },
+  {
+    "objectID": "data_preparation.html#data-source",
+    "href": "data_preparation.html#data-source",
+    "title": "Data Preparation",
+    "section": "Data Source",
+    "text": "Data Source\nAll postings come from the MET Employability Career Match API (Boston University Metropolitan College (2026)), specifically the /api/v1/student/jobs/ endpoint, which returns active, deduplicated, student-visible job postings with employer, location, salary, occupation, and skill fields attached.\nRequests are authenticated with a personal API key sent in an X-API-Key header. The key lives in a local .env file that is excluded from version control; the repository contains only .env.example with empty values.\nWe also evaluated the /job-facts/ endpoint, which the API documentation recommends for classroom analysis. It returned no rows for our industry, so the /jobs/ endpoint is our source."
+  },
+  {
+    "objectID": "data_preparation.html#industry-and-career-scope",
+    "href": "data_preparation.html#industry-and-career-scope",
+    "title": "Data Preparation",
+    "section": "Industry and Career Scope",
+    "text": "Industry and Career Scope\n\n\n\n\n\n\n\nIndustry code\nNAICS 2022 — 523, Securities, Commodity Contracts, and Other Financial Investments and Related Activities (U.S. Census Bureau (2022))\n\n\nCareer pathway\nBusiness Intelligence / Data Analyst\n\n\nDate window\nPostings published on or after 1 September 2025 (a rolling twelve-month window)\n\n\nExtraction date\n15 September 2026\n\n\n\nThe date window keeps the analysis current. Hiring requirements shift, and a posting from three years ago describes a market our target user is no longer applying into.\n\nScope revision: from NAICS 5221 to 523\nModule 1 anchored this project to NAICS 5221, Depository Credit Intermediation. When we pulled the data in Module 2, that code returned 59 postings in total — not a first page, but the entire available universe — and only 13 of them carried salary information. That is not enough to support a salary distribution, a skill-gap analysis, or a scorecard in later modules.\nWe measured the neighbouring codes before deciding, counting both total postings and postings matching our career pathway:\n\n\n\nIndustry code\nTotal postings\nAnalytics-pathway postings\n\n\n\n\n5221 Depository Credit Intermediation\n59\n27\n\n\n5241 Insurance Carriers\n7,573\n1,507\n\n\n52 Finance and Insurance (whole sector)\n27,893\n7,824\n\n\n523 Securities and Investments\n15,176\n4,787\n\n\n\nWithin the whole Finance and Insurance sector, NAICS 523 accounts for roughly two-thirds of all analytics postings. Taking the sector as a whole would therefore have meant studying securities and investments anyway, but with a blurred label and an incoherent mix of employers. We chose the explicit code instead.\nThe career pathway, the product question, and the underlying argument did not change. Only the industry anchor moved, and it stayed inside Finance and Insurance.\n\n\nWhy a three-digit code\nThe assignment asks for four- or six-digit NAICS codes where possible. We tested 5231 and 5239, the four-digit codes beneath 523, and both returned zero rows: this dataset does not carry four-digit granularity for the securities subsector, though it does for insurance. NAICS 523 is therefore the most specific code available for the industry we selected."
+  },
+  {
+    "objectID": "data_preparation.html#role-definition",
+    "href": "data_preparation.html#role-definition",
+    "title": "Data Preparation",
+    "section": "Role Definition",
+    "text": "Role Definition\nThe assignment allows title keywords, SOC or O*NET mappings, skills logic, or a combination, provided the choice is explained. We use a combination, for two reasons found in the data itself:\nJob titles are inconsistent. Filtering on a single title such as “Data Analyst” returns a few hundred rows and discards obvious matches like Business Intelligence Analyst, Reporting Analyst, and Analytics Engineer.\nThe occupational coding is noisy. A large share of genuine analytics postings sit under the broad SOC “Management Analysts”, while some clearly unrelated roles carry the word “analyst” in the title. Neither signal is reliable on its own.\nA posting is therefore kept when either condition holds:\n\nits SOC name matches one of: data scientist, database architect, statistician, mathematician, operations research, market research analyst, financial and investment analyst, credit analyst, management analyst\nor its title contains one of: analyst, analytics, data, business intelligence, BI, reporting, SQL, data science, machine learning\n\nInformation-security roles are then removed. They match the word “analyst” but belong to a different career pathway, and including them would distort the skill profile our product reports."
+  },
+  {
+    "objectID": "data_preparation.html#filter-funnel",
+    "href": "data_preparation.html#filter-funnel",
+    "title": "Data Preparation",
+    "section": "Filter Funnel",
+    "text": "Filter Funnel\n\n\n\nStage\nPostings\n\n\n\n\nRetrieved for NAICS 523 within the date window\n15,176\n\n\nMatched the role definition\n6,263\n\n\nRemoved: information-security roles\n−64\n\n\nRemoved: duplicate job_id\n−0\n\n\nAnalytical dataset\n6,199"
+  },
+  {
+    "objectID": "data_preparation.html#derived-fields-added-during-extraction",
+    "href": "data_preparation.html#derived-fields-added-during-extraction",
+    "title": "Data Preparation",
+    "section": "Derived Fields Added During Extraction",
+    "text": "Derived Fields Added During Extraction\nThe API does not expose experience or education as structured fields, so three columns were derived from the posting text and one from a nested object:\n\n\n\n\n\n\n\nColumn\nHow it was produced\n\n\n\n\nskills_text\nSkill names flattened from a nested list into a semicolon-separated string\n\n\nskills_count\nNumber of skills attached to the posting\n\n\nexperience_years_raw\nFirst “N years” figure found in the description, by regular expression\n\n\neducation_level_raw\nHighest degree keyword found in the description (PhD, Master, Bachelor, Associate, High School)\n\n\norganization_name\nEmployer name lifted out of the nested organization object\n\n\n\nThe two _raw columns are a first pass. A posting that says “5 years of experience preferred, 3 years required” yields one number, and phrasing that does not follow the pattern yields nothing. They are treated as an approximate signal, not a measurement."
+  },
+  {
+    "objectID": "data_preparation.html#cleaning-decisions",
+    "href": "data_preparation.html#cleaning-decisions",
+    "title": "Data Preparation",
+    "section": "Cleaning Decisions",
+    "text": "Cleaning Decisions\nCleaning is deliberately conservative. Where a value is implausible we blank it rather than guess a replacement, and where a whole posting is questionable we keep it and record the gap. Deleting rows narrows the sample; blanking a single field costs us only that field.\nDuplicates. Postings are deduplicated on job_id. The API already returns a deduplicated feed, and no duplicates remained in our slice.\nRows with missing essentials. A posting is dropped if it has no identifier, title, employer, or publication date, because it cannot be attributed or placed in the date window. No rows failed this test.\nA note on an error we caught here. The first cleaning run removed 932 of 6,199 postings as missing a publication date, while the source file showed that column fully populated. The cause was a parsing quirk rather than missing data: timestamps arrive in two shapes, some carrying fractional seconds and some not, and the date parser inferred a single format from the first values and rejected the rest. Setting the parser to accept any ISO-8601 timestamp restored all 932 rows. We mention it because a 15 percent silent loss would have skewed every figure downstream.\nDates. All dates are parsed to UTC. Where an expiry date fell before the publication date the expiry was blanked, since one of the two must be wrong and we cannot tell which. One posting was affected.\nSalary. Reversed ranges, where the minimum exceeded the maximum, are swapped. Annual salaries below $10,000 or above $1,000,000 are blanked as data errors rather than genuine offers — 44 postings were affected. Postings without a salary keep every other field and are simply excluded from salary statistics. Hourly and annual figures are kept in separate columns and are not combined, because converting an hourly rate to an annual one requires an assumption about hours that the postings do not supply.\nExperience and education. Left as extracted, with the approximation clearly labelled by the _raw suffix. They are usable for broad comparisons — whether a segment asks for more experience than another — but not for precise thresholds.\nSkills. Stored as a semicolon-separated string with a count. Skill names are not yet normalised, so casing and synonyms (SQL, sql, Structured Query Language) remain distinct. That normalisation belongs to the skill-gap work in Module 3, where it has an analytical purpose.\nRemote status. Reported exactly as the source provides it: remote, hybrid, onsite, or unknown. “Unknown” is kept as its own category and never folded into “onsite”, because an unlabelled posting is not evidence of an onsite role.\nLocation. Text fields are trimmed of stray whitespace. ZIP codes are padded to five digits and the placeholder 00000 is treated as missing. Coordinates outside the latitude and longitude bounds of the United States are blanked rather than deleted, so the posting survives with its other fields intact.\nIndustry and occupation codes. Kept as provided. The industry codes in this dataset are aggregated rather than plain NAICS 2022 codes, which is recorded in the data dictionary so no one later mistakes them for official codes.\nText and types. HTML markup and repeated whitespace are stripped from descriptions. Every column is then cast to an explicit type — dates, booleans, integers, floats, and categories — so that later analysis cannot silently treat a number as text."
+  },
+  {
+    "objectID": "data_preparation.html#data-quality-and-limitations",
+    "href": "data_preparation.html#data-quality-and-limitations",
+    "title": "Data Preparation",
+    "section": "Data Quality and Limitations",
+    "text": "Data Quality and Limitations\nCoverage in the cleaned analytical panel, 6,199 postings:\n\n\n\nField\nPopulated\nShare\n\n\n\n\nOccupation code (SOC)\n6,092\n98%\n\n\nSkills listed\n5,742\n93%\n\n\nRemote status known (not “unknown”)\n2,992\n48%\n\n\nExperience signal found\n4,093\n66%\n\n\nEducation signal found\n3,675\n59%\n\n\nUS state code\n1,761\n28%\n\n\nAnnual salary\n1,206\n19%\n\n\nHourly salary\n258\n4%\n\n\n\nThree limitations follow, and they shape how the Market Baseline page should be read.\nSalary coverage is low, and it is not specific to our industry. We checked the whole Finance and Insurance sector and found the same pattern everywhere, so this is a property of the source data rather than a consequence of our scope. Any statement about pay in this project describes the roughly one posting in five that discloses pay — a self-selected group that may skew toward larger or more regulated employers.\nGeography is thin. Fewer than three postings in ten carry a US state code, and a substantial number of postings are outside the United States altogether. Location analysis is therefore restricted to postings that identify a state, and the counts behind each state are much smaller than the headline row count suggests.\nRemote status is frequently unrecorded. Roughly half of postings are labelled “unknown”. Any remote-versus-onsite comparison describes the labelled half only.\nBy contrast, occupation codes and skill lists are close to complete, so the skill-gap work planned for Module 3 rests on firmer ground than the compensation analysis does."
+  },
+  {
+    "objectID": "data_preparation.html#output",
+    "href": "data_preparation.html#output",
+    "title": "Data Preparation",
+    "section": "Output",
+    "text": "Output\n\n\n\n\n\n\n\nExtracted dataset\ndata/interim/jobs_naics523_filtered_20260915.csv.gz — 6,199 rows, 48 columns\n\n\nCleaned analytical panel\ndata/processed/career_market_panel.csv — 6,199 rows, 43 columns\n\n\nData dictionary\noutputs/data_dictionary.md and outputs/data_dictionary.csv\n\n\nExtraction log\noutputs/m2_step31_filter_log.md\n\n\nCleaning log\noutputs/m2_step32_cleaning_log.md\n\n\n\nThe panel excludes the full posting text and four nested metadata blobs. They are not needed for analysis and would multiply the file size; they remain available in the extracted dataset.\nRaw API responses are kept locally and excluded from version control."
+  },
+  {
+    "objectID": "data_preparation.html#reproducing-this-step",
+    "href": "data_preparation.html#reproducing-this-step",
+    "title": "Data Preparation",
+    "section": "Reproducing This Step",
+    "text": "Reproducing This Step\n\nCopy .env.example to .env and add a MET Employability API key\npip install -r requirements.txt\npython notebooks/10_build_dataset.py — extraction and filtering\npython notebooks/12_data_cleaning.py — cleaning, typing, and the analytical panel\npython notebooks/14_data_dictionary.py — data dictionary\n\nAll work runs on the course AWS EC2 environment."
+  },
+  {
+    "objectID": "data_preparation.html#references",
+    "href": "data_preparation.html#references",
+    "title": "Data Preparation",
+    "section": "References",
+    "text": "References\n\n\nBoston University Metropolitan College. (2026): “MET Employability Career Match API,”https://met-employability-services.azurewebsites.net.\n\n\nU.S. Census Bureau. (2022): “North American Industry Classification System (NAICS) 2022, Sector 52: Finance and Insurance,”https://www.census.gov/naics/."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Career Evaluation Product — Group 1",
+    "section": "",
+    "text": "Team\nAD688 Group 1\n\n\nCareer Pathway\nBusiness Intelligence / Data Analyst\n\n\nIndustry Code\nNAICS 2022 — 523 Securities, Commodity Contracts, and Other Financial Investments and Related Activities\n\n\nIndustry Label\nU.S. securities, investment and asset management\n\n\nData Source\nMET Employability Career Match API"
+  },
+  {
+    "objectID": "index.html#project-scope",
+    "href": "index.html#project-scope",
+    "title": "Career Evaluation Product — Group 1",
+    "section": "",
+    "text": "Team\nAD688 Group 1\n\n\nCareer Pathway\nBusiness Intelligence / Data Analyst\n\n\nIndustry Code\nNAICS 2022 — 523 Securities, Commodity Contracts, and Other Financial Investments and Related Activities\n\n\nIndustry Label\nU.S. securities, investment and asset management\n\n\nData Source\nMET Employability Career Match API"
+  },
+  {
+    "objectID": "index.html#product-question",
+    "href": "index.html#product-question",
+    "title": "Career Evaluation Product — Group 1",
+    "section": "Product Question",
+    "text": "Product Question\n\nWhich skills, locations, and role variants give an early-career candidate the strongest entry into Business Intelligence / Data Analyst roles at U.S. securities and investment firms (NAICS 523), and which skills are missing from a current student profile?"
+  },
+  {
+    "objectID": "index.html#why-this-industry",
+    "href": "index.html#why-this-industry",
+    "title": "Career Evaluation Product — Group 1",
+    "section": "Why This Industry",
+    "text": "Why This Industry\nSecurities, commodity contracts, and other financial investment activities (NAICS 523) run continuous reporting, risk, performance-attribution, and client-analytics functions that are staffed by business intelligence and data analyst roles rather than by research scientists. Because investment analytics is shaped by regulatory reporting and legacy data infrastructure, its skill profile differs from the software sector — SQL, data governance, and domain knowledge often matter as much as machine-learning depth. The subsector is also the single largest source of analytics postings within Finance and Insurance in our data source, which makes the scope both coherent and large enough to support a decision-oriented product."
+  },
+  {
+    "objectID": "index.html#scope-revision-module-2",
+    "href": "index.html#scope-revision-module-2",
+    "title": "Career Evaluation Product — Group 1",
+    "section": "Scope Revision (Module 2)",
+    "text": "Scope Revision (Module 2)\nModule 1 anchored the project to NAICS 5221, Depository Credit Intermediation. When we pulled the data in Module 2, that code returned 59 postings in total, of which 13 carried salary information — too thin to support skill-gap and compensation analysis later in the project. We measured the neighbouring industry codes and moved the anchor to NAICS 523, which keeps the project inside Finance and Insurance while providing 15,176 postings, of which 6,199 match our career pathway. The measurement and the filter rule are documented on the Data Preparation page."
+  },
+  {
+    "objectID": "index.html#team",
+    "href": "index.html#team",
+    "title": "Career Evaluation Product — Group 1",
+    "section": "Team",
+    "text": "Team\n\n\n\nName\nGitHub\nRole this module\n\n\n\n\nFuad Babaiev\nfuadbbv\nDataset build (Step 3.1), site structure and publishing (Step 3.4)\n\n\nKatie Bowles\nkmbowles00\nMarket baseline page (Step 3.3), standup documentation\n\n\nJonathan Chen\njchenbu\nData cleaning (Step 3.2)"
+  },
+  {
+    "objectID": "index.html#roadmap",
+    "href": "index.html#roadmap",
+    "title": "Career Evaluation Product — Group 1",
+    "section": "Roadmap",
+    "text": "Roadmap\n\n\n\n\n\n\n\n\nModule\nDeliverable\nStatus\n\n\n\n\nM1\nProject scope, industry selection, rationale, initial site\nComplete\n\n\nM2\nData preparation and market baseline\nIn progress\n\n\nM3\nSkill-gap analysis and career evaluation scorecard\n\n\n\nM4\nCheckpoint — no new step\n\n\n\nM5\nFinal analytics, recommendations, report\n\n\n\nM6\nFinal presentation"
+  },
+  {
+    "objectID": "market_baseline.html",
+    "href": "market_baseline.html",
+    "title": "Market Baseline",
+    "section": "",
+    "text": "This is the current state of the market our product advises on: 6,199 postings for Business Intelligence and Data Analyst roles in NAICS 523, Securities, Commodity Contracts and Other Financial Investments, published within the twelve months to September 2026.\nEvery figure below is drawn from data/processed/career_market_panel.csv. How that table was built, and where its gaps are, is documented on the Data Preparation page. Coverage varies by field, so each chart states how many postings it is based on."
+  },
+  {
+    "objectID": "market_baseline.html#what-this-page-shows",
+    "href": "market_baseline.html#what-this-page-shows",
+    "title": "Market Baseline",
+    "section": "",
+    "text": "This is the current state of the market our product advises on: 6,199 postings for Business Intelligence and Data Analyst roles in NAICS 523, Securities, Commodity Contracts and Other Financial Investments, published within the twelve months to September 2026.\nEvery figure below is drawn from data/processed/career_market_panel.csv. How that table was built, and where its gaps are, is documented on the Data Preparation page. Coverage varies by field, so each chart states how many postings it is based on."
+  },
+  {
+    "objectID": "market_baseline.html#which-occupations-dominate",
+    "href": "market_baseline.html#which-occupations-dominate",
+    "title": "Market Baseline",
+    "section": "Which Occupations Dominate",
+    "text": "Which Occupations Dominate\n\nManagement Analysts account for 3,948 postings, 64 percent of the panel. That single occupational code dwarfs everything else: Data Scientists come second with 584. For a job seeker this is the most immediately actionable finding on the page — in this industry, analytics work is largely filed under a title family that does not contain the words “data” or “analytics” at all. A search that looks only for “Data Analyst” will miss most of the market.\nThe third entry, Actors with 483 postings, is not a real analytics occupation. It is occupational-coding noise in the source data: postings whose SOC label is simply wrong. We report it rather than quietly deleting it, because it is direct evidence for why our role filter combines occupational codes with title keywords instead of trusting either alone."
+  },
+  {
+    "objectID": "market_baseline.html#how-titles-are-written",
+    "href": "market_baseline.html#how-titles-are-written",
+    "title": "Market Baseline",
+    "section": "How Titles Are Written",
+    "text": "How Titles Are Written\n\nThere are 4,841 distinct job titles across 6,199 postings, and the most common one — “financial analyst” — appears just 55 times, under one percent of the panel. Titles in this industry are effectively unique strings.\nThe practical consequence for a candidate is that title-based job alerts are close to useless here. Searching by skills and occupational family returns far more of the real market than searching by job title."
+  },
+  {
+    "objectID": "market_baseline.html#what-the-work-pays",
+    "href": "market_baseline.html#what-the-work-pays",
+    "title": "Market Baseline",
+    "section": "What The Work Pays",
+    "text": "What The Work Pays\n\nAmong the 1,206 postings (19 percent) that disclose pay, the median midpoint is $105,750, with the middle half falling between $80,000 and $147,090.\nTwo cautions belong with that number. First, four postings in five say nothing about pay, and employers who publish salary ranges are not a random sample — pay-transparency laws apply in some states and not others, so the disclosed group skews toward those jurisdictions and toward larger employers. Second, the figure is a midpoint of a posted range, not an offer. Read it as an orientation for expectations, not a benchmark to negotiate against."
+  },
+  {
+    "objectID": "market_baseline.html#where-the-jobs-are",
+    "href": "market_baseline.html#where-the-jobs-are",
+    "title": "Market Baseline",
+    "section": "Where The Jobs Are",
+    "text": "Where The Jobs Are\n\nOf the 1,761 postings carrying a US state code, California leads with 351, followed by New York (215), Florida (107), Texas (99) and Illinois (95).\n\nAt city level New York is the clear centre with 384 postings. Note that Ontario (140) and Toronto (132) appear high in this list: the dataset is not restricted to the United States, and a meaningful share of postings are Canadian. Anyone reading the geography of this market should treat the city chart as North American rather than US-only.\nBecause only 28 percent of postings identify a state, these counts describe the labelled subset. They are reliable for ranking the major hubs against each other and unreliable as absolute measures of how many jobs exist in each place."
+  },
+  {
+    "objectID": "market_baseline.html#how-much-experience-is-asked-for",
+    "href": "market_baseline.html#how-much-experience-is-asked-for",
+    "title": "Market Baseline",
+    "section": "How Much Experience Is Asked For",
+    "text": "How Much Experience Is Asked For\n\nAcross the 4,093 postings where an experience requirement could be read from the description, the median is five years, and the distribution is strikingly top-heavy: 908 postings ask for five to six years, 737 ask for ten or more, and only 61 postings ask for less than one year.\nThis is the least comfortable and most useful finding on the page. Securities and investments is not an entry-heavy market for analysts. A student targeting it directly out of a programme is competing for a small share of openings, and the realistic paths are either the small entry band, adjacent industries with more junior demand, or roles where prior domain exposure substitutes for years served. Module 3 will test which skills most effectively close that distance."
+  },
+  {
+    "objectID": "market_baseline.html#remote-hybrid-or-onsite",
+    "href": "market_baseline.html#remote-hybrid-or-onsite",
+    "title": "Market Baseline",
+    "section": "Remote, Hybrid Or Onsite",
+    "text": "Remote, Hybrid Or Onsite\n\nRemote status is recorded on 2,992 postings, 48 percent of the panel. Among those, hybrid leads at 43 percent, remote at 31 percent and onsite at 26 percent.\nThis contradicts the expectation we set out in the Introduction, where we predicted that remote openings in finance would be rarer than in the software sector. On the labelled half of this panel, roughly three in four analytics postings offer some flexibility. We report the contradiction rather than adjust the hypothesis after the fact.\nThe caveat is the unlabelled half. “Unknown” is shown as its own bar and never folded into “onsite”, because an unlabelled posting is an absence of information, not evidence of an office requirement."
+  },
+  {
+    "objectID": "market_baseline.html#who-is-hiring",
+    "href": "market_baseline.html#who-is-hiring",
+    "title": "Market Baseline",
+    "section": "Who Is Hiring",
+    "text": "Who Is Hiring\n\nThe employer side is highly fragmented: 3,404 distinct employers across 6,199 postings. The largest single employer, Amazon, accounts for 94 postings — 1.5 percent of the panel — and the top ten employers together account for only 8 percent.\nThe strategic read is that there is no short list of firms to focus a search on. Unlike a market dominated by a handful of large employers, breadth matters more than targeting here. The presence of Amazon at the top is also a reminder that industry assignment in this dataset follows the employer record rather than the specific business unit, so some postings sit in NAICS 523 for reasons that are not obvious from the company name."
+  },
+  {
+    "objectID": "market_baseline.html#what-this-means-for-the-product",
+    "href": "market_baseline.html#what-this-means-for-the-product",
+    "title": "Market Baseline",
+    "section": "What This Means For The Product",
+    "text": "What This Means For The Product\nFive things a candidate should take from this baseline:\n\nSearch by occupation and skills, not by title. Two-thirds of the market is coded as Management Analyst, and titles are nearly unique strings.\nExpect a mid-career market. The median posting asks for five years; fewer than one in sixty asks for less than one.\nFlexibility is available. Three-quarters of labelled postings are remote or hybrid, which widens the geographic options considerably.\nCast a wide net across employers. No firm holds more than two percent of postings.\nTreat salary figures as orientation. They come from the one posting in five that discloses pay.\n\nModule 3 turns these observations into a personal assessment: which skills separate the postings a given candidate can win from the ones they cannot, and what to learn first."
+  }
+]
