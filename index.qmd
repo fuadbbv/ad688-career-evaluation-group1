@@ -30,7 +30,7 @@ Module 1 anchored the project to NAICS 5221, Depository Credit Intermediation. W
 |---|---|---|
 | Fuad Babaiev | [fuadbbv](https://github.com/fuadbbv) | Dataset build (Step 3.1), site structure and publishing (Step 3.4) |
 | Katie Bowles | [kmbowles00](https://github.com/kmbowles00) | Market baseline page (Step 3.3), standup documentation |
-| Jonathan Chen | | Data cleaning (Step 3.2) |
+| Jonathan Chen | [jchenbu](https://github.com/jchenbu) | Data cleaning (Step 3.2) |
 
 ## Roadmap
 
