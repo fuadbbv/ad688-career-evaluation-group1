@@ -294,18 +294,25 @@
     "text": "Scope Revision (Module 2)\nModule 1 anchored the project to NAICS 5221, Depository Credit Intermediation. When we pulled the data in Module 2, that code returned 59 postings in total, of which 13 carried salary information — too thin to support skill-gap and compensation analysis later in the project. We measured the neighbouring industry codes and moved the anchor to NAICS 523, which keeps the project inside Finance and Insurance while providing 15,176 postings, of which 6,199 match our career pathway. The measurement and the filter rule are documented on the Data Preparation page."
   },
   {
+    "objectID": "index.html#how-to-read-this-site",
+    "href": "index.html#how-to-read-this-site",
+    "title": "Career Evaluation Product — Group 1",
+    "section": "How To Read This Site",
+    "text": "How To Read This Site\n\n\n\n\n\n\n\nPage\nWhat it answers\n\n\n\n\nProject Overview\nWhy this question matters and what we expected to find\n\n\nData Preparation\nWhere the data comes from, how it was filtered and cleaned, and what its limits are\n\n\nExploratory Analysis\nWhat the market currently looks like: volume, pay, geography, experience, flexibility, employers\n\n\nSkill Gap Analysis\nWhat employers ask for, measured against what the team can actually do\n\n\nPredictive Modeling\nWhether the market splits into segments a candidate can target\n\n\nCareer Strategy\nWhere to apply, what to learn next, how to position\n\n\n\nEach analysis page states how many postings it is based on, because field coverage varies across the dataset."
+  },
+  {
     "objectID": "index.html#team",
     "href": "index.html#team",
     "title": "Career Evaluation Product — Group 1",
     "section": "Team",
-    "text": "Team\n\n\n\nName\nGitHub\nRole this module\n\n\n\n\nFuad Babaiev\nfuadbbv\nDataset build (Step 3.1), site structure and publishing (Step 3.4)\n\n\nKatie Bowles\nkmbowles00\nMarket baseline page (Step 3.3), standup documentation\n\n\nJonathan Chen\njchenbu\nData cleaning (Step 3.2)"
+    "text": "Team\n\n\n\nName\nGitHub\nRole this module\n\n\n\n\nFuad Babaiev\nfuadbbv\nSite restructure and navigation; final review and publishing\n\n\nKatie Bowles\nkmbowles00\nExploratory analysis rework; shared visual theme across all charts\n\n\nJonathan Chen\njchenbu\nSkill gap analysis: team skill matrix, heatmap, improvement plan"
   },
   {
     "objectID": "index.html#roadmap",
     "href": "index.html#roadmap",
     "title": "Career Evaluation Product — Group 1",
     "section": "Roadmap",
-    "text": "Roadmap\n\n\n\n\n\n\n\n\nModule\nDeliverable\nStatus\n\n\n\n\nM1\nProject scope, industry selection, rationale, initial site\nComplete\n\n\nM2\nData preparation and market baseline\nIn progress\n\n\nM3\nSkill-gap analysis and career evaluation scorecard\n\n\n\nM4\nCheckpoint — no new step\n\n\n\nM5\nFinal analytics, recommendations, report\n\n\n\nM6\nFinal presentation"
+    "text": "Roadmap\n\n\n\n\n\n\n\n\nModule\nDeliverable\nStatus\n\n\n\n\nM1\nProject scope, industry selection, rationale, initial site\nComplete\n\n\nM2\nData preparation and market baseline\nComplete\n\n\nM3\nSite restructure, enhanced exploratory analysis, skill gap analysis\nIn progress\n\n\nM4\nCheckpoint — no new step\n\n\n\nM5\nFinal analytics, recommendations, report\n\n\n\nM6\nFinal presentation"
   },
   {
     "objectID": "ml_methods.html",
