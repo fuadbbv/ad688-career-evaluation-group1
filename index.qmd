@@ -24,21 +24,34 @@ Securities, commodity contracts, and other financial investment activities (NAIC
 
 Module 1 anchored the project to NAICS 5221, Depository Credit Intermediation. When we pulled the data in Module 2, that code returned **59 postings in total**, of which 13 carried salary information — too thin to support skill-gap and compensation analysis later in the project. We measured the neighbouring industry codes and moved the anchor to **NAICS 523**, which keeps the project inside Finance and Insurance while providing **15,176 postings**, of which **6,199** match our career pathway. The measurement and the filter rule are documented on the Data Preparation page.
 
+## How To Read This Site
+
+| Page | What it answers |
+|---|---|
+| **Project Overview** | Why this question matters and what we expected to find |
+| **Data Preparation** | Where the data comes from, how it was filtered and cleaned, and what its limits are |
+| **Exploratory Analysis** | What the market currently looks like: volume, pay, geography, experience, flexibility, employers |
+| **Skill Gap Analysis** | What employers ask for, measured against what the team can actually do |
+| **Predictive Modeling** | Whether the market splits into segments a candidate can target |
+| **Career Strategy** | Where to apply, what to learn next, how to position |
+
+Each analysis page states how many postings it is based on, because field coverage varies across the dataset.
+
 ## Team
 
 | Name | GitHub | Role this module |
 |---|---|---|
-| Fuad Babaiev | [fuadbbv](https://github.com/fuadbbv) | Dataset build (Step 3.1), site structure and publishing (Step 3.4) |
-| Katie Bowles | [kmbowles00](https://github.com/kmbowles00) | Market baseline page (Step 3.3), standup documentation |
-| Jonathan Chen | [jchenbu](https://github.com/jchenbu) | Data cleaning (Step 3.2) |
+| Fuad Babaiev | [fuadbbv](https://github.com/fuadbbv) | Site restructure and navigation; final review and publishing |
+| Katie Bowles | [kmbowles00](https://github.com/kmbowles00) | Exploratory analysis rework; shared visual theme across all charts |
+| Jonathan Chen | [jchenbu](https://github.com/jchenbu) | Skill gap analysis: team skill matrix, heatmap, improvement plan |
 
 ## Roadmap
 
 | Module | Deliverable | Status |
 |---|---|---|
 | M1 | Project scope, industry selection, rationale, initial site | Complete |
-| M2 | Data preparation and market baseline | In progress |
-| M3 | Skill-gap analysis and career evaluation scorecard | |
+| M2 | Data preparation and market baseline | Complete |
+| M3 | Site restructure, enhanced exploratory analysis, skill gap analysis | In progress |
 | M4 | Checkpoint — no new step | |
 | M5 | Final analytics, recommendations, report | |
 | M6 | Final presentation | |
