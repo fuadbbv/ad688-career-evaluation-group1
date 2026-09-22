@@ -1,49 +1,56 @@
-# Data Dictionary - career_market_panel.csv
+# Data Dictionary — career_market_panel.csv
 
-6199 rows, 43 columns.
+7,074 rows, 50 columns. Source: WRDS jobs_2026 dataset, scoped to NAICS 523 and the BI/Data Analyst career pathway.
 
 | Variable | Type | Source | Non-null | Missing % | Description |
 |---|---|---|---|---|---|
-| `job_id` | int64 | MET Employability API | 6199 | 0.0% | Unique posting identifier assigned by the MET API; used to deduplicate |
-| `posted_at` | str | MET Employability API | 6199 | 0.0% | Date the posting was published |
-| `expires_at` | str | MET Employability API | 422 | 93.2% | Date the posting expires; cleared when earlier than posted_at |
-| `title` | str | MET Employability API | 6199 | 0.0% | Job title as published by the employer |
-| `normalized_title` | str | derived in this project | 6199 | 0.0% | Title lowercased and trimmed, for grouping |
-| `company_name` | str | MET Employability API | 6199 | 0.0% | Employer name as published on the posting |
-| `is_staffing_agency` | bool | MET Employability API | 6199 | 0.0% | True when the posting comes from a staffing agency |
-| `staffing_confidence` | float64 | MET Employability API | 6199 | 0.0% | API confidence score that the poster is a staffing agency |
-| `location_text` | str | MET Employability API | 6078 | 2.0% | Free-text location as published |
-| `city` | str | MET Employability API | 4958 | 20.0% | City parsed from the location |
-| `city_code` | float64 | MET Employability API | 0 | 100.0% | Internal city identifier |
-| `state` | str | MET Employability API | 5266 | 15.1% | State name |
-| `state_code` | str | MET Employability API | 1761 | 71.6% | Two-letter US state code; empty for non-US postings |
-| `zip_code` | float64 | MET Employability API | 39 | 99.4% | Five-digit ZIP code; 00000 treated as missing |
-| `msa_code` | float64 | MET Employability API | 281 | 95.5% | Metropolitan statistical area code |
-| `msa_name` | str | MET Employability API | 281 | 95.5% | Metropolitan statistical area name |
-| `latitude` | float64 | MET Employability API | 59 | 99.0% | Latitude; cleared when outside US bounds |
-| `longitude` | float64 | MET Employability API | 59 | 99.0% | Longitude; cleared when outside US bounds |
-| `remote_status` | str | MET Employability API | 6199 | 0.0% | remote, hybrid, onsite or unknown |
-| `employment_type` | str | MET Employability API | 5017 | 19.1% | Full-time, part-time, contract and similar |
-| `salary_text` | str | MET Employability API | 4106 | 33.8% | Raw salary block as returned by the API |
-| `annual_salary_min` | float64 | MET Employability API | 1206 | 80.5% | Lower bound of the annual salary range in USD |
-| `annual_salary_max` | float64 | MET Employability API | 1206 | 80.5% | Upper bound of the annual salary range in USD |
-| `hourly_salary_min` | float64 | MET Employability API | 258 | 95.8% | Lower bound of the hourly rate in USD |
-| `hourly_salary_max` | float64 | MET Employability API | 258 | 95.8% | Upper bound of the hourly rate in USD |
-| `soc_code` | str | MET Employability API | 6092 | 1.7% | Standard Occupational Classification code |
-| `soc_name` | str | MET Employability API | 6092 | 1.7% | Standard Occupational Classification title |
-| `occupation_family` | str | MET Employability API | 6092 | 1.7% | Broad occupational family |
-| `naics_code` | int64 | MET Employability API | 6199 | 0.0% | Industry code assigned by the data provider (aggregated form) |
-| `naics_name` | str | MET Employability API | 6199 | 0.0% | Industry label |
-| `onet_code` | str | MET Employability API | 6096 | 1.7% | O*NET occupation code |
-| `onet_name` | str | MET Employability API | 6096 | 1.7% | O*NET occupation title |
-| `cip_code` | float64 | MET Employability API | 261 | 95.8% | Classification of Instructional Programs code |
-| `cip_name` | str | MET Employability API | 261 | 95.8% | Instructional program title |
-| `program_matches` | str | MET Employability API | 6199 | 0.0% | MET degree programmes matched to the posting |
-| `search_relevance_score` | int64 | MET Employability API | 6199 | 0.0% | API relevance score for the query used |
-| `search_rank_reason` | str | MET Employability API | 6199 | 0.0% | API explanation of the relevance score |
-| `apply_url` | str | MET Employability API | 5128 | 17.3% | Link to the employer application page |
-| `skills_text` | str | derived in this project | 5742 | 7.4% | Skill names flattened to a semicolon-separated string |
-| `skills_count` | int64 | derived in this project | 6199 | 0.0% | Number of skills attached to the posting |
-| `experience_years_raw` | float64 | derived in this project | 4093 | 34.0% | Years of experience parsed from the description (approximate) |
-| `education_level_raw` | str | derived in this project | 3675 | 40.7% | Highest degree keyword found in the description (approximate) |
-| `organization_name` | str | derived in this project | 3371 | 45.6% | Employer name from the linked organization record |
+| `ID` | int64 | WRDS jobs_2026 dataset | 7,074 | 0.0% | Unique posting identifier from the source dataset; used to deduplicate |
+| `POSTED` | str | WRDS jobs_2026 dataset | 7,074 | 0.0% | Date the posting was published |
+| `EXPIRED` | str | WRDS jobs_2026 dataset | 365 | 94.8% | Date the posting expired; cleared when earlier than POSTED |
+| `DURATION` | float64 | WRDS jobs_2026 dataset | 365 | 94.8% | Days the posting stayed active, where the source records it |
+| `URL` | str | WRDS jobs_2026 dataset | 5,808 | 17.9% | Link to the original posting |
+| `TITLE_RAW` | str | WRDS jobs_2026 dataset | 7,074 | 0.0% | Job title exactly as published by the employer |
+| `TITLE_NAME` | str | WRDS jobs_2026 dataset | 7,074 | 0.0% | Normalised job title from the provider |
+| `TITLE_CLEAN` | str | derived in this project | 7,074 | 0.0% | Title lowercased and trimmed, for grouping |
+| `COMPANY_NAME` | str | WRDS jobs_2026 dataset | 7,074 | 0.0% | Employer name |
+| `COMPANY_IS_STAFFING` | float64 | WRDS jobs_2026 dataset | 2,357 | 66.7% | Flag for postings placed by a staffing agency |
+| `IS_INTERNSHIP` | int64 | WRDS jobs_2026 dataset | 7,074 | 0.0% | Flag for internship postings |
+| `EDUCATION_LEVELS_NAME` | str | WRDS jobs_2026 dataset | 6,445 | 8.9% | All education levels mentioned in the posting |
+| `MIN_EDULEVELS_NAME` | str | WRDS jobs_2026 dataset | 4,913 | 30.5% | Lowest education level the posting accepts |
+| `MAX_EDULEVELS_NAME` | str | WRDS jobs_2026 dataset | 6,445 | 8.9% | Highest education level the posting mentions |
+| `EMPLOYMENT_TYPE_NAME` | str | WRDS jobs_2026 dataset | 5,537 | 21.7% | Full-time, part-time, contract and similar |
+| `MIN_YEARS_EXPERIENCE` | float64 | WRDS jobs_2026 dataset | 3,941 | 44.3% | Minimum years of experience required |
+| `MAX_YEARS_EXPERIENCE` | float64 | WRDS jobs_2026 dataset | 2,625 | 62.9% | Upper end of the experience range, where given |
+| `SALARY` | float64 | WRDS jobs_2026 dataset | 0 | 100.0% | Free-text salary summary from the provider; mostly an empty placeholder, kept for reference only |
+| `REMOTE_TYPE_NAME` | str | WRDS jobs_2026 dataset | 4,568 | 35.4% | Remote, hybrid or onsite, where the posting states it |
+| `LOCATION` | str | WRDS jobs_2026 dataset | 7,074 | 0.0% | Free-text location as published |
+| `CITY_NAME` | str | WRDS jobs_2026 dataset | 6,140 | 13.2% | City |
+| `COUNTY_NAME` | str | WRDS jobs_2026 dataset | 435 | 93.9% | County |
+| `MSA_NAME` | str | WRDS jobs_2026 dataset | 620 | 91.2% | Metropolitan statistical area |
+| `STATE` | str | WRDS jobs_2026 dataset | 4,667 | 34.0% | Two-letter state code |
+| `STATE_NAME` | str | WRDS jobs_2026 dataset | 6,532 | 7.7% | State name |
+| `NAICS2_NAME` | str | WRDS jobs_2026 dataset | 7,074 | 0.0% | Industry sector label (2-digit) |
+| `NAICS3` | int64 | WRDS jobs_2026 dataset | 7,074 | 0.0% | Industry subsector code (3-digit) — 523 for every row in this panel |
+| `NAICS3_NAME` | str | WRDS jobs_2026 dataset | 7,074 | 0.0% | Industry subsector label |
+| `NAICS4` | float64 | WRDS jobs_2026 dataset | 27 | 99.6% | Industry group code (4-digit) |
+| `NAICS4_NAME` | str | WRDS jobs_2026 dataset | 27 | 99.6% | Industry group label |
+| `NAICS5_NAME` | str | WRDS jobs_2026 dataset | 25 | 99.6% | Industry label (5-digit) |
+| `NAICS6_NAME` | str | WRDS jobs_2026 dataset | 24 | 99.7% | National industry label (6-digit) |
+| `SOC_2021_4` | str | WRDS jobs_2026 dataset | 2,357 | 66.7% | Standard Occupational Classification code, 2021 revision |
+| `SOC_2021_4_NAME` | str | WRDS jobs_2026 dataset | 2,357 | 66.7% | Occupation title |
+| `SOC_2021_5_NAME` | str | WRDS jobs_2026 dataset | 2,357 | 66.7% | Detailed occupation title |
+| `ONET_NAME` | str | WRDS jobs_2026 dataset | 6,905 | 2.4% | O*NET occupation title |
+| `CIP4_NAME` | str | WRDS jobs_2026 dataset | 2,357 | 66.7% | Instructional programme most associated with the role |
+| `SKILLS_NAME` | str | WRDS jobs_2026 dataset | 7,074 | 0.0% | All skills attached to the posting, semicolon-separated |
+| `SPECIALIZED_SKILLS_NAME` | str | WRDS jobs_2026 dataset | 7,074 | 0.0% | Domain and technical specialisations |
+| `COMMON_SKILLS_NAME` | str | WRDS jobs_2026 dataset | 7,074 | 0.0% | Transferable skills such as communication and teamwork |
+| `SOFTWARE_SKILLS_NAME` | str | WRDS jobs_2026 dataset | 7,074 | 0.0% | Named tools and software, such as Python, SQL or Tableau |
+| `CERTIFICATIONS_NAME` | str | WRDS jobs_2026 dataset | 7,074 | 0.0% | Certifications the posting requests |
+| `SKILLS_COUNT` | int64 | derived in this project | 7,074 | 0.0% | Number of skills listed |
+| `SOFTWARE_SKILLS_COUNT` | int64 | derived in this project | 7,074 | 0.0% | Number of named tools listed |
+| `SALARY_FROM` | float64 | WRDS jobs_2026 dataset | 2,064 | 70.8% | Lower bound of the posted pay range, in the units of SALARY_PERIOD |
+| `SALARY_TO` | float64 | WRDS jobs_2026 dataset | 2,064 | 70.8% | Upper bound of the posted pay range, in the units of SALARY_PERIOD |
+| `SALARY_PERIOD` | str | derived in this project | 2,064 | 70.8% | Pay period the range was quoted in: annual, hourly or monthly |
+| `ANNUAL_SALARY_FROM` | float64 | derived in this project | 1,741 | 75.4% | Lower bound, annual postings only |
+| `ANNUAL_SALARY_TO` | float64 | derived in this project | 1,741 | 75.4% | Upper bound, annual postings only |
+| `ANNUAL_SALARY_MID` | float64 | derived in this project | 1,741 | 75.4% | Midpoint of the annual range; the field to use for salary analysis |
