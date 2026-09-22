@@ -1,0 +1,17 @@
+---
+title: "Skill Gap Analysis"
+---
+
+## Purpose
+
+A market-wide list of in-demand skills is not advice until it is compared against a specific person. This page does that comparison: it measures what employers in NAICS 523 ask for, records what each member of the team can actually do, and reports the distance between the two.
+
+## Method
+
+Demand comes from the cleaned panel of 6,199 postings, where skill tags are present on 5,742 of them (93 percent). Supply comes from a self-assessment: each team member rates their own proficiency on a five-point scale, from beginner to expert, across the skills the market actually asks for rather than a generic list.
+
+The gap for a given skill is the difference between how often the market requires it and how strongly the individual holds it. A skill demanded by most postings and held weakly is a priority; a skill demanded rarely is not, however interesting it might be.
+
+## Status
+
+In progress for Module 3. The output will be a team skill matrix, a visual comparison against market demand, and a per-person learning order with suggested resources.

@@ -6,7 +6,7 @@ title: "Market Baseline"
 
 This is the current state of the market our product advises on: **6,199 postings** for Business Intelligence and Data Analyst roles in NAICS 523, Securities, Commodity Contracts and Other Financial Investments, published within the twelve months to September 2026.
 
-Every figure below is drawn from `data/processed/career_market_panel.csv`. How that table was built, and where its gaps are, is documented on the [Data Preparation](data_preparation.qmd) page. Coverage varies by field, so each chart states how many postings it is based on.
+Every figure below is drawn from `data/processed/career_market_panel.csv`. How that table was built, and where its gaps are, is documented on the [Data Preparation](data_cleaning.qmd) page. Coverage varies by field, so each chart states how many postings it is based on.
 
 ## Which Occupations Dominate
 

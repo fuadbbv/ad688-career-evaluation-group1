@@ -1,0 +1,19 @@
+---
+title: "Career Strategy"
+---
+
+## Purpose
+
+This is where the evidence becomes advice. The preceding pages establish what the market demands and where a candidate currently stands; this page answers the three questions a job seeker actually has: **where to apply, what to learn next, and how to position themselves.**
+
+## What This Page Will Contain
+
+The recommendations are built from findings already on the site rather than from general career advice. The baseline established that two-thirds of postings in this industry are coded as Management Analysts, that the median posting asks for five years of experience while fewer than one in sixty asks for less than one, that three-quarters of labelled postings offer remote or hybrid work, and that no single employer holds more than two percent of the market.
+
+Those facts point to concrete guidance: search by occupation rather than title, treat the industry as a mid-career market and plan an entry route accordingly, use the flexibility to widen the geographic net, and apply broadly rather than targeting a short list of firms. Each recommendation will be stated together with the evidence it rests on and the limits of that evidence.
+
+The skill-gap results will then turn general guidance into a per-person learning order, and the segmentation work on the Predictive Modeling page will identify which parts of the market are reachable now versus after closing specific gaps.
+
+## Status
+
+Scheduled for Module 5, once the skill-gap and modelling work is complete.

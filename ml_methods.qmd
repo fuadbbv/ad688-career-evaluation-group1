@@ -1,0 +1,19 @@
+---
+title: "Predictive Modeling"
+---
+
+## Purpose
+
+The earlier pages describe what the market looks like. This page asks a narrower question: can the structure of the market be learned from the postings themselves, rather than read off summary tables?
+
+Two directions are planned against the cleaned panel of 6,199 postings.
+
+**Segmenting the market.** Postings carry skills, experience requirements, salary, remote status and location. Clustering them should reveal whether analytics work in NAICS 523 splits into recognisable groups — for example a reporting-and-BI cluster distinct from a quantitative-research cluster — and whether those groups differ in what they pay and how much experience they demand. If they do, a candidate can aim at a segment rather than at the market as a whole.
+
+**Reading the descriptions.** Skill tags come from the data provider and cover 93 percent of postings, but the free-text descriptions hold requirements the tags miss. Extracting terms directly from the text lets us check the tags rather than trust them.
+
+Both feed the Career Strategy page: a segment a candidate can realistically enter is more useful advice than an average taken across the whole market.
+
+## Status
+
+Scheduled for Module 3. The input is `data/processed/career_market_panel.csv`; methods and results will be documented here with the code visible and foldable, as on the other analysis pages.
