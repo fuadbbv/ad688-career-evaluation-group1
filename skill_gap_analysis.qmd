@@ -8,10 +8,256 @@ A market-wide list of in-demand skills is not advice until it is compared agains
 
 ## Method
 
-Demand comes from the cleaned panel of 6,199 postings, where skill tags are present on 5,742 of them (93 percent). Supply comes from a self-assessment: each team member rates their own proficiency on a five-point scale, from beginner to expert, across the skills the market actually asks for rather than a generic list.
+Demand comes from the cleaned panel of 7,074 postings, all of which list skills. Supply comes from a self-assessment: each team member rated their own proficiency on nine skill areas, on a five-point scale from beginner to expert. We then checked those nine areas against the postings to see which frequently requested skills fall outside them.
 
-The gap for a given skill is the difference between how often the market requires it and how strongly the individual holds it. A skill demanded by most postings and held weakly is a priority; a skill demanded rarely is not, however interesting it might be.
+The gap for a given skill is the difference between the level the market requires and the level the individual holds. We set the required level from how often the skill appears in postings.
 
 ## Status
 
 In progress for Module 3. The output will be a team skill matrix, a visual comparison against market demand, and a per-person learning order with suggested resources.
+
+# status code
+
+This is to help setup the python script to create the team matrix in skill gap analysis, and it would lead into a comparison of the teams skills against the market demand for each skill area. The code will read in the cleaned panel of postings, extract the relevant skill information, and then create visualizations to show where the team stands in relation to market expectations.
+
+```{python}
+#| label: sga-setup
+import re
+from collections import Counter
+from pathlib import Path
+
+import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
+import plotly.io as pio
+
+# Plotly graphs
+pio.templates["group1"] = go.layout.Template(
+    layout=dict(
+        font=dict(family="Arial, sans-serif", size=13),
+        title=dict(x=0.02, font=dict(size=18)),
+        colorway=px.colors.qualitative.Set2,
+        margin=dict(l=60, r=30, t=70, b=60),
+    )
+)
+pio.templates.default = "plotly_white+group1"
+
+Path("figures").mkdir(exist_ok=True)
+
+def save_fig(fig, name):
+    """Save a PNG copy to figures/ if possible; otherwise skip quietly."""
+    try:
+        fig.write_image(f"figures/{name}.png", scale=2)
+    except Exception:
+        pass
+```
+
+## Team Skill Matrix
+
+Each member of the team rated themselves on nine skill areas relevant to a Business Intelligence or Data Analyst roles. On a 1–5 scale (1 = Beginner, 2 = Basic, 3 = Intermediate, 4 = Advanced, 5 = Expert).
+
+```{python}
+#| label: sga-team
+ratings = pd.DataFrame(
+    {
+        "Fuad":     [2, 1, 2, 1, 4, 2, 4, 2, 3],
+        "Jonathan": [2, 2, 1, 1, 4, 2, 3, 2, 4],
+        "Katie":    [3, 3, 3, 2, 4, 2, 4, 3, 3],
+    },
+    index=[
+        "Python", "SQL", "Machine Learning", "Cloud Computing", "Communication",
+        "AWS", "Dashboard/Reporting", "Git", "Financial Domain Knowledge",
+    ],
+)
+# rows = members, columns = skills
+df_skills = ratings.T
+ratings
+```
+
+## Market Demand for Each Skill Area
+
+We search `SKILLS_NAME`, the full skill list, rather than
+`SOFTWARE_SKILLS_NAME`. Two of our areas, Communication and Financial Domain Knowledge, are not software and appear only in the full list in order to recieve a fair comparison. The other seven areas are software-related, and the full list is more complete than the software-only list.
+
+```{python}
+#| label: sga-demand
+PANEL_PATH = Path("data/processed/career_market_panel.csv")
+SKILL_FIELD = "SKILLS_NAME"
+
+# Each skill area pattens 
+
+AREA_PATTERNS = {
+    "Python":                    r"\bpython\b",
+    "SQL":                       r"\bsql\b|mysql|postgresql",
+    "Machine Learning":          r"machine learning|deep learning|predictive model|scikit|tensorflow|pytorch",
+    "Cloud Computing":           r"cloud|\bazure\b|snowflake|databricks",
+    "Communication":             r"communication|presentation|public speaking|storytelling",
+    "AWS":                       r"\baws\b|amazon web services|amazon redshift|amazon s3",
+    "Dashboard/Reporting":       r"dashboard|\breporting\b|tableau|power bi|looker|qlik|business intelligence|data visuali",
+    "Git":                       r"\bgit\b|github|gitlab|version control",
+    "Financial Domain Knowledge": r"financ|investment|securities|portfolio|accounting|asset management|risk management|trading|fixed income|derivative|valuation",
+}
+assert set(AREA_PATTERNS) == set(df_skills.columns), "Area names must match the ratings table"
+
+panel = pd.read_csv(PANEL_PATH, usecols=[SKILL_FIELD], dtype=str)
+n_postings = len(panel)
+
+def clean_skill(name):
+    return re.sub(r"\s*\([^)]*\)", "", name).strip().casefold()
+
+skills_per_posting = (
+    panel[SKILL_FIELD].fillna("").str.split(";")
+    .apply(lambda items: {clean_skill(x) for x in items if x.strip()})
+)
+
+# Match each distinct skill name once, then map postings to areas
+skill_freq = Counter(s for skills in skills_per_posting for s in skills)
+skill_to_areas = {
+    s: {a for a, p in AREA_PATTERNS.items() if re.search(p, s)} for s in skill_freq
+}
+areas_per_posting = skills_per_posting.apply(
+    lambda skills: set().union(*(skill_to_areas[s] for s in skills))
+)
+
+demand = pd.DataFrame({
+    "Postings": {a: int(areas_per_posting.apply(lambda x: a in x).sum()) for a in AREA_PATTERNS}
+})
+demand["Share"] = demand["Postings"] / n_postings * 100
+demand = demand.sort_values("Share", ascending=False)
+demand.style.format({"Share": "{:.1f}%", "Postings": "{:,}"})
+```
+
+```{python}
+#| label: fig-sga-demand
+fig = px.bar(
+    demand.reset_index(names="Skill area").sort_values("Share"),
+    x="Share", y="Skill area", orientation="h",
+    title=f"Share of {n_postings:,} NAICS 523 Analyst Postings Requiring Each Skill Area",
+    labels=dict(Share="% of postings", **{"Skill area": ""}),
+    hover_data={"Postings": ":,"},
+)
+save_fig(fig, "sga_market_demand")
+fig.show()
+```
+
+## Insights made from the team skill matrix and market demand:
+Financial Domain Knowledge, Communication, and SQL are the most demanded skill areas in the market. The team has a strong average proficiency in Financial Domain Knowledge and Communication, but there is a gap in SQL skills that needs to be addressed. Machine Learning and Cloud Computing are also areas where the team can improve to meet market demand.
+
+
+### Checking the most frequent skills that each area captured
+
+This table lists the most frequent posting skills that each area captured. It shows exactly what each area counts so a pattern can be checked for correctness.
+
+```{python}
+#| label: sga-audit
+pd.DataFrame({
+    "Most frequent matched skills": {
+        a: ", ".join(
+            sorted((s for s, areas in skill_to_areas.items() if a in areas),
+                   key=lambda s: -skill_freq[s])[:6]
+        )
+        for a in demand.index
+    }
+})
+```
+
+
+## Gap Analysis
+
+Market share is converted into a target proficiency. The cut-offs are our own assumptions. Because an area counts a posting if **any** of its skills is listed, broad areas would score higher shares than narrow ones, and the targets should be read with that in mind.
+
+| Share of postings | Target level |
+|---|---|
+| 50% or more | 5 |
+| 30–50% | 4 |
+| 15–30% | 3 |
+| 5–15% | 2 |
+| under 5% | 1 |
+
+```{python}
+#| label: sga-gap
+target = pd.cut(
+    demand["Share"], bins=[-0.1, 5, 15, 30, 50, 100], labels=[1, 2, 3, 4, 5]
+).astype(int)
+
+order = list(demand.index)                     # 
+
+#most to least demanded
+df_skills = df_skills[order]
+gap = (target - df_skills).clip(lower=0)
+
+fig = px.imshow(
+    df_skills,
+    text_auto=True, zmin=0, zmax=5, aspect="auto",
+    color_continuous_scale="Blues",
+    title="Team Skill Levels Heat Map (1 = beginner, 5 = expert)",
+    labels=dict(x="Skill area (most → least in demand)", y="", color="Level"),
+)
+save_fig(fig, "sga_team_matrix")
+fig.show()
+
+fig = px.imshow(
+    gap,
+    text_auto=True, zmin=0, zmax=5, aspect="auto",
+    color_continuous_scale="Reds",
+    title="Skill Gap: Levels Below Market Target",
+    labels=dict(x="Skill area (most → least in demand)", y="", color="Gap"),
+)
+save_fig(fig, "sga_gap_matrix")
+fig.show()
+```
+
+
+```{python}
+#| label: fig-sga-team-vs-market
+team_view = pd.DataFrame({
+    "Market target": target,
+    "Team average": df_skills.mean(),
+    "Team best": df_skills.max(),
+}).loc[order]
+
+fig = px.bar(
+    team_view.reset_index(names="Skill area"),
+    x="Skill area", y=["Market target", "Team average", "Team best"],
+    barmode="group",
+    title="Team Proficiency vs. Market Target",
+    labels=dict(value="Proficiency (1–5)", variable="", **{"Skill area": ""}),
+)
+fig.update_yaxes(range=[0, 5.5])
+save_fig(fig, "sga_team_vs_market")
+fig.show()
+
+uncovered = team_view.index[team_view["Team best"] < team_view["Market target"]].tolist()
+print("No team member meets the target for:", ", ".join(uncovered) or "none")
+```
+
+## Learning Order
+
+A member's priority for each area is their gap weighted by the area's market
+share.
+
+```{python}
+#| label: sga-priorities
+priority = gap.mul(demand["Share"] / 100, axis=1)
+
+rows = []
+for member, scores in priority.iterrows():
+    top3 = scores[scores > 0].sort_values(ascending=False).head(3)
+    rows.append({
+        "Member": member,
+        "Learning order (levels to gain)": " → ".join(
+            f"{s} (+{gap.loc[member, s]})" for s in top3.index
+        ) or "Meets every target",
+    })
+pd.DataFrame(rows).set_index("Member")
+```
+
+### Analysis 
+
+The team has a strong average proficiency in Financial Domain Knowledge and Communication, but there is a gap in SQL skills that needs to be addressed. Machine Learning and Cloud Computing are also areas where the team can improve to meet market demand. The learning order table provides a clear roadmap for each member to prioritize their skill development based on market demand and their current proficiency levels.
+
+### How the team closes the gaps
+
+The way our team can close the gaps is a combination of peer learning and external courses. The following are some suggestions: 
+
+We can use the other external resources such as coursera learning paths, Udemycourses, and other online resources to fill in the gaps. The team can also consider pairing sessions where members with higher proficiency in certain areas can mentor others. For example, katie can run short pairing sessions for Fuad and Jonathan in Python, SQL, and Machine Learning. Jonathan's financial domain knowledge can support the others in interpreting finance-specific postings. For areas like Cloud Computing or AWS, the team can pick one shared course and use the course EC2 work as practice.

@@ -17,3 +17,4 @@ Both feed the Career Strategy page: a segment a candidate can realistically ente
 ## Status
 
 Scheduled for Module 3. The input is `data/processed/career_market_panel.csv`; methods and results will be documented here with the code visible and foldable, as on the other analysis pages.
+
