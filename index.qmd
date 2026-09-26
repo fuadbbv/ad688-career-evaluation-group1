@@ -10,7 +10,7 @@ title: "Career Evaluation Product — Group 1"
 | **Career Pathway** | Business Intelligence / Data Analyst |
 | **Industry Code** | NAICS 2022 — **523** Securities, Commodity Contracts, and Other Financial Investments and Related Activities |
 | **Industry Label** | U.S. securities, investment and asset management |
-| **Data Source** | MET Employability Career Match API |
+| **Data Source** | WRDS `jobs_2026` dataset (Module 3); MET Career Match API (Modules 1-2) |
 
 ## Product Question
 
@@ -22,7 +22,7 @@ Securities, commodity contracts, and other financial investment activities (NAIC
 
 ## Scope Revision (Module 2)
 
-Module 1 anchored the project to NAICS 5221, Depository Credit Intermediation. When we pulled the data in Module 2, that code returned **59 postings in total**, of which 13 carried salary information — too thin to support skill-gap and compensation analysis later in the project. We measured the neighbouring industry codes and moved the anchor to **NAICS 523**, which keeps the project inside Finance and Insurance while providing **15,176 postings**, of which **6,199** match our career pathway. The measurement and the filter rule are documented on the Data Preparation page.
+Module 1 anchored the project to NAICS 5221, Depository Credit Intermediation. When we pulled the data in Module 2, that code returned **59 postings in total**, of which 13 carried salary information — too thin to support skill-gap and compensation analysis later in the project. We measured the neighbouring industry codes and moved the anchor to **NAICS 523**, which keeps the project inside Finance and Insurance while providing **15,176 postings**, of which **6,199** matched our career pathway. Module 3 rebuilt the panel from the supplied WRDS dataset on the same scope: **24,914 postings** in NAICS 523 and **7,074** after the role filter. The measurement and the filter rule are documented on the Data Preparation page.
 
 ## How To Read This Site
 
@@ -51,7 +51,7 @@ Each analysis page states how many postings it is based on, because field covera
 |---|---|---|
 | M1 | Project scope, industry selection, rationale, initial site | Complete |
 | M2 | Data preparation and market baseline | Complete |
-| M3 | Site restructure, enhanced exploratory analysis, skill gap analysis | In progress |
+| M3 | Site restructure, enhanced exploratory analysis, skill gap analysis | Complete |
 | M4 | Checkpoint — no new step | |
 | M5 | Final analytics, recommendations, report | |
 | M6 | Final presentation | |

@@ -8,9 +8,9 @@ This is where the evidence becomes advice. The preceding pages establish what th
 
 ## What This Page Will Contain
 
-The recommendations are built from findings already on the site rather than from general career advice. The baseline established that two-thirds of postings in this industry are coded as Management Analysts, that the median posting asks for five years of experience while fewer than one in sixty asks for less than one, that three-quarters of labelled postings offer remote or hybrid work, and that no single employer holds more than two percent of the market.
+The recommendations are built from findings already on the site rather than from general career advice. The baseline established that job titles here are close to unique — 4,000 distinct titles across 7,074 postings, the most common covering under two percent — and that occupational codes are both too sparse and too often wrong to search by. Where an experience requirement is genuinely stated the median is three years, with fewer than one posting in thirty asking for less than a year. Four in five postings that record a work arrangement offer remote or hybrid work, and the employer side is fragmented enough that the largest single employer holds four percent of the market.
 
-Those facts point to concrete guidance: search by occupation rather than title, treat the industry as a mid-career market and plan an entry route accordingly, use the flexibility to widen the geographic net, and apply broadly rather than targeting a short list of firms. Each recommendation will be stated together with the evidence it rests on and the limits of that evidence.
+Those facts point to concrete guidance: search by skills and employers rather than by job title or occupation code, treat the industry as a mid-career market and plan an entry route accordingly, use the available flexibility to widen the geographic net beyond New York, and apply broadly rather than targeting a short list of firms. Each recommendation will be stated together with the evidence it rests on and the limits of that evidence.
 
 The skill-gap results will then turn general guidance into a per-person learning order, and the segmentation work on the Predictive Modeling page will identify which parts of the market are reachable now versus after closing specific gaps.
 

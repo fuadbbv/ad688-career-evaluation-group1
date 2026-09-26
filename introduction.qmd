@@ -29,7 +29,7 @@ The deliverable is a career evaluation product for a job seeker, not a general l
 - Remote openings will be less common than in the software sector, and concentrated in a small number of metropolitan areas.
 - The gap between market demand and a typical student profile will sit in domain knowledge and data governance rather than in programming.
 
-These are expectations, not conclusions; Modules 2 and 3 test them against the MET Employability Career Match data.
+These are expectations, not conclusions; Module 2 tested them against the MET Employability Career Match data; Module 3 retests them on the WRDS dataset supplied for this module.
 
 ## References
 
