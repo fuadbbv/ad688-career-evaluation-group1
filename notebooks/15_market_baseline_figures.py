@@ -6,7 +6,7 @@ import pandas as pd
 
 PANEL = "data/processed/career_market_panel.csv"
 FIGDIR = "figures"
-NUMBERS = "outputs/m2_baseline_numbers.md"
+NUMBERS = "outputs/m3_baseline_numbers.md"
 
 plt.style.use("Solarize_Light2")
 
@@ -78,24 +78,30 @@ def hbar(series, title, xlabel, filename, color=None, colors=None):
 
 # 1. Volume by occupation (SOC)
 
-soc = df["soc_name"].dropna().value_counts().head(10)
-hbar(soc, "Postings by Occupation (SOC)", "Postings", "fig_volume_by_soc.png",
-     color=BLUE)
+soc_all = df["SOC_2021_4_NAME"].dropna()
+soc = soc_all.value_counts().head(10)
+hbar(soc, "Postings by Occupation (SOC), Labelled Subset", "Postings",
+     "fig_volume_by_soc.png", color=BLUE)
+note(f"- Occupation code present on {len(soc_all):,} of {len(df):,} postings "
+     f"({len(soc_all) / len(df):.0%})")
 note(f"- Top occupation: **{soc.index[0]}** with {soc.iloc[0]:,} postings "
-     f"({soc.iloc[0] / len(df):.0%} of the panel)")
+     f"({soc.iloc[0] / len(soc_all):.0%} of the labelled subset)")
 note(f"- Top three occupations: " + "; ".join(f"{k} {v:,}" for k, v in soc.head(3).items()))
+note(f"- Occupation coding is unreliable: on {df['TITLE_NAME_IS_SOC'].sum():,} "
+     f"rows the provider overwrote the job title with the occupation name, "
+     f"and senior finance roles appear under unrelated codes")
 
 # 2. Volume by title
 
-titles = df["normalized_title"].dropna().value_counts().head(12)
+titles = df["TITLE_CLEAN"].dropna().value_counts().head(12)
 hbar(titles, "Most Common Job Titles", "Postings", "fig_volume_by_title.png",
      color=ORANGE)
 note(f"- Most common title: **{titles.index[0]}** ({titles.iloc[0]:,} postings)")
-note(f"- Distinct titles in the panel: {df['normalized_title'].nunique():,}")
+note(f"- Distinct titles in the panel: {df['TITLE_CLEAN'].nunique():,}")
 
 # 2b.Top 3 job titles as a share of all postings
 
-top3_titles = df["normalized_title"].dropna().value_counts().head(3)
+top3_titles = df["TITLE_CLEAN"].dropna().value_counts().head(3)
 top3_share_of_total = top3_titles.sum() / len(df)
 
 pie_labels = list(top3_titles.index)
@@ -133,7 +139,7 @@ note("- Top 3 title shares (relative to each other): " +
 
 # 3. Salary distribution
 
-sal = df[["annual_salary_min", "annual_salary_max"]].mean(axis=1).dropna()
+sal = pd.to_numeric(df["ANNUAL_SALARY_MID"], errors="coerce").dropna()
 fig, ax = plt.subplots(figsize=(8, 4.2))
 ax.hist(sal, bins=30, color=AQUA, edgecolor=SURFACE, linewidth=1.2)
 frame(ax, f"Annual Salary Midpoint ({len(sal):,} Postings That Disclose Pay)",
@@ -149,23 +155,23 @@ note(f"- Median midpoint **${sal.median():,.0f}**, quartiles "
 
 # 4. Top states
 
-states = df["state_code"].dropna().value_counts().head(10)
+states = df["STATE_CLEAN"].dropna().value_counts().head(10)
 hbar(states, "Top States by Posting Volume", "Postings", "fig_top_states.png",
      color=GREEN)
-note(f"- Postings with a US state code: {df['state_code'].notna().sum():,} "
-     f"({df['state_code'].notna().mean():.0%})")
+note(f"- Postings with a state recorded: {df['STATE_CLEAN'].notna().sum():,} "
+     f"({df['STATE_CLEAN'].notna().mean():.0%})")
 note(f"- Leading states: " + "; ".join(f"{k} {v:,}" for k, v in states.head(5).items()))
 
 # 5. Top cities
 
-cities = df["city"].dropna().value_counts().head(10)
+cities = df["CITY_NAME"].dropna().value_counts().head(10)
 hbar(cities, "Top Hiring Cities", "Postings", "fig_top_cities.png",
      color=MAGENTA)
 note(f"- Leading cities: " + "; ".join(f"{k} {v:,}" for k, v in cities.head(5).items()))
 
 # 6. Experience requirements
 
-exp = df["experience_years_raw"].dropna()
+exp = pd.to_numeric(df["MIN_YEARS_EXP_CLEAN"], errors="coerce").dropna()
 bins = [0, 1, 2, 3, 4, 5, 7, 10, 100]
 labels = ["<1", "1", "2", "3", "4", "5-6", "7-9", "10+"]
 buckets = pd.cut(exp, bins=bins, labels=labels, right=False).value_counts().reindex(labels)
@@ -174,7 +180,7 @@ bars = ax.bar(buckets.index.astype(str), buckets.values, color=YELLOW, width=0.6
 for bar, value in zip(bars, buckets.values):
     ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() * 1.02,
             f"{int(value):,}", ha="center", fontsize=9, color=INK_SOFT)
-frame(ax, f"Years of Experience Requested ({len(exp):,} Postings)", "Years")
+frame(ax, f"Years of Experience Requested ({len(exp):,} Postings With a Stated Requirement)", "Years")
 ax.set_ylabel("Postings", color=INK_SOFT)
 ax.grid(axis="x", visible=False)
 ax.grid(axis="y", color=MUTED, alpha=0.4, linewidth=0.8)
@@ -187,13 +193,17 @@ note("- Experience buckets: " + "; ".join(f"{k} {int(v):,}" for k, v in buckets.
 
 # 7. Remote status
 
-remote = df["remote_status"].value_counts()
-order = [c for c in ["remote", "hybrid", "onsite", "unknown"] if c in remote.index]
-remote = remote.reindex(order)
-remote_colors = [MUTED if c == "unknown" else VIOLET for c in remote.index][::-1]
+remote_raw = df["REMOTE_CLEAN"].fillna("Unknown").astype(str).str.strip()
+remote_raw = remote_raw.where(remote_raw != "", "Unknown")
+counts = remote_raw.value_counts()
+order = [c for c in counts.index if c != "Unknown"]
+if "Unknown" in counts.index:
+    order.append("Unknown")
+remote = counts.reindex(order)
+remote_colors = [MUTED if c == "Unknown" else VIOLET for c in remote.index][::-1]
 hbar(remote, "Remote, Hybrid, Onsite or Unrecorded", "Postings",
      "fig_remote.png", colors=remote_colors)
-known = remote.drop("unknown", errors="ignore")
+known = remote.drop("Unknown", errors="ignore")
 note(f"- Remote status recorded on {known.sum():,} of {len(df):,} postings "
      f"({known.sum()/len(df):.0%})")
 note("- Among labelled postings: " +
@@ -201,10 +211,10 @@ note("- Among labelled postings: " +
 
 # 8. Top employers
 
-emp = df["company_name"].dropna().value_counts().head(10)
+emp = df["COMPANY_NAME"].dropna().value_counts().head(10)
 hbar(emp, "Top Employers by Posting Volume", "Postings", "fig_top_employers.png",
      color=RED)
-note(f"- Distinct employers: {df['company_name'].nunique():,}")
+note(f"- Distinct employers: {df['COMPANY_NAME'].nunique():,}")
 note(f"- Largest employer: **{emp.index[0]}** with {emp.iloc[0]:,} postings "
      f"({emp.iloc[0]/len(df):.1%} of the panel)")
 note(f"- Top 10 employers account for {emp.sum()/len(df):.0%} of all postings")

@@ -4,7 +4,7 @@ Cleaning logic by Katie Bowles. Plumbing fixed by Fuad Babaiev:
 - `rows_before` was used before assignment in the duplicate block
 - two competing `main()` definitions, one calling a non-existent `clean_data`
 - no entry point, so running the file did nothing
-- output moved to data/processed/career_market_panel.csv (Section 4 filename)
+- output moved to data/archive_m2/legacy_met_panel.csv (Section 4 filename)
 - text cleaning now runs before dtype casting, so .str works on plain strings
 """
 import numpy as np
@@ -12,7 +12,7 @@ import pandas as pd
 from datetime import datetime
 
 SRC = "data/interim/jobs_naics523_filtered_20260915.csv.gz"
-OUT = "data/processed/career_market_panel.csv"
+OUT = "data/archive_m2/legacy_met_panel.csv"
 LOG = "outputs/m2_step32_cleaning_log.md"
 
 DATE_COLS = ["posted_at", "expires_at"]

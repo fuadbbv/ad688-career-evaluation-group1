@@ -24,8 +24,7 @@ data/raw/*
 # macOS
 .DS_Store
 
+# Curated outputs stay under version control. The analytical panel
+# and the data dictionary are what make the site reproducible
+# without the 1.2 GB source dataset.
 
-#csvs
-career_market_panel.csv
-jobs_naics523_filtered_20260925.csv.gz
-data_dictionary.csv

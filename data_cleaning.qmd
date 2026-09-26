@@ -12,18 +12,22 @@ The panel is built from the **WRDS jobs_2026 dataset** supplied for Module 3: **
 
 Modules 1 and 2 used the MET Employability Career Match API. We moved to the supplied dataset in Module 3 and measured the two sources against each other on our exact scope before deciding:
 
-| Field | MET API panel | Module 3 dataset |
-|---|---|---|
-| Postings in scope | 6,199 | **7,074** |
-| US state recorded | 28% | **92%** |
-| Remote status recorded | 48% | **65%** |
-| Skills listed | 93% | **100%** |
-| Education level | 59%, parsed from text | **69%, a coded field** |
-| Annual salary usable | 19% | **25%** |
-| Years of experience | 66%, parsed from text | 56%, **a numeric field** |
-| Occupation code (SOC) | 98% | **33%** |
+| Field | MET API panel | Module 3, as supplied | Module 3, after cleaning |
+|---|---|---|---|
+| Postings in scope | 6,199 | 7,074 | **7,074** |
+| Skills listed | 93% | 100% | **100%** |
+| US state recorded | 28% | 92% | **73%** |
+| Minimum education level | 59%, parsed from text | 69% | **69%, a coded field** |
+| Work arrangement recorded | 48% | 65% | **44%** |
+| Annual salary usable | 19% | 25% | **25%** |
+| Years of experience | 66%, parsed from text | 56% | **24%, a numeric field** |
+| Occupation code (SOC) | 98% | 33% | **33%, and unreliable** |
 
-The switch is not an improvement on every axis. Occupational coding is substantially sparser and experience is recorded on fewer postings, though as a number rather than a figure we extracted with a regular expression. Geography was the single largest limitation of the earlier panel and it largely disappears, the skill fields arrive split into named tools, specialisations, transferable skills and certifications, and education and experience stop being our estimates and become the provider's.
+The third and fourth columns differ because several supplied fields encode
+missing data as a value rather than as a blank. Those cases are set out
+under Field Normalization below.
+
+The switch is not an improvement on every axis. Occupational coding is substantially sparser and, as we found on inspection, unreliable where it is present. Experience is recorded on fewer postings once placeholder values are removed, though what remains is a number rather than a figure we extracted with a regular expression. Geography was the single largest limitation of the earlier panel and it improves by a factor of two and a half even after cleaning, the skill fields arrive split into named tools, specialisations, transferable skills and certifications, and education and experience stop being our estimates and become the provider's.
 
 ## Industry and Career Scope
 
@@ -89,11 +93,25 @@ Hourly and monthly rates are kept in their own columns and **are not converted t
 
 **Skills.** Arrive as arrays and are stored as semicolon-separated strings across four fields: all skills, named software, specialised skills and transferable skills, plus certifications. Names are not yet normalised, so casing and synonyms remain distinct; that normalisation belongs to the skill-gap work, where it has an analytical purpose.
 
-**Remote status.** Reported exactly as the source provides it, and never inferred. A posting with no remote label is an absence of information, not evidence of an office requirement.
+**Remote status.** Never inferred, and category labels are normalised because the source spells the same category two ways. A posting with no remote label is an absence of information, not evidence of an office requirement.
 
 **Location.** Text fields trimmed of stray whitespace. This dataset carries no coordinates, so the latitude and longitude check from the earlier pipeline does not apply; geography is carried by state, city and metropolitan area.
 
 **Types.** Every column is cast explicitly — dates, booleans, numbers and categories — so later analysis cannot silently treat a number as text.
+
+### Field Normalization
+
+Integration testing in Module 3 exposed four defects that coverage statistics alone do not reveal. Each repair is written to a separate column, so the provider's original value stays auditable.
+
+**The job title is overwritten on part of the panel.** On 2,165 postings — 31 percent — `TITLE_NAME` holds the occupation name instead of the advertised title, so a vacancy posted as "Sr Financial Analyst, AWS GTM Finance" reads simply as "Management Analysts". Counting titles from that field produced an apparent leading title of "management analysts" with 1,991 postings, which is an artefact of the coding and not a fact about the market. `TITLE_CLEAN` is rebuilt from the raw title text instead, raising the number of distinct titles from 2,396 to 4,000.
+
+**Occupational coding is wrong on identifiable rows, not merely sparse.** Several postings titled Senior Financial Analyst are coded as **Models, Demonstrators, and Product Promoters**. We keep the field and report the defect rather than deleting it, because it is the direct justification for defining roles by title as well as by code.
+
+**The state field is not only a state field.** It mixes full names with two-letter codes, so New York appeared twice — as "New York" (514) and as "NY" (212) — and it carries 1,202 postings labelled "United States" and 178 labelled "Remote", a country and a work arrangement. `STATE_CLEAN` expands the codes and discards the non-geographic values, which lowers real coverage from an apparent 92 percent to an honest **73 percent**.
+
+**Two fields encode "missing" as a value.** `REMOTE_TYPE_NAME` carries a literal "Unknown" on 1,442 postings alongside 2,506 true nulls, and spells the office category both "Onsite" and "On-site"; `REMOTE_CLEAN` merges the spellings and treats "Unknown" as missing, leaving 44 percent labelled. `MIN_YEARS_EXPERIENCE` reports zero years on 2,288 postings, but on 2,143 of them the stated maximum is exactly one — a fixed "0 to 1" band attached to postings titled Senior Financial Analyst, Finance Manager and Accounting Manager. That is a provider default, and left in place it produced a median requirement of zero years across the panel. `MIN_YEARS_EXP_CLEAN` removes the band, leaving 1,702 postings with a stated requirement and a median of three years.
+
+Several headline numbers fall as a result. That is the intended outcome: the higher figures counted placeholders as data.
 
 ## Data Quality and Limitations
 
@@ -103,20 +121,22 @@ Coverage in the panel of 7,074 postings:
 |---|---|---|
 | Skills | 7,074 | 100% |
 | Named software skills | 7,074 | 100% |
-| US state | 6,532 | 92% |
+| US state, after normalization | 5,135 | 73% |
 | Minimum education level | 4,913 | 69% |
-| Remote status | 4,568 | 65% |
-| Minimum years of experience | 3,941 | 56% |
+| Work arrangement, after normalization | 3,126 | 44% |
 | Occupation code (SOC 2021) | 2,357 | 33% |
 | Annual salary usable | 1,741 | 25% |
+| Years of experience, after normalization | 1,702 | 24% |
 
-Three limitations shape how the analysis pages should be read.
+Four limitations shape how the analysis pages should be read.
 
 **Salary is disclosed on one posting in four.** Employers who publish pay ranges are not a random sample — pay-transparency law applies in some states and not others — so the disclosed group likely skews toward those jurisdictions and toward larger employers. Every salary figure in this project describes that subset, not the market.
 
-**Occupation codes are sparse.** Only a third of postings carry a SOC occupation. Any breakdown by occupation describes the coded third, and comparisons between occupations are ratios within that subset rather than counts of the whole market.
+**Occupation codes are sparse and partly wrong.** Only a third of postings carry a SOC occupation, and within that third the classification misassigns senior finance roles badly enough to be caught by eye. Any breakdown by occupation describes the coded third, and comparisons between occupations are ratios within that subset rather than counts of the whole market.
 
-**Experience is recorded on just over half of postings.** It is a reliable number where present, but absence is common and should not be read as "no experience required".
+**Titles are dependable, classifications are not.** Raw title text is present on every posting and is what we count. Provider-normalised titles and occupation codes are used only where the analysis is explicitly about data quality.
+
+**Experience survives on one posting in four.** The provider supplies a value more often than that, but most of the additional rows carry a placeholder band rather than a requirement. It is a reliable number where present, but absence is common and should not be read as "no experience required".
 
 Against that, geography and skills are close to complete, which means the location analysis and the skill-gap work — the parts the product most depends on — rest on much firmer ground than the compensation analysis does.
 
@@ -124,9 +144,11 @@ Against that, geography and skills are close to complete, which means the locati
 
 | | |
 |---|---|
-| **Analytical panel** | **`data/processed/career_market_panel.csv` — 7,074 rows, 50 columns** |
+| **Analytical panel** | **`data/processed/career_market_panel.csv` — 7,074 rows, 54 columns** |
 | Data dictionary | `outputs/data_dictionary.md` and `outputs/data_dictionary.csv` |
 | Build log | `outputs/m3_panel_build_log.md` |
+| Normalization log | `outputs/m3_normalization_log.md` |
+| Baseline numbers | `outputs/m3_baseline_numbers.md` |
 
 The source Parquet files are kept locally and excluded from version control; at roughly a gigabyte they are not needed to reproduce the analysis from the panel.
 
@@ -136,7 +158,11 @@ The source Parquet files are kept locally and excluded from version control; at 
 2. `pip install -r requirements.txt`
 3. `python notebooks/19_build_panel_wrds.py` — scope filter, role filter, cleaning
 4. `python notebooks/21_fix_salary.py` — period-aware salary validation
-5. `python notebooks/22_data_dictionary_m3.py` — data dictionary
+5. `python notebooks/23_normalize_panel.py` — field normalization
+6. `python notebooks/22_data_dictionary_m3.py` — data dictionary
+7. `python notebooks/15_market_baseline_figures.py` — baseline figures
+
+The scripts must run in that order: normalization depends on the salary step, and the dictionary and figures both read the normalized panel.
 
 All work runs on the course AWS EC2 environment.
 
