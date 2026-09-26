@@ -108,7 +108,7 @@ pie_labels = list(top3_titles.index)
 pie_values = list(top3_titles.values)
 pie_colors = [SOLARIZED_CYCLE[i % len(SOLARIZED_CYCLE)] for i in range(3)]
 
-fig, ax = plt.subplots(figsize=(7, 7))
+fig, ax = plt.subplots(figsize=(9.5, 7))
 wedges, _, autotexts = ax.pie(
     pie_values,
     labels=pie_labels,
@@ -130,7 +130,8 @@ fig.text(0.5, 0.925,
          ha="center", fontsize=9.5, color=INK_SOFT)
 fig.subplots_adjust(top=0.85)
 
-fig.savefig(f"{FIGDIR}/fig_top3_titles_share.png", dpi=160)
+fig.savefig(f"{FIGDIR}/fig_top3_titles_share.png", dpi=160,
+            bbox_inches="tight")
 plt.close(fig)
 note(f"- Top 3 titles combined: {top3_titles.sum():,} postings "
      f"({top3_share_of_total:.0%} of the panel)")
