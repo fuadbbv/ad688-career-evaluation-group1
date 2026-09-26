@@ -20,8 +20,8 @@ The third entry, Actors with 483 postings, is not a real analytics occupation. I
 
 ![](figures/fig_volume_by_title.png)
 
-**There are 4,841 distinct job titles across 6,199 postings**, and the most common one — "financial analyst" — appears just 55 times, under one percent of the panel. Titles in this industry are effectively unique strings.
-
+**There are 4,841 distinct job titles across 6,199 postings**, and the most common one — "financial analyst" — appears just 55 times, under one percent of the panel. Titles in this industry are effectively unique strings but in the below image the top three titles are distributed as follows:
+![](figures/fig_top3_titles_share.png)
 The practical consequence for a candidate is that title-based job alerts are close to useless here. Searching by skills and occupational family returns far more of the real market than searching by job title.
 
 ## What The Work Pays
