@@ -166,7 +166,10 @@ div.csl-indent {
   </ul></li>
   <li><a href="#role-definition" id="toc-role-definition" class="nav-link" data-scroll-target="#role-definition">Role Definition</a></li>
   <li><a href="#filter-funnel" id="toc-filter-funnel" class="nav-link" data-scroll-target="#filter-funnel">Filter Funnel</a></li>
-  <li><a href="#cleaning-decisions" id="toc-cleaning-decisions" class="nav-link" data-scroll-target="#cleaning-decisions">Cleaning Decisions</a></li>
+  <li><a href="#cleaning-decisions" id="toc-cleaning-decisions" class="nav-link" data-scroll-target="#cleaning-decisions">Cleaning Decisions</a>
+  <ul class="collapse">
+  <li><a href="#field-normalization" id="toc-field-normalization" class="nav-link" data-scroll-target="#field-normalization">Field Normalization</a></li>
+  </ul></li>
   <li><a href="#data-quality-and-limitations" id="toc-data-quality-and-limitations" class="nav-link" data-scroll-target="#data-quality-and-limitations">Data Quality and Limitations</a></li>
   <li><a href="#output" id="toc-output" class="nav-link" data-scroll-target="#output">Output</a></li>
   <li><a href="#reproducing-this-step" id="toc-reproducing-this-step" class="nav-link" data-scroll-target="#reproducing-this-step">Reproducing This Step</a></li>
@@ -206,61 +209,72 @@ div.csl-indent {
 <p>Modules 1 and 2 used the MET Employability Career Match API. We moved to the supplied dataset in Module 3 and measured the two sources against each other on our exact scope before deciding:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
 </colgroup>
 <thead>
 <tr class="header">
 <th>Field</th>
 <th>MET API panel</th>
-<th>Module 3 dataset</th>
+<th>Module 3, as supplied</th>
+<th>Module 3, after cleaning</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>Postings in scope</td>
 <td>6,199</td>
+<td>7,074</td>
 <td><strong>7,074</strong></td>
-</tr>
-<tr class="even">
-<td>US state recorded</td>
-<td>28%</td>
-<td><strong>92%</strong></td>
-</tr>
-<tr class="odd">
-<td>Remote status recorded</td>
-<td>48%</td>
-<td><strong>65%</strong></td>
 </tr>
 <tr class="even">
 <td>Skills listed</td>
 <td>93%</td>
+<td>100%</td>
 <td><strong>100%</strong></td>
 </tr>
 <tr class="odd">
-<td>Education level</td>
+<td>US state recorded</td>
+<td>28%</td>
+<td>92%</td>
+<td><strong>73%</strong></td>
+</tr>
+<tr class="even">
+<td>Minimum education level</td>
 <td>59%, parsed from text</td>
+<td>69%</td>
 <td><strong>69%, a coded field</strong></td>
+</tr>
+<tr class="odd">
+<td>Work arrangement recorded</td>
+<td>48%</td>
+<td>65%</td>
+<td><strong>44%</strong></td>
 </tr>
 <tr class="even">
 <td>Annual salary usable</td>
 <td>19%</td>
+<td>25%</td>
 <td><strong>25%</strong></td>
 </tr>
 <tr class="odd">
 <td>Years of experience</td>
 <td>66%, parsed from text</td>
-<td>56%, <strong>a numeric field</strong></td>
+<td>56%</td>
+<td><strong>24%, a numeric field</strong></td>
 </tr>
 <tr class="even">
 <td>Occupation code (SOC)</td>
 <td>98%</td>
-<td><strong>33%</strong></td>
+<td>33%</td>
+<td><strong>33%, and unreliable</strong></td>
 </tr>
 </tbody>
 </table>
-<p>The switch is not an improvement on every axis. Occupational coding is substantially sparser and experience is recorded on fewer postings, though as a number rather than a figure we extracted with a regular expression. Geography was the single largest limitation of the earlier panel and it largely disappears, the skill fields arrive split into named tools, specialisations, transferable skills and certifications, and education and experience stop being our estimates and become the provider’s.</p>
+<p>The third and fourth columns differ because several supplied fields encode missing data as a value rather than as a blank. Those cases are set out under Field Normalization below.</p>
+<p>The switch is not an improvement on every axis. Occupational coding is substantially sparser and, as we found on inspection, unreliable where it is present. Experience is recorded on fewer postings once placeholder values are removed, though what remains is a number rather than a figure we extracted with a regular expression. Geography was the single largest limitation of the earlier panel and it improves by a factor of two and a half even after cleaning, the skill fields arrive split into named tools, specialisations, transferable skills and certifications, and education and experience stop being our estimates and become the provider’s.</p>
 </section>
 <section id="industry-and-career-scope" class="level2">
 <h2 class="anchored" data-anchor-id="industry-and-career-scope">Industry and Career Scope</h2>
@@ -366,9 +380,18 @@ div.csl-indent {
 <p>Hourly and monthly rates are kept in their own columns and <strong>are not converted to annual figures</strong>, because the conversion requires an assumption about hours worked that the postings do not supply. <code>ANNUAL_SALARY_MID</code> — the midpoint of the annual range — is the field used for salary analysis, and it is populated on 1,741 postings.</p>
 <p><strong>Experience and education.</strong> Taken directly from the provider’s coded fields. Unlike the earlier panel these are not our estimates, so no parsing decisions were needed.</p>
 <p><strong>Skills.</strong> Arrive as arrays and are stored as semicolon-separated strings across four fields: all skills, named software, specialised skills and transferable skills, plus certifications. Names are not yet normalised, so casing and synonyms remain distinct; that normalisation belongs to the skill-gap work, where it has an analytical purpose.</p>
-<p><strong>Remote status.</strong> Reported exactly as the source provides it, and never inferred. A posting with no remote label is an absence of information, not evidence of an office requirement.</p>
+<p><strong>Remote status.</strong> Never inferred, and category labels are normalised because the source spells the same category two ways. A posting with no remote label is an absence of information, not evidence of an office requirement.</p>
 <p><strong>Location.</strong> Text fields trimmed of stray whitespace. This dataset carries no coordinates, so the latitude and longitude check from the earlier pipeline does not apply; geography is carried by state, city and metropolitan area.</p>
 <p><strong>Types.</strong> Every column is cast explicitly — dates, booleans, numbers and categories — so later analysis cannot silently treat a number as text.</p>
+<section id="field-normalization" class="level3">
+<h3 class="anchored" data-anchor-id="field-normalization">Field Normalization</h3>
+<p>Integration testing in Module 3 exposed four defects that coverage statistics alone do not reveal. Each repair is written to a separate column, so the provider’s original value stays auditable.</p>
+<p><strong>The job title is overwritten on part of the panel.</strong> On 2,165 postings — 31 percent — <code>TITLE_NAME</code> holds the occupation name instead of the advertised title, so a vacancy posted as “Sr Financial Analyst, AWS GTM Finance” reads simply as “Management Analysts”. Counting titles from that field produced an apparent leading title of “management analysts” with 1,991 postings, which is an artefact of the coding and not a fact about the market. <code>TITLE_CLEAN</code> is rebuilt from the raw title text instead, raising the number of distinct titles from 2,396 to 4,000.</p>
+<p><strong>Occupational coding is wrong on identifiable rows, not merely sparse.</strong> Several postings titled Senior Financial Analyst are coded as <strong>Models, Demonstrators, and Product Promoters</strong>. We keep the field and report the defect rather than deleting it, because it is the direct justification for defining roles by title as well as by code.</p>
+<p><strong>The state field is not only a state field.</strong> It mixes full names with two-letter codes, so New York appeared twice — as “New York” (514) and as “NY” (212) — and it carries 1,202 postings labelled “United States” and 178 labelled “Remote”, a country and a work arrangement. <code>STATE_CLEAN</code> expands the codes and discards the non-geographic values, which lowers real coverage from an apparent 92 percent to an honest <strong>73 percent</strong>.</p>
+<p><strong>Two fields encode “missing” as a value.</strong> <code>REMOTE_TYPE_NAME</code> carries a literal “Unknown” on 1,442 postings alongside 2,506 true nulls, and spells the office category both “Onsite” and “On-site”; <code>REMOTE_CLEAN</code> merges the spellings and treats “Unknown” as missing, leaving 44 percent labelled. <code>MIN_YEARS_EXPERIENCE</code> reports zero years on 2,288 postings, but on 2,143 of them the stated maximum is exactly one — a fixed “0 to 1” band attached to postings titled Senior Financial Analyst, Finance Manager and Accounting Manager. That is a provider default, and left in place it produced a median requirement of zero years across the panel. <code>MIN_YEARS_EXP_CLEAN</code> removes the band, leaving 1,702 postings with a stated requirement and a median of three years.</p>
+<p>Several headline numbers fall as a result. That is the intended outcome: the higher figures counted placeholders as data.</p>
+</section>
 </section>
 <section id="data-quality-and-limitations" class="level2">
 <h2 class="anchored" data-anchor-id="data-quality-and-limitations">Data Quality and Limitations</h2>
@@ -393,9 +416,9 @@ div.csl-indent {
 <td>100%</td>
 </tr>
 <tr class="odd">
-<td>US state</td>
-<td>6,532</td>
-<td>92%</td>
+<td>US state, after normalization</td>
+<td>5,135</td>
+<td>73%</td>
 </tr>
 <tr class="even">
 <td>Minimum education level</td>
@@ -403,31 +426,32 @@ div.csl-indent {
 <td>69%</td>
 </tr>
 <tr class="odd">
-<td>Remote status</td>
-<td>4,568</td>
-<td>65%</td>
+<td>Work arrangement, after normalization</td>
+<td>3,126</td>
+<td>44%</td>
 </tr>
 <tr class="even">
-<td>Minimum years of experience</td>
-<td>3,941</td>
-<td>56%</td>
-</tr>
-<tr class="odd">
 <td>Occupation code (SOC 2021)</td>
 <td>2,357</td>
 <td>33%</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Annual salary usable</td>
 <td>1,741</td>
 <td>25%</td>
 </tr>
+<tr class="even">
+<td>Years of experience, after normalization</td>
+<td>1,702</td>
+<td>24%</td>
+</tr>
 </tbody>
 </table>
-<p>Three limitations shape how the analysis pages should be read.</p>
+<p>Four limitations shape how the analysis pages should be read.</p>
 <p><strong>Salary is disclosed on one posting in four.</strong> Employers who publish pay ranges are not a random sample — pay-transparency law applies in some states and not others — so the disclosed group likely skews toward those jurisdictions and toward larger employers. Every salary figure in this project describes that subset, not the market.</p>
-<p><strong>Occupation codes are sparse.</strong> Only a third of postings carry a SOC occupation. Any breakdown by occupation describes the coded third, and comparisons between occupations are ratios within that subset rather than counts of the whole market.</p>
-<p><strong>Experience is recorded on just over half of postings.</strong> It is a reliable number where present, but absence is common and should not be read as “no experience required”.</p>
+<p><strong>Occupation codes are sparse and partly wrong.</strong> Only a third of postings carry a SOC occupation, and within that third the classification misassigns senior finance roles badly enough to be caught by eye. Any breakdown by occupation describes the coded third, and comparisons between occupations are ratios within that subset rather than counts of the whole market.</p>
+<p><strong>Titles are dependable, classifications are not.</strong> Raw title text is present on every posting and is what we count. Provider-normalised titles and occupation codes are used only where the analysis is explicitly about data quality.</p>
+<p><strong>Experience survives on one posting in four.</strong> The provider supplies a value more often than that, but most of the additional rows carry a placeholder band rather than a requirement. It is a reliable number where present, but absence is common and should not be read as “no experience required”.</p>
 <p>Against that, geography and skills are close to complete, which means the location analysis and the skill-gap work — the parts the product most depends on — rest on much firmer ground than the compensation analysis does.</p>
 </section>
 <section id="output" class="level2">
@@ -440,7 +464,7 @@ div.csl-indent {
 <tbody>
 <tr class="odd">
 <td><strong>Analytical panel</strong></td>
-<td><strong><code>data/processed/career_market_panel.csv</code> — 7,074 rows, 50 columns</strong></td>
+<td><strong><code>data/processed/career_market_panel.csv</code> — 7,074 rows, 54 columns</strong></td>
 </tr>
 <tr class="even">
 <td>Data dictionary</td>
@@ -449,6 +473,14 @@ div.csl-indent {
 <tr class="odd">
 <td>Build log</td>
 <td><code>outputs/m3_panel_build_log.md</code></td>
+</tr>
+<tr class="even">
+<td>Normalization log</td>
+<td><code>outputs/m3_normalization_log.md</code></td>
+</tr>
+<tr class="odd">
+<td>Baseline numbers</td>
+<td><code>outputs/m3_baseline_numbers.md</code></td>
 </tr>
 </tbody>
 </table>
@@ -461,8 +493,11 @@ div.csl-indent {
 <li><code>pip install -r requirements.txt</code></li>
 <li><code>python notebooks/19_build_panel_wrds.py</code> — scope filter, role filter, cleaning</li>
 <li><code>python notebooks/21_fix_salary.py</code> — period-aware salary validation</li>
+<li><code>python notebooks/23_normalize_panel.py</code> — field normalization</li>
 <li><code>python notebooks/22_data_dictionary_m3.py</code> — data dictionary</li>
+<li><code>python notebooks/15_market_baseline_figures.py</code> — baseline figures</li>
 </ol>
+<p>The scripts must run in that order: normalization depends on the salary step, and the dictionary and figures both read the normalized panel.</p>
 <p>All work runs on the course AWS EC2 environment.</p>
 </section>
 <section id="references" class="level2">
