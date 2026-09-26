@@ -102,7 +102,7 @@
     "href": "introduction.html#what-we-expect-to-find",
     "title": "Introduction",
     "section": "What We Expect to Find",
-    "text": "What We Expect to Find\n\nPostings will emphasise SQL, Excel, and BI tooling (Power BI, Tableau) more consistently than machine-learning frameworks.\nRegulatory and domain vocabulary (risk, compliance, reporting) will appear frequently enough to act as a differentiator for candidates.\nRemote openings will be less common than in the software sector, and concentrated in a small number of metropolitan areas.\nThe gap between market demand and a typical student profile will sit in domain knowledge and data governance rather than in programming.\n\nThese are expectations, not conclusions; Modules 2 and 3 test them against the MET Employability Career Match data."
+    "text": "What We Expect to Find\n\nPostings will emphasise SQL, Excel, and BI tooling (Power BI, Tableau) more consistently than machine-learning frameworks.\nRegulatory and domain vocabulary (risk, compliance, reporting) will appear frequently enough to act as a differentiator for candidates.\nRemote openings will be less common than in the software sector, and concentrated in a small number of metropolitan areas.\nThe gap between market demand and a typical student profile will sit in domain knowledge and data governance rather than in programming.\n\nThese are expectations, not conclusions; Module 2 tested them against the MET Employability Career Match data; Module 3 retests them on the WRDS dataset supplied for this module."
   },
   {
     "objectID": "introduction.html#references",
@@ -200,7 +200,7 @@
     "href": "career_plan.html#what-this-page-will-contain",
     "title": "Career Strategy",
     "section": "What This Page Will Contain",
-    "text": "What This Page Will Contain\nThe recommendations are built from findings already on the site rather than from general career advice. The baseline established that two-thirds of postings in this industry are coded as Management Analysts, that the median posting asks for five years of experience while fewer than one in sixty asks for less than one, that three-quarters of labelled postings offer remote or hybrid work, and that no single employer holds more than two percent of the market.\nThose facts point to concrete guidance: search by occupation rather than title, treat the industry as a mid-career market and plan an entry route accordingly, use the flexibility to widen the geographic net, and apply broadly rather than targeting a short list of firms. Each recommendation will be stated together with the evidence it rests on and the limits of that evidence.\nThe skill-gap results will then turn general guidance into a per-person learning order, and the segmentation work on the Predictive Modeling page will identify which parts of the market are reachable now versus after closing specific gaps."
+    "text": "What This Page Will Contain\nThe recommendations are built from findings already on the site rather than from general career advice. The baseline established that job titles here are close to unique — 4,000 distinct titles across 7,074 postings, the most common covering under two percent — and that occupational codes are both too sparse and too often wrong to search by. Where an experience requirement is genuinely stated the median is three years, with fewer than one posting in thirty asking for less than a year. Four in five postings that record a work arrangement offer remote or hybrid work, and the employer side is fragmented enough that the largest single employer holds four percent of the market.\nThose facts point to concrete guidance: search by skills and employers rather than by job title or occupation code, treat the industry as a mid-career market and plan an entry route accordingly, use the available flexibility to widen the geographic net beyond New York, and apply broadly rather than targeting a short list of firms. Each recommendation will be stated together with the evidence it rests on and the limits of that evidence.\nThe skill-gap results will then turn general guidance into a per-person learning order, and the segmentation work on the Predictive Modeling page will identify which parts of the market are reachable now versus after closing specific gaps."
   },
   {
     "objectID": "career_plan.html#status",
@@ -291,14 +291,14 @@
     "href": "index.html",
     "title": "Career Evaluation Product — Group 1",
     "section": "",
-    "text": "Team\nAD688 Group 1\n\n\nCareer Pathway\nBusiness Intelligence / Data Analyst\n\n\nIndustry Code\nNAICS 2022 — 523 Securities, Commodity Contracts, and Other Financial Investments and Related Activities\n\n\nIndustry Label\nU.S. securities, investment and asset management\n\n\nData Source\nMET Employability Career Match API"
+    "text": "Team\nAD688 Group 1\n\n\nCareer Pathway\nBusiness Intelligence / Data Analyst\n\n\nIndustry Code\nNAICS 2022 — 523 Securities, Commodity Contracts, and Other Financial Investments and Related Activities\n\n\nIndustry Label\nU.S. securities, investment and asset management\n\n\nData Source\nWRDS jobs_2026 dataset (Module 3); MET Career Match API (Modules 1-2)"
   },
   {
     "objectID": "index.html#project-scope",
     "href": "index.html#project-scope",
     "title": "Career Evaluation Product — Group 1",
     "section": "",
-    "text": "Team\nAD688 Group 1\n\n\nCareer Pathway\nBusiness Intelligence / Data Analyst\n\n\nIndustry Code\nNAICS 2022 — 523 Securities, Commodity Contracts, and Other Financial Investments and Related Activities\n\n\nIndustry Label\nU.S. securities, investment and asset management\n\n\nData Source\nMET Employability Career Match API"
+    "text": "Team\nAD688 Group 1\n\n\nCareer Pathway\nBusiness Intelligence / Data Analyst\n\n\nIndustry Code\nNAICS 2022 — 523 Securities, Commodity Contracts, and Other Financial Investments and Related Activities\n\n\nIndustry Label\nU.S. securities, investment and asset management\n\n\nData Source\nWRDS jobs_2026 dataset (Module 3); MET Career Match API (Modules 1-2)"
   },
   {
     "objectID": "index.html#product-question",
@@ -319,7 +319,7 @@
     "href": "index.html#scope-revision-module-2",
     "title": "Career Evaluation Product — Group 1",
     "section": "Scope Revision (Module 2)",
-    "text": "Scope Revision (Module 2)\nModule 1 anchored the project to NAICS 5221, Depository Credit Intermediation. When we pulled the data in Module 2, that code returned 59 postings in total, of which 13 carried salary information — too thin to support skill-gap and compensation analysis later in the project. We measured the neighbouring industry codes and moved the anchor to NAICS 523, which keeps the project inside Finance and Insurance while providing 15,176 postings, of which 6,199 match our career pathway. The measurement and the filter rule are documented on the Data Preparation page."
+    "text": "Scope Revision (Module 2)\nModule 1 anchored the project to NAICS 5221, Depository Credit Intermediation. When we pulled the data in Module 2, that code returned 59 postings in total, of which 13 carried salary information — too thin to support skill-gap and compensation analysis later in the project. We measured the neighbouring industry codes and moved the anchor to NAICS 523, which keeps the project inside Finance and Insurance while providing 15,176 postings, of which 6,199 matched our career pathway. Module 3 rebuilt the panel from the supplied WRDS dataset on the same scope: 24,914 postings in NAICS 523 and 7,074 after the role filter. The measurement and the filter rule are documented on the Data Preparation page."
   },
   {
     "objectID": "index.html#how-to-read-this-site",
@@ -340,27 +340,27 @@
     "href": "index.html#roadmap",
     "title": "Career Evaluation Product — Group 1",
     "section": "Roadmap",
-    "text": "Roadmap\n\n\n\n\n\n\n\n\nModule\nDeliverable\nStatus\n\n\n\n\nM1\nProject scope, industry selection, rationale, initial site\nComplete\n\n\nM2\nData preparation and market baseline\nComplete\n\n\nM3\nSite restructure, enhanced exploratory analysis, skill gap analysis\nIn progress\n\n\nM4\nCheckpoint — no new step\n\n\n\nM5\nFinal analytics, recommendations, report\n\n\n\nM6\nFinal presentation"
+    "text": "Roadmap\n\n\n\n\n\n\n\n\nModule\nDeliverable\nStatus\n\n\n\n\nM1\nProject scope, industry selection, rationale, initial site\nComplete\n\n\nM2\nData preparation and market baseline\nComplete\n\n\nM3\nSite restructure, enhanced exploratory analysis, skill gap analysis\nComplete\n\n\nM4\nCheckpoint — no new step\n\n\n\nM5\nFinal analytics, recommendations, report\n\n\n\nM6\nFinal presentation"
   },
   {
     "objectID": "ml_methods.html",
     "href": "ml_methods.html",
     "title": "Predictive Modeling",
     "section": "",
-    "text": "The earlier pages describe what the market looks like. This page asks a narrower question: can the structure of the market be learned from the postings themselves, rather than read off summary tables?\nTwo directions are planned against the cleaned panel of 6,199 postings.\nSegmenting the market. Postings carry skills, experience requirements, salary, remote status and location. Clustering them should reveal whether analytics work in NAICS 523 splits into recognisable groups — for example a reporting-and-BI cluster distinct from a quantitative-research cluster — and whether those groups differ in what they pay and how much experience they demand. If they do, a candidate can aim at a segment rather than at the market as a whole.\nReading the descriptions. Skill tags come from the data provider and cover 93 percent of postings, but the free-text descriptions hold requirements the tags miss. Extracting terms directly from the text lets us check the tags rather than trust them.\nBoth feed the Career Strategy page: a segment a candidate can realistically enter is more useful advice than an average taken across the whole market."
+    "text": "The earlier pages describe what the market looks like. This page asks a narrower question: can the structure of the market be learned from the postings themselves, rather than read off summary tables?\nTwo directions are planned against the cleaned panel of 7,074 postings.\nSegmenting the market. Postings carry skills, experience requirements, salary, remote status and location. Clustering them should reveal whether analytics work in NAICS 523 splits into recognisable groups — for example a reporting-and-BI cluster distinct from a quantitative-research cluster — and whether those groups differ in what they pay and how much experience they demand. If they do, a candidate can aim at a segment rather than at the market as a whole.\nReading the descriptions. Skill tags come from the data provider and cover every posting in the panel, but the free-text descriptions hold requirements the tags miss. Extracting terms directly from the text lets us check the tags rather than trust them.\nBoth feed the Career Strategy page: a segment a candidate can realistically enter is more useful advice than an average taken across the whole market."
   },
   {
     "objectID": "ml_methods.html#purpose",
     "href": "ml_methods.html#purpose",
     "title": "Predictive Modeling",
     "section": "",
-    "text": "The earlier pages describe what the market looks like. This page asks a narrower question: can the structure of the market be learned from the postings themselves, rather than read off summary tables?\nTwo directions are planned against the cleaned panel of 6,199 postings.\nSegmenting the market. Postings carry skills, experience requirements, salary, remote status and location. Clustering them should reveal whether analytics work in NAICS 523 splits into recognisable groups — for example a reporting-and-BI cluster distinct from a quantitative-research cluster — and whether those groups differ in what they pay and how much experience they demand. If they do, a candidate can aim at a segment rather than at the market as a whole.\nReading the descriptions. Skill tags come from the data provider and cover 93 percent of postings, but the free-text descriptions hold requirements the tags miss. Extracting terms directly from the text lets us check the tags rather than trust them.\nBoth feed the Career Strategy page: a segment a candidate can realistically enter is more useful advice than an average taken across the whole market."
+    "text": "The earlier pages describe what the market looks like. This page asks a narrower question: can the structure of the market be learned from the postings themselves, rather than read off summary tables?\nTwo directions are planned against the cleaned panel of 7,074 postings.\nSegmenting the market. Postings carry skills, experience requirements, salary, remote status and location. Clustering them should reveal whether analytics work in NAICS 523 splits into recognisable groups — for example a reporting-and-BI cluster distinct from a quantitative-research cluster — and whether those groups differ in what they pay and how much experience they demand. If they do, a candidate can aim at a segment rather than at the market as a whole.\nReading the descriptions. Skill tags come from the data provider and cover every posting in the panel, but the free-text descriptions hold requirements the tags miss. Extracting terms directly from the text lets us check the tags rather than trust them.\nBoth feed the Career Strategy page: a segment a candidate can realistically enter is more useful advice than an average taken across the whole market."
   },
   {
     "objectID": "ml_methods.html#status",
     "href": "ml_methods.html#status",
     "title": "Predictive Modeling",
     "section": "Status",
-    "text": "Status\nScheduled for Module 3. The input is data/processed/career_market_panel.csv; methods and results will be documented here with the code visible and foldable, as on the other analysis pages."
+    "text": "Status\nScheduled for Module 5. The input is data/processed/career_market_panel.csv; methods and results will be documented here with the code visible and foldable, as on the other analysis pages."
   }
 ]
