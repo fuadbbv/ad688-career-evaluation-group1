@@ -23,3 +23,9 @@ data/raw/*
 
 # macOS
 .DS_Store
+
+
+#csvs
+career_market_panel.csv
+jobs_naics523_filtered_20260925.csv.gz
+data_dictionary.csv

@@ -1,6 +1,6 @@
 # Step 3.1 - Filtered Industry-Career Dataset
 
-Generated: 2026-09-15 13:14
+Generated: 2026-09-25 23:20
 
 ## Scope
 - Industry: NAICS 523 (Securities, Commodity Contracts and Other Financial Investments)
@@ -9,11 +9,11 @@ Generated: 2026-09-15 13:14
 - Source: MET Employability Career Match API, endpoint `/student/jobs/`
 
 ## Filter funnel
-- Postings pulled for the industry and date window: 15176
-- Matched the role definition (SOC or title): 6263
-- Removed as out-of-scope (information security roles): 64
+- Postings pulled for the industry and date window: 14035
+- Matched the role definition (SOC or title): 5675
+- Removed as out-of-scope (information security roles): 48
 - Removed as duplicate job_id: 0
-- **Final analytical dataset: 6199 rows**
+- **Final analytical dataset: 5627 rows**
 
 ## Role definition
 - SOC contains: `data scientist|database architect|statistician|mathematician|operations research|market research analyst|financial and investment analyst|credit analyst|management analyst`
@@ -28,13 +28,13 @@ Generated: 2026-09-15 13:14
 - `organization_name` - employer name lifted out of the nested organization object
 
 ## Known data-quality issues to handle in Step 3.2
-- Missing state_code: 4438 of 6199
-- remote_status = unknown: 3207 of 6199
-- Missing annual_salary_min: 4949 of 6199
-- Missing hourly_salary_min: 5941 of 6199
-- experience_years_raw not found: 2106 of 6199
-- education_level_raw not found: 2524 of 6199
+- Missing state_code: 3881 of 5627
+- remote_status = unknown: 2954 of 5627
+- Missing annual_salary_min: 4534 of 5627
+- Missing hourly_salary_min: 5391 of 5627
+- experience_years_raw not found: 1939 of 5627
+- education_level_raw not found: 2358 of 5627
 
 ## Output
-- `data/interim/jobs_naics523_filtered_20260915.csv.gz` (6199 rows, 48 columns)
-- Raw API response kept locally at `data/raw/jobs_naics523_raw_20260915.json` (git-ignored)
+- `data/interim/jobs_naics523_filtered_20260925.csv.gz` (5627 rows, 48 columns)
+- Raw API response kept locally at `data/raw/jobs_naics523_raw_20260925.json` (git-ignored)

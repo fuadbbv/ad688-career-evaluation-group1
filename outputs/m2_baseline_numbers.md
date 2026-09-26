@@ -6,6 +6,8 @@ Panel: 6199 postings
 - Top three occupations: Management Analysts 3,948; Data Scientists 584; Actors 483
 - Most common title: **financial analyst** (55 postings)
 - Distinct titles in the panel: 4,841
+- Top 3 titles combined: 139 postings (2% of the panel)
+- Top 3 title shares (relative to each other): financial analyst 39.6%; senior financial analyst 35.3%; senior accountant 25.2%
 - Salary disclosed on 1,206 of 6,199 postings (19%)
 - Median midpoint **$105,750**, quartiles $80,000 - $147,090
 - Postings with a US state code: 1,761 (28%)
