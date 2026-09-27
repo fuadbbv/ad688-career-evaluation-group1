@@ -72,6 +72,13 @@ def hbar(series, title, xlabel, filename, color=None, colors=None):
     ax.set_xlim(0, max(series.values) * 1.12)
     frame(ax, title, xlabel)
     fig.tight_layout()
+    fig.patches.append(
+      plt.Rectangle(
+          (0.005, 0.005), 0.99, 0.99,
+          transform=fig.transFigure,
+          fill=False, edgecolor=INK_SOFT, linewidth=1.5,
+      )
+     )
     fig.savefig(f"{FIGDIR}/{filename}", dpi=160)
     plt.close(fig)
 
@@ -80,7 +87,7 @@ def hbar(series, title, xlabel, filename, color=None, colors=None):
 
 soc_all = df["SOC_2021_4_NAME"].dropna()
 soc = soc_all.value_counts().head(10)
-hbar(soc, "Postings by Occupation (SOC), Labelled Subset", "Postings",
+hbar(soc, "Postings by Occupation (SOC), Labeled Subset", "Postings",
      "fig_volume_by_soc.png", color=BLUE)
 note(f"- Occupation code present on {len(soc_all):,} of {len(df):,} postings "
      f"({len(soc_all) / len(df):.0%})")
@@ -129,7 +136,13 @@ fig.text(0.5, 0.925,
          f"These 3 titles make up {top3_share_of_total:.0%} of all {len(df):,} postings",
          ha="center", fontsize=9.5, color=INK_SOFT)
 fig.subplots_adjust(top=0.85)
-
+fig.patches.append(
+      plt.Rectangle(
+          (0.005, 0.005), 0.99, 0.99,
+          transform=fig.transFigure,
+          fill=False, edgecolor=INK_SOFT, linewidth=1.5,
+      )
+ )
 fig.savefig(f"{FIGDIR}/fig_top3_titles_share.png", dpi=160,
             bbox_inches="tight")
 plt.close(fig)
@@ -148,6 +161,13 @@ frame(ax, f"Annual Salary Midpoint ({len(sal):,} Postings That Disclose Pay)",
 ax.set_ylabel("Postings", color=INK_SOFT)
 ax.xaxis.set_major_formatter(lambda x, _: f"${x/1000:.0f}k")
 fig.tight_layout()
+fig.patches.append(
+      plt.Rectangle(
+          (0.005, 0.005), 0.99, 0.99,
+          transform=fig.transFigure,
+          fill=False, edgecolor=INK_SOFT, linewidth=1.5,
+      )
+)
 fig.savefig(f"{FIGDIR}/fig_salary_distribution.png", dpi=160)
 plt.close(fig)
 note(f"- Salary disclosed on {len(sal):,} of {len(df):,} postings ({len(sal)/len(df):.0%})")
@@ -186,6 +206,13 @@ ax.set_ylabel("Postings", color=INK_SOFT)
 ax.grid(axis="x", visible=False)
 ax.grid(axis="y", color=MUTED, alpha=0.4, linewidth=0.8)
 fig.tight_layout()
+fig.patches.append(
+      plt.Rectangle(
+          (0.005, 0.005), 0.99, 0.99,
+          transform=fig.transFigure,
+          fill=False, edgecolor=INK_SOFT, linewidth=1.5,
+      )
+ )
 fig.savefig(f"{FIGDIR}/fig_experience.png", dpi=160)
 plt.close(fig)
 note(f"- Experience signal found on {len(exp):,} postings ({len(exp)/len(df):.0%}); "
