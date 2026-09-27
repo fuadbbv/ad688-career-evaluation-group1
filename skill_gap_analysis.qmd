@@ -51,7 +51,13 @@ SOLARIZED_ACCENTS = [
 pio.templates["group1"] = go.layout.Template(
     layout=dict(
         font=dict(family="Arial, sans-serif", size=13, color=SOLARIZED_BASE00),
-        title=dict(x=0.02, font=dict(size=18, color=SOLARIZED_BASE02)),
+        # CHANGE: title centered (x=0.5, xanchor="center") instead of
+        # left-aligned (previously x=0.02, no xanchor).
+        title=dict(
+            x=0.5,
+            xanchor="center",
+            font=dict(size=18, color=SOLARIZED_BASE02, family="Arial, sans-serif"),
+        ),
         colorway=SOLARIZED_ACCENTS,
         paper_bgcolor=SOLARIZED_BASE3,
         plot_bgcolor=SOLARIZED_BASE3,
@@ -77,7 +83,7 @@ pio.templates["group1"] = go.layout.Template(
                 xref="paper", yref="paper",
                 x0=0, y0=0, x1=1, y1=1,
                 line=dict(color=SOLARIZED_BASE01, width=2),
-                fillcolor="rgba(0,0,0,0)",  # transparent interior
+                fillcolor="rgba(0,0,0,0)",
                 layer="above",
             )
         ],
