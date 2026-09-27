@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Market Baseline – AD688 Career Evaluation Product</title>
+<title>Career Evaluation – AD688 Career Evaluation Product</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -97,31 +97,19 @@ ul.task-list li input[type="checkbox"] {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="./index.html"> 
-<span class="menu-text">Home</span></a>
+<span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./introduction.html"> 
-<span class="menu-text">Project Overview</span></a>
+<span class="menu-text">Introduction</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./data_cleaning.html"> 
+    <a class="nav-link" href="./data_preparation.html"> 
 <span class="menu-text">Data Preparation</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./eda.html" aria-current="page"> 
-<span class="menu-text">Exploratory Analysis</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./skill_gap_analysis.html"> 
-<span class="menu-text">Skill Gap Analysis</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./ml_methods.html"> 
-<span class="menu-text">Predictive Modeling</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./career_plan.html"> 
-<span class="menu-text">Career Strategy</span></a>
+    <a class="nav-link" href="./market_baseline.html"> 
+<span class="menu-text">Market Baseline</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -134,29 +122,15 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#purpose" id="toc-purpose" class="nav-link active" data-scroll-target="#purpose">Purpose</a></li>
-  <li><a href="#what-the-occupation-codes-do-and-do-not-tell-us" id="toc-what-the-occupation-codes-do-and-do-not-tell-us" class="nav-link" data-scroll-target="#what-the-occupation-codes-do-and-do-not-tell-us">What The Occupation Codes Do— And Do Not— Tell Us</a></li>
-  <li><a href="#how-titles-are-written" id="toc-how-titles-are-written" class="nav-link" data-scroll-target="#how-titles-are-written">How Titles Are Written</a></li>
-  <li><a href="#what-the-work-pays" id="toc-what-the-work-pays" class="nav-link" data-scroll-target="#what-the-work-pays">What The Work Pays</a></li>
-  <li><a href="#where-the-jobs-are" id="toc-where-the-jobs-are" class="nav-link" data-scroll-target="#where-the-jobs-are">Where The Jobs Are</a></li>
-  <li><a href="#how-much-experience-is-asked-for" id="toc-how-much-experience-is-asked-for" class="nav-link" data-scroll-target="#how-much-experience-is-asked-for">How Much Experience Is Asked For</a></li>
-  <li><a href="#remote-hybrid-or-onsite" id="toc-remote-hybrid-or-onsite" class="nav-link" data-scroll-target="#remote-hybrid-or-onsite">Remote, Hybrid Or Onsite</a></li>
-  <li><a href="#who-is-hiring" id="toc-who-is-hiring" class="nav-link" data-scroll-target="#who-is-hiring">Who Is Hiring</a></li>
-  <li><a href="#what-this-means-for-the-product" id="toc-what-this-means-for-the-product" class="nav-link" data-scroll-target="#what-this-means-for-the-product">What This Means For The Product</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Market Baseline</h1>
+<h1 class="title">Career Evaluation</h1>
 </div>
 
 
@@ -173,79 +147,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="purpose" class="level2">
-<h2 class="anchored" data-anchor-id="purpose">Purpose</h2>
-<p>This is the current state of the market the product advises on: <strong>7,074 postings</strong> for Business Intelligence and Data Analyst roles in NAICS 523, Securities, Commodity Contracts and Other Financial Investments, published on or after 1 September 2025.</p>
-<p>Every figure below is drawn from <code>data/processed/career_market_panel.csv</code>. How that table was built, and where its gaps are, is documented on the <a href="./data_cleaning.html">Data Preparation</a> page. Coverage varies sharply by field, so each chart states how many postings it is based on. Where a field proved unusable, it is indicated rather than reporting a number that is not supported.</p>
-</section>
-<section id="what-the-occupation-codes-do-and-do-not-tell-us" class="level2">
-<h2 class="anchored" data-anchor-id="what-the-occupation-codes-do-and-do-not-tell-us">What The Occupation Codes Do— And Do Not— Tell Us</h2>
-<p><img src="figures/fig_volume_by_soc.png" class="img-fluid"></p>
-<p>Read this chart as a finding about the data, not about the market.</p>
-<p>An occupational code is present on only <strong>2,357 of 7,074 postings, 33 percent</strong>. Within that labeled third, Management Analysts account for 1,991 postings. But the coding itself does not survive inspection. Postings titled “Senior Financial Analyst, AWS GTM Finance” and “Sr Financial Analyst, Inbound Finance Insights” are coded as <strong>Models, Demonstrators, and Product Promoters</strong> — the third-largest occupation on the chart. On <strong>2,165 postings the provider also overwrote the job title with the occupation name</strong>, so the title field on those rows describes a classification rather than a vacancy.</p>
-<p>This is reported instead of being deleted because it justifies a design decision that runs through the whole project. The team’s role filter combines occupational codes with title keywords rather than trusting either alone, and this chart is the evidence for why. It is also a caution for anyone building on the same source: a market study that filtered on SOC codes here would silently describe the wrong population.</p>
-<p>The practical consequence for a job seeker is narrower but real. Occupational classification in this industry is unreliable enough that filtering job boards by occupation category will both miss relevant roles and surface irrelevant ones.</p>
-</section>
-<section id="how-titles-are-written" class="level2">
-<h2 class="anchored" data-anchor-id="how-titles-are-written">How Titles Are Written</h2>
-<p><img src="figures/fig_volume_by_title.png" class="img-fluid"></p>
-<p>Rebuilt from the raw posting titles, the panel contains <strong>4,000 distinct titles across 7,074 postings</strong>. The most common single title, “senior financial analyst”, appears <strong>122 times — 1.7 percent of the panel</strong>.</p>
-<p><img src="figures/fig_top3_titles_share.png" class="img-fluid"></p>
-<p>The three most frequent titles together account for just 261 postings, <strong>under 4 percent of the market</strong>.</p>
-<p>Titles here are effectively unique strings. The practical consequence for a candidate is that title-based job alerts are close to useless in this industry: a saved search for “Data Analyst” will miss over ninety percent of the relevant openings. Searching by skills and by employer returns far more of the real market.</p>
-</section>
-<section id="what-the-work-pays" class="level2">
-<h2 class="anchored" data-anchor-id="what-the-work-pays">What The Work Pays</h2>
-<p><img src="figures/fig_salary_distribution.png" class="img-fluid"></p>
-<p>Among the <strong>1,741 postings (25 percent) that disclose pay</strong>, the median annual midpoint is <strong>$112,500</strong>, with the middle half falling between $87,500 and $141,500.</p>
-<p>Postings that quote pay hourly or monthly are validated on their own scale rather than deleted as implausible, but they are not converted to annual figures, because the conversion requires an assumption about hours worked that the postings do not supply. This chart therefore covers the postings quoting annual pay.</p>
-<p>Two cautions belong with the number. First, three postings in four say nothing about pay, and employers who publish ranges are not a random sample — pay-transparency laws apply in some states and not others, so the disclosed group skews toward those jurisdictions and toward larger employers. Second, this is the midpoint of a posted range, not an offer. Read it as an orientation for expectations, not a benchmark to negotiate against.</p>
-</section>
-<section id="where-the-jobs-are" class="level2">
-<h2 class="anchored" data-anchor-id="where-the-jobs-are">Where The Jobs Are</h2>
-<p><img src="figures/fig_top_states.png" class="img-fluid"></p>
-<p>A usable state is recorded on <strong>5,135 postings, 73 percent of the panel</strong>. New York leads with 726, followed by California (606), Texas (437), Florida (286) and Illinois (260).</p>
-<p>That 73 percent is itself the product of cleaning. The raw field mixed full state names with two-letter codes, so New York appeared twice, and it also contained 1,202 postings labelled simply “United States” and 178 labelled “Remote” — a country and a work arrangement, neither of which is a place. Those were removed rather than counted.</p>
-<p><img src="figures/fig_top_cities.png" class="img-fluid"></p>
-<p>At city level New York is the clear center with 783 postings, ahead of Washington (185), Chicago (136), Atlanta (107) and Seattle (106).</p>
-<p>Securities and investments remains a concentrated industry geographically. New York alone holds more postings than the next four cities combined, which is a meaningful constraint for a candidate unwilling to relocate — and a meaningful argument for weighting remote-friendly employers.</p>
-</section>
-<section id="how-much-experience-is-asked-for" class="level2">
-<h2 class="anchored" data-anchor-id="how-much-experience-is-asked-for">How Much Experience Is Asked For</h2>
-<p><img src="figures/fig_experience.png" class="img-fluid"></p>
-<p>A stated experience requirement survives on <strong>1,702 postings, 24 percent of the panel</strong>. Among those, the median is <strong>three years</strong> and the middle half falls between two and five.</p>
-<p>The coverage here is low for a reason worth recording. The raw field reported a requirement of zero years on 2,288 postings, but on 2,143 of them the stated maximum was exactly one year — a fixed “0 to 1” band attached to postings titled Senior Financial Analyst, Finance Manager and Accounting Manager. That is a provider default, not a market signal, and leaving it in produced a median of zero years. To prevent this, the placeholder band was removed and instead the smaller, reliable subset was reported.</p>
-<p>On that subset, the market reads as mid-career but not closed: <strong>only 49 postings ask for less than a year</strong>, while 413 ask for five to six and 107 ask for ten or more. A student targeting this industry directly out of a program is competing for a narrow band of openings. The realistic paths are the small entry segment, adjacent industries with more junior demand, or roles where demonstrable skills substitute for years served. The <a href="./skill_gap_analysis.html">Skill Gap Analysis</a> page tests which skills most effectively close that distance.</p>
-</section>
-<section id="remote-hybrid-or-onsite" class="level2">
-<h2 class="anchored" data-anchor-id="remote-hybrid-or-onsite">Remote, Hybrid Or Onsite</h2>
-<p><img src="figures/fig_remote.png" class="img-fluid"></p>
-<p>A work arrangement is recorded on <strong>3,126 postings, 44 percent of the panel</strong>. Among those, <strong>hybrid leads at 48 percent, fully remote at 32 percent and onsite at 20 percent</strong>.</p>
-<p>This contradicts the expectation was set out in the <a href="./introduction.html">Project Overview</a>, where it was predicted that remote openings in finance would be rarer than in the software sector. On the labeled subset, four in five analytics postings in this industry offer some flexibility. The contradiction is reported rather than an adjustment to the hypothesis after the fact.</p>
-<p>The caveat is the unlabelled majority. “Unknown” is shown as its own bar and never folded into “onsite”, because an unlabelled posting is an absence of information, not evidence of an office requirement.</p>
-</section>
-<section id="who-is-hiring" class="level2">
-<h2 class="anchored" data-anchor-id="who-is-hiring">Who Is Hiring</h2>
-<p><img src="figures/fig_top_employers.png" class="img-fluid"></p>
-<p>The employer side is <strong>highly fragmented: 2,461 distinct employers across 7,074 postings</strong>. The largest single employer, Amazon, accounts for 298 postings — <strong>4.2 percent of the panel</strong> — and the top ten employers together account for only 13 percent.</p>
-<p>The strategic read is that there is no short list of firms to focus a search on. Breadth matters more than targeting here. Amazon’s position at the top is also a reminder that industry assignment follows the employer record rather than the specific business unit, so some postings sit in NAICS 523 for reasons that are not obvious from the company name.</p>
-</section>
-<section id="what-this-means-for-the-product" class="level2">
-<h2 class="anchored" data-anchor-id="what-this-means-for-the-product">What This Means For The Product</h2>
-<p>Five things a candidate should take from this baseline:</p>
-<ol type="1">
-<li><strong>Search by skills and employers, not by title or occupation.</strong> There are 4,000 distinct titles, the most common covers under two percent of the market, and the occupational codes are demonstrably wrong on a large share of postings.</li>
-<li><strong>Expect a mid-career market.</strong> Where a requirement is stated, the median is three years and fewer than one posting in thirty asks for less than a year.</li>
-<li><strong>Flexibility is available.</strong> Four in five labeled postings are remote or hybrid, which widens the geographic options considerably.</li>
-<li><strong>New York dominates, but not exclusively.</strong> It holds more postings than the next four cities combined; remote-friendly employers are the counterweight.</li>
-<li><strong>Treat salary figures as orientation.</strong> They come from the one posting in four that discloses pay.</li>
-</ol>
-<p>The <a href="./skill_gap_analysis.html">Skill Gap Analysis</a> page turns these observations into a personal assessment: which skills separate the postings a given candidate can win from the ones they cannot, and what to learn first.</p>
-<hr>
-<p><em>Figures and chart design by Katie Bowles. Field normalization and the Module 3 data-quality review by Fuad Babaiev.</em></p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -321,7 +224,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/fuadbbv\.github\.io\/ad688-career-evaluation-group1\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
