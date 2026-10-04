@@ -217,6 +217,76 @@
     "text": "Status\nScheduled for Module 5, once the skill-gap and modelling work is complete."
   },
   {
+    "objectID": "career_evaluation.html",
+    "href": "career_evaluation.html",
+    "title": "Evaluation Logic",
+    "section": "",
+    "text": "The other pages produce evidence. This one states the rules that turn that evidence into advice for one specific person, so a reader can judge the reasoning rather than take the conclusions on trust.\nThe product answers one question: given this market and this candidate, what should they do next? Getting from a market to a person takes six steps."
+  },
+  {
+    "objectID": "career_evaluation.html#what-this-page-is",
+    "href": "career_evaluation.html#what-this-page-is",
+    "title": "Evaluation Logic",
+    "section": "",
+    "text": "The other pages produce evidence. This one states the rules that turn that evidence into advice for one specific person, so a reader can judge the reasoning rather than take the conclusions on trust.\nThe product answers one question: given this market and this candidate, what should they do next? Getting from a market to a person takes six steps."
+  },
+  {
+    "objectID": "career_evaluation.html#step-1-define-the-market",
+    "href": "career_evaluation.html#step-1-define-the-market",
+    "title": "Evaluation Logic",
+    "section": "Step 1 — Define the market",
+    "text": "Step 1 — Define the market\nScope is fixed before anything is measured: NAICS 523, analytics roles, postings from 1 September 2025 onward. The rule for what counts as an analytics role combines occupational codes with title keywords, because on this source neither works alone. The Data Preparation page documents the filter and what it excludes.\nResult: a panel of 7,074 postings."
+  },
+  {
+    "objectID": "career_evaluation.html#step-2-measure-what-the-market-asks-for",
+    "href": "career_evaluation.html#step-2-measure-what-the-market-asks-for",
+    "title": "Evaluation Logic",
+    "section": "Step 2 — Measure what the market asks for",
+    "text": "Step 2 — Measure what the market asks for\nDemand is the share of postings listing a skill. Nine skill areas, each defined by an explicit pattern over the skill field, measured on all 7,074 postings. No weighting by employer size or recency: a posting is a posting."
+  },
+  {
+    "objectID": "career_evaluation.html#step-3-measure-what-the-candidate-has",
+    "href": "career_evaluation.html#step-3-measure-what-the-candidate-has",
+    "title": "Evaluation Logic",
+    "section": "Step 3 — Measure what the candidate has",
+    "text": "Step 3 — Measure what the candidate has\nSelf-assessment on the same nine areas, on a five-point scale from beginner to expert. This is the weakest link in the chain and we say so: it is self-reported, uncalibrated, and three people rating themselves is not a sample. It is a template for a candidate to fill in, not a measurement."
+  },
+  {
+    "objectID": "career_evaluation.html#step-4-convert-demand-into-a-required-level",
+    "href": "career_evaluation.html#step-4-convert-demand-into-a-required-level",
+    "title": "Evaluation Logic",
+    "section": "Step 4 — Convert demand into a required level",
+    "text": "Step 4 — Convert demand into a required level\nMarket share is mapped to a target proficiency, so that demand and ability are expressed in the same units and can be subtracted. The cut-offs are our choice, not something the data dictates:\n\n\n\nShare of postings\nTarget level\n\n\n\n\n50% or more\n5\n\n\n30–50%\n4\n\n\n15–30%\n3\n\n\n5–15%\n2\n\n\nunder 5%\n1\n\n\n\nBecause an area counts a posting if any of its skills appears, broad areas score higher shares than narrow ones. Targets should be read with that in mind."
+  },
+  {
+    "objectID": "career_evaluation.html#step-5-compute-the-gap-and-order-the-work",
+    "href": "career_evaluation.html#step-5-compute-the-gap-and-order-the-work",
+    "title": "Evaluation Logic",
+    "section": "Step 5 — Compute the gap and order the work",
+    "text": "Step 5 — Compute the gap and order the work\nThe gap is the target minus the level held, floored at zero. Learning priority is the gap weighted by the area’s market share, so closing a small gap in a heavily demanded area beats closing a large gap in a rare one. The Skill Gap Analysis page applies this and produces a per-person learning order."
+  },
+  {
+    "objectID": "career_evaluation.html#step-6-refuse-what-the-data-cannot-support",
+    "href": "career_evaluation.html#step-6-refuse-what-the-data-cannot-support",
+    "title": "Evaluation Logic",
+    "section": "Step 6 — Refuse what the data cannot support",
+    "text": "Step 6 — Refuse what the data cannot support\nThe same discipline runs through every page. Where the evidence will not carry a conclusion, we report the limit instead of the conclusion:\n\nOccupation codes are present on a third of postings and misclassify senior finance roles where present, so no finding rests on them.\nMissing work arrangement is never read as “onsite”. Absence of information is not information.\nA provider placeholder of 0-to-1 years attached to senior postings was removed rather than averaged in, which cut usable experience data from 56 percent to 24 percent and moved the median from zero years to three.\nModel coefficients are reported only for skills with at least 30 supporting postings, and only where the conditional estimate and the raw share agree."
+  },
+  {
+    "objectID": "career_evaluation.html#where-the-models-fit",
+    "href": "career_evaluation.html#where-the-models-fit",
+    "title": "Evaluation Logic",
+    "section": "Where the Models Fit",
+    "text": "Where the Models Fit\nSteps 1 to 5 describe a candidate against the market. The Predictive Modeling page asks the harder question — which skills actually separate a better opportunity from a worse one — and answers it two ways: by pay, with a regression, and by reachability, with a classifier. Their output feeds the Career Strategy page, where the gap analysis and the models combine into specific actions."
+  },
+  {
+    "objectID": "career_evaluation.html#what-this-product-does-not-do",
+    "href": "career_evaluation.html#what-this-product-does-not-do",
+    "title": "Evaluation Logic",
+    "section": "What This Product Does Not Do",
+    "text": "What This Product Does Not Do\nIt does not predict whether an individual will be hired. It does not price a particular job. It does not rank employers by anything other than posting volume. And because every skill measure comes from job advertisements, it describes what employers write down, which is not the same as what they actually require."
+  },
+  {
     "objectID": "data_cleaning.html",
     "href": "data_cleaning.html",
     "title": "Data Preparation",
