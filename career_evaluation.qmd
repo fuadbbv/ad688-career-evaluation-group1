@@ -1,0 +1,58 @@
+---
+title: "Evaluation Logic"
+---
+
+## What This Page Is
+
+The other pages produce evidence. This one states the rules that turn that evidence into advice for one specific person, so a reader can judge the reasoning rather than take the conclusions on trust.
+
+The product answers one question: **given this market and this candidate, what should they do next?** Getting from a market to a person takes six steps.
+
+## Step 1 — Define the market
+
+Scope is fixed before anything is measured: NAICS 523, analytics roles, postings from 1 September 2025 onward. The rule for what counts as an analytics role combines occupational codes with title keywords, because on this source neither works alone. The [Data Preparation](data_cleaning.qmd) page documents the filter and what it excludes.
+
+Result: a panel of **7,074 postings**.
+
+## Step 2 — Measure what the market asks for
+
+Demand is the share of postings listing a skill. Nine skill areas, each defined by an explicit pattern over the skill field, measured on all 7,074 postings. No weighting by employer size or recency: a posting is a posting.
+
+## Step 3 — Measure what the candidate has
+
+Self-assessment on the same nine areas, on a five-point scale from beginner to expert. This is the weakest link in the chain and we say so: it is self-reported, uncalibrated, and three people rating themselves is not a sample. It is a template for a candidate to fill in, not a measurement.
+
+## Step 4 — Convert demand into a required level
+
+Market share is mapped to a target proficiency, so that demand and ability are expressed in the same units and can be subtracted. The cut-offs are our choice, not something the data dictates:
+
+| Share of postings | Target level |
+|---|---|
+| 50% or more | 5 |
+| 30–50% | 4 |
+| 15–30% | 3 |
+| 5–15% | 2 |
+| under 5% | 1 |
+
+Because an area counts a posting if **any** of its skills appears, broad areas score higher shares than narrow ones. Targets should be read with that in mind.
+
+## Step 5 — Compute the gap and order the work
+
+The gap is the target minus the level held, floored at zero. Learning priority is the gap weighted by the area's market share, so closing a small gap in a heavily demanded area beats closing a large gap in a rare one. The [Skill Gap Analysis](skill_gap_analysis.qmd) page applies this and produces a per-person learning order.
+
+## Step 6 — Refuse what the data cannot support
+
+The same discipline runs through every page. Where the evidence will not carry a conclusion, we report the limit instead of the conclusion:
+
+- Occupation codes are present on a third of postings and misclassify senior finance roles where present, so no finding rests on them.
+- Missing work arrangement is never read as "onsite". Absence of information is not information.
+- A provider placeholder of 0-to-1 years attached to senior postings was removed rather than averaged in, which cut usable experience data from 56 percent to 24 percent and moved the median from zero years to three.
+- Model coefficients are reported only for skills with at least 30 supporting postings, and only where the conditional estimate and the raw share agree.
+
+## Where the Models Fit
+
+Steps 1 to 5 describe a candidate against the market. The [Predictive Modeling](ml_methods.qmd) page asks the harder question — which skills actually separate a better opportunity from a worse one — and answers it two ways: by pay, with a regression, and by reachability, with a classifier. Their output feeds the [Career Strategy](career_plan.qmd) page, where the gap analysis and the models combine into specific actions.
+
+## What This Product Does Not Do
+
+It does not predict whether an individual will be hired. It does not price a particular job. It does not rank employers by anything other than posting volume. And because every skill measure comes from job advertisements, it describes what employers **write down**, which is not the same as what they actually require.
