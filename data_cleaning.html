@@ -298,7 +298,7 @@ div.csl-indent {
 </tr>
 <tr class="even">
 <td>Build date</td>
-<td>22 September 2026</td>
+<td>4 October 2026</td>
 </tr>
 </tbody>
 </table>
@@ -379,7 +379,7 @@ div.csl-indent {
 <p><strong>Salary.</strong> The provider’s <code>SALARY</code> column turned out to be a free-text summary whose value is an empty placeholder on most rows, so it is kept for reference but never used as a figure. The usable numbers are the structured range, and that range is quoted in different periods — 1,751 annual, 315 hourly, 18 monthly. Each is validated against bounds appropriate to its own period rather than a single annual rule, which had been silently deleting hourly rates as “implausible”. Reversed ranges are swapped, zeros treated as missing, and 20 rows were cleared as out of range across all periods.</p>
 <p>Hourly and monthly rates are kept in their own columns and <strong>are not converted to annual figures</strong>, because the conversion requires an assumption about hours worked that the postings do not supply. <code>ANNUAL_SALARY_MID</code> — the midpoint of the annual range — is the field used for salary analysis, and it is populated on 1,741 postings.</p>
 <p><strong>Experience and education.</strong> Taken directly from the provider’s coded fields. Unlike the earlier panel these are not team estimates, so no parsing decisions were needed.</p>
-<p><strong>Skills.</strong> Arrive as arrays and are stored as semicolon-separated strings across four fields: all skills, named software, specialised skills and transferable skills, plus certifications. Names are not yet normalised, so casing and synonyms remain distinct; that normalisation belongs to the skill-gap work, where it has an analytical purpose.</p>
+<p><strong>Skills.</strong> Arrive as arrays and are stored as JSON-style list strings — for example <code>["Microsoft Excel", "SQL (Programming Language)"]</code> — across four fields: all skills, named software, specialised skills and transferable skills, plus certifications. Names are not yet normalised, so casing and synonyms remain distinct; that normalisation belongs to the skill-gap work, where it has an analytical purpose. Code reading these fields must parse the list rather than splitting on a delimiter.</p>
 <p><strong>Remote status.</strong> Never inferred, and category labels are normalised because the source spells the same category two ways. A posting with no remote label is an absence of information, not evidence of an office requirement.</p>
 <p><strong>Location.</strong> Text fields trimmed of stray whitespace. This dataset carries no coordinates, so the latitude and longitude check from the earlier pipeline does not apply; geography is carried by state, city and metropolitan area.</p>
 <p><strong>Types.</strong> Every column is cast explicitly — dates, booleans, numbers and categories — so later analysis cannot silently treat a number as text.</p>
