@@ -64,7 +64,7 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-66b905eaf8fd7b3c0ab794c947ff3da0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-7c0f67eba7e864f644f943ef9a6fd48f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -391,6 +391,7 @@ div.csl-indent {
 <p><strong>The state field is not only a state field.</strong> It mixes full names with two-letter codes, so New York appeared twice — as “New York” (514) and as “NY” (212) — and it carries 1,202 postings labelled “United States” and 178 labeled “Remote”, a country and a work arrangement. <code>STATE_CLEAN</code> expands the codes and discards the non-geographic values, which lowers real coverage from an apparent 92 percent to an honest <strong>73 percent</strong>.</p>
 <p><strong>Two fields encode “missing” as a value.</strong> <code>REMOTE_TYPE_NAME</code> carries a literal “Unknown” on 1,442 postings alongside 2,506 true nulls, and spells the office category both “Onsite” and “On-site”; <code>REMOTE_CLEAN</code> merges the spellings and treats “Unknown” as missing, leaving 44 percent labelled. <code>MIN_YEARS_EXPERIENCE</code> reports zero years on 2,288 postings, but on 2,143 of them the stated maximum is exactly one — a fixed “0 to 1” band attached to postings titled Senior Financial Analyst, Finance Manager and Accounting Manager. That is a provider default, and left in place it produced a median requirement of zero years across the panel. <code>MIN_YEARS_EXP_CLEAN</code> removes the band, leaving 1,702 postings with a stated requirement and a median of three years.</p>
 <p>Several headline numbers fall as a result. That is the intended outcome: the higher figures counted placeholders as data.</p>
+<p>A fifth defect surfaced in Module 5, in the employer field. On 397 postings it holds an applicant-tracking hostname rather than a company name, on 229 it names a staffing agency or job aggregator rather than the hiring firm, and one employer appeared under three spellings. The provider’s own <code>COMPANY_IS_STAFFING</code> flag cannot be used to find these: it is set on 93 of 7,074 rows and contradicts itself, marking TD as staffing while giving JPMorgan Chase both values. <code>EMPLOYER_CLEAN</code>, <code>EMPLOYER_UNIDENTIFIED</code> and <code>IS_AGENCY</code> record the repair without dropping any rows, so employer concentration is measured on the 6,448 postings where a hiring firm can actually be identified.</p>
 </section>
 </section>
 <section id="data-quality-and-limitations" class="level2">
@@ -464,7 +465,7 @@ div.csl-indent {
 <tbody>
 <tr class="odd">
 <td><strong>Analytical panel</strong></td>
-<td><strong><code>data/processed/career_market_panel.csv</code> — 7,074 rows, 54 columns</strong></td>
+<td><strong><code>data/processed/career_market_panel.csv</code> — 7,074 rows, 57 columns</strong></td>
 </tr>
 <tr class="even">
 <td>Data dictionary</td>
@@ -479,6 +480,10 @@ div.csl-indent {
 <td><code>outputs/m3_normalization_log.md</code></td>
 </tr>
 <tr class="odd">
+<td>Employer cleanup log</td>
+<td><code>outputs/m5_employer_cleanup_log.md</code></td>
+</tr>
+<tr class="even">
 <td>Baseline numbers</td>
 <td><code>outputs/m3_baseline_numbers.md</code></td>
 </tr>
@@ -494,6 +499,7 @@ div.csl-indent {
 <li><code>python notebooks/19_build_panel_wrds.py</code> — scope filter, role filter, cleaning</li>
 <li><code>python notebooks/21_fix_salary.py</code> — period-aware salary validation</li>
 <li><code>python notebooks/23_normalize_panel.py</code> — field normalization</li>
+<li><code>python notebooks/24_clean_employers.py</code> — employer cleanup</li>
 <li><code>python notebooks/22_data_dictionary_m3.py</code> — data dictionary</li>
 <li><code>python notebooks/15_market_baseline_figures.py</code> — baseline figures</li>
 </ol>
