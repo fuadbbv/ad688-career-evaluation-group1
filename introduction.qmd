@@ -31,6 +31,41 @@ The deliverable is a career evaluation product for a job seeker, not a general l
 
 These are expectations, not conclusions; Module 2 tests them against the MET Employability Career Match data; Module 3 retests them on the WRDS dataset supplied for this module.
 
+## What We Found
+
+The expectations above were set before any data was pulled. Three modules
+later, three of the four can be checked against evidence on this site. They
+are reported here as they came out, including where we were wrong.
+
+**SQL and BI tooling over machine learning: confirmed, and by a wide
+margin.** Across the nine skill areas measured on the [Skill Gap
+Analysis](skill_gap_analysis.qmd) page, dashboard and reporting tools appear
+in 22.3 percent of postings and SQL in 18.4 percent, against 2.8 percent for
+machine learning and 3.6 percent for cloud platforms. Reporting skills are
+asked for roughly eight times as often as modelling skills in this industry.
+
+**Domain vocabulary as a differentiator: confirmed, and it is the single
+strongest signal in the data.** Financial and regulatory terminology appears
+in 66.7 percent of postings, the most demanded of the nine areas by a factor
+of nearly three over the runner-up. For a candidate, this is the finding with
+the most leverage: the vocabulary of the industry matters more than any
+individual tool.
+
+**Remote work rarer than in software: contradicted on flexibility, upheld on
+geography.** On the 44 percent of postings that record a work arrangement,
+hybrid leads at 48 percent and fully remote at 32 percent, so four in five
+offer some flexibility — more, not less, than we expected. The second half of
+the prediction held: New York alone carries more postings than the next four
+cities combined, as shown on the [Market Baseline](eda.qmd) page. We report
+the contradiction rather than revise the hypothesis after the fact.
+
+**The gap sits in domain knowledge rather than programming: partly
+confirmed.** Domain knowledge is indeed where the shortfall is largest — no
+member of the team reaches the market target for it. But the prediction was
+wrong to exclude programming: SQL is the second-largest gap, and the data
+governance element we expected to measure never surfaced as a distinguishable
+category in the postings at all.
+
 ## References
 
 ::: {#refs}

@@ -39,11 +39,11 @@ Each analysis page states how many postings it is based on, because field covera
 
 ## Team
 
-| Name | GitHub | Role this module |
+| Name | GitHub | Role in Modules 4 and 5 |
 |---|---|---|
-| Fuad Babaiev | [fuadbbv](https://github.com/fuadbbv) | Site restructure and navigation; final review and publishing |
-| Katie Bowles | [kmbowles00](https://github.com/kmbowles00) | Exploratory analysis rework; shared visual theme across all charts, site formatting |
-| Jonathan Chen | [jchenbu](https://github.com/jchenbu) | Skill gap analysis: team skill matrix, heatmap, improvement plan |
+| Fuad Babaiev | [fuadbbv](https://github.com/fuadbbv) | Data cleaning and employer normalisation; final analytics tracks; report assembly and publishing |
+| Katie Bowles | [kmbowles00](https://github.com/kmbowles00) | Market baseline and shared visual theme; final recommendations; site requirements check |
+| Jonathan Chen | [jchenbu](https://github.com/jchenbu) | Skill gap analysis and chart rework; interpretation of the final analytics |
 
 ## Roadmap
 
@@ -52,6 +52,6 @@ Each analysis page states how many postings it is based on, because field covera
 | M1 | Project scope, industry selection, rationale, initial site | Complete |
 | M2 | Data preparation and market baseline | Complete |
 | M3 | Site restructure, enhanced exploratory analysis, skill gap analysis | Complete |
-| M4 | Checkpoint — no new step | |
-| M5 | Final analytics, recommendations, report | |
+| M4 | Checkpoint — readiness review of Steps 1 to 3 | Complete |
+| M5 | Final analytics, recommendations, report | In progress |
 | M6 | Final presentation | |

@@ -36,7 +36,7 @@ The switch is not an improvement on every axis. Occupational coding is substanti
 | Industry code | NAICS 2022 — **523**, Securities, Commodity Contracts, and Other Financial Investments and Related Activities |
 | Career pathway | Business Intelligence / Data Analyst |
 | Date window | Postings published on or after **1 September 2025** |
-| Build date | 22 September 2026 |
+| Build date | 4 October 2026 |
 
 The date window keeps the analysis current: the source spans postings back to 2014, and hiring requirements from a decade ago describe a market the target user is not applying into. In practice the window costs little — only 192 in-scope postings predate it.
 
@@ -91,7 +91,7 @@ Hourly and monthly rates are kept in their own columns and **are not converted t
 
 **Experience and education.** Taken directly from the provider's coded fields. Unlike the earlier panel these are not team estimates, so no parsing decisions were needed.
 
-**Skills.** Arrive as arrays and are stored as semicolon-separated strings across four fields: all skills, named software, specialised skills and transferable skills, plus certifications. Names are not yet normalised, so casing and synonyms remain distinct; that normalisation belongs to the skill-gap work, where it has an analytical purpose.
+**Skills.** Arrive as arrays and are stored as JSON-style list strings — for example `["Microsoft Excel", "SQL (Programming Language)"]` — across four fields: all skills, named software, specialised skills and transferable skills, plus certifications. Names are not yet normalised, so casing and synonyms remain distinct; that normalisation belongs to the skill-gap work, where it has an analytical purpose. Code reading these fields must parse the list rather than splitting on a delimiter.
 
 **Remote status.** Never inferred, and category labels are normalised because the source spells the same category two ways. A posting with no remote label is an absence of information, not evidence of an office requirement.
 
