@@ -140,7 +140,25 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#purpose" id="toc-purpose" class="nav-link active" data-scroll-target="#purpose">Purpose</a></li>
-  <li><a href="#status" id="toc-status" class="nav-link" data-scroll-target="#status">Status</a></li>
+  <li><a href="#track-1-regression-what-skills-are-worth" id="toc-track-1-regression-what-skills-are-worth" class="nav-link" data-scroll-target="#track-1-regression-what-skills-are-worth">Track 1 — Regression: What Skills Are Worth</a>
+  <ul class="collapse">
+  <li><a href="#what-was-modeled" id="toc-what-was-modeled" class="nav-link" data-scroll-target="#what-was-modeled">What was modeled</a></li>
+  <li><a href="#why-it-matters-for-a-job-seeker" id="toc-why-it-matters-for-a-job-seeker" class="nav-link" data-scroll-target="#why-it-matters-for-a-job-seeker">Why it matters for a job seeker</a></li>
+  <li><a href="#what-variables-were-used" id="toc-what-variables-were-used" class="nav-link" data-scroll-target="#what-variables-were-used">What variables were used</a></li>
+  <li><a href="#how-performance-was-evaluated" id="toc-how-performance-was-evaluated" class="nav-link" data-scroll-target="#how-performance-was-evaluated">How performance was evaluated</a></li>
+  <li><a href="#what-the-result-means-in-practical-career-terms" id="toc-what-the-result-means-in-practical-career-terms" class="nav-link" data-scroll-target="#what-the-result-means-in-practical-career-terms">What the result means in practical career terms</a></li>
+  </ul></li>
+  <li><a href="#track-2-classification-which-postings-are-reachable" id="toc-track-2-classification-which-postings-are-reachable" class="nav-link" data-scroll-target="#track-2-classification-which-postings-are-reachable">Track 2 — Classification: Which Postings Are Reachable</a>
+  <ul class="collapse">
+  <li><a href="#what-was-modeled-1" id="toc-what-was-modeled-1" class="nav-link" data-scroll-target="#what-was-modeled-1">What was modeled</a></li>
+  <li><a href="#why-it-matters-for-a-job-seeker-1" id="toc-why-it-matters-for-a-job-seeker-1" class="nav-link" data-scroll-target="#why-it-matters-for-a-job-seeker-1">Why it matters for a job seeker</a></li>
+  <li><a href="#what-variables-were-used-1" id="toc-what-variables-were-used-1" class="nav-link" data-scroll-target="#what-variables-were-used-1">What variables were used</a></li>
+  <li><a href="#how-performance-was-evaluated-1" id="toc-how-performance-was-evaluated-1" class="nav-link" data-scroll-target="#how-performance-was-evaluated-1">How performance was evaluated</a></li>
+  <li><a href="#what-the-result-means-in-practical-career-terms-1" id="toc-what-the-result-means-in-practical-career-terms-1" class="nav-link" data-scroll-target="#what-the-result-means-in-practical-career-terms-1">What the result means in practical career terms</a></li>
+  </ul></li>
+  <li><a href="#what-the-two-models-say-together" id="toc-what-the-two-models-say-together" class="nav-link" data-scroll-target="#what-the-two-models-say-together">What The Two Models Say Together</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
+  <li><a href="#reproducing-this-step" id="toc-reproducing-this-step" class="nav-link" data-scroll-target="#reproducing-this-step">Reproducing This Step</a></li>
   </ul>
 </nav>
     </div>
@@ -168,15 +186,242 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="purpose" class="level2">
 <h2 class="anchored" data-anchor-id="purpose">Purpose</h2>
-<p>The earlier pages describe what the market looks like. This page asks a narrower question: can the structure of the market be learned from the postings themselves, rather than read off summary tables?</p>
-<p>Two directions are planned against the cleaned panel of 7,074 postings.</p>
-<p><strong>Segmenting the market.</strong> Postings carry skills, experience requirements, salary, remote status and location. Clustering them should reveal whether analytics work in NAICS 523 splits into recognisable groups — for example a reporting-and-BI cluster distinct from a quantitative-research cluster — and whether those groups differ in what they pay and how much experience they demand. If they do, a candidate can aim at a segment rather than at the market as a whole.</p>
-<p><strong>Reading the descriptions.</strong> Skill tags come from the data provider and cover every posting in the panel, but the free-text descriptions hold requirements the tags miss. Extracting terms directly from the text lets us check the tags rather than trust them.</p>
-<p>Both feed the Career Strategy page: a segment a candidate can realistically enter is more useful advice than an average taken across the whole market.</p>
+<p>The earlier pages describe what the market looks like. This page asks a narrower question, the one Module 5 was built around: <strong>which skills most strongly distinguish stronger opportunities from weaker ones?</strong></p>
+<p>“Stronger” is defined two ways, because a job seeker cares about two different things. A stronger posting pays more, and a stronger posting is one they can realistically get. Each definition gets its own model.</p>
+<p>Both models read the same input: a binary indicator for each of the <strong>179 skills that appear in at least one percent of the panel</strong>, built once in <code>notebooks/30_build_features.py</code>. Postings list a median of ten skills each, drawn from 3,327 distinct names.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The skill field is stored as a JSON list, not as delimited text. Splitting it on a separator silently collapses an entire posting into a single skill, which produces plausible-looking but meaningless counts. The feature builder parses it.</p>
+</div>
+</div>
+<hr>
 </section>
-<section id="status" class="level2">
-<h2 class="anchored" data-anchor-id="status">Status</h2>
-<p>Scheduled for Module 5. The input is <code>data/processed/career_market_panel.csv</code>; methods and results will be documented here with the code visible and foldable, as on the other analysis pages.</p>
+<section id="track-1-regression-what-skills-are-worth" class="level2">
+<h2 class="anchored" data-anchor-id="track-1-regression-what-skills-are-worth">Track 1 — Regression: What Skills Are Worth</h2>
+<section id="what-was-modeled" class="level3">
+<h3 class="anchored" data-anchor-id="what-was-modeled">What was modeled</h3>
+<p>The natural logarithm of the annual salary midpoint, predicted from the skills a posting lists. Pay is heavily right-skewed in this panel, from $25,000 to $696,000 against a median of $112,500, so a model on the raw figure would chase a handful of very large ranges. Working in logs also makes each coefficient readable as an approximate percentage effect on pay.</p>
+<p>Two specifications were fitted. The first uses skills alone. The second adds the ten largest states and the work arrangement as controls, so that the skill effects can be separated from the simple fact that some cities pay more.</p>
+</section>
+<section id="why-it-matters-for-a-job-seeker" class="level3">
+<h3 class="anchored" data-anchor-id="why-it-matters-for-a-job-seeker">Why it matters for a job seeker</h3>
+<p>A candidate choosing what to learn next is making an investment decision. Knowing which skills sit in better-paid postings turns that choice from guesswork into something measurable.</p>
+</section>
+<section id="what-variables-were-used" class="level3">
+<h3 class="anchored" data-anchor-id="what-variables-were-used">What variables were used</h3>
+<p>179 binary skill indicators, plus 13 geography and work-arrangement controls in the second specification. Fitted on the <strong>1,741 postings (25 percent of the panel) that disclose pay</strong>, with ridge regularisation and the penalty chosen by cross-validation.</p>
+</section>
+<section id="how-performance-was-evaluated" class="level3">
+<h3 class="anchored" data-anchor-id="how-performance-was-evaluated">How performance was evaluated</h3>
+<p>A quarter of the postings were held out and never used in fitting. Results are reported on that held-out set and confirmed with five-fold cross-validation.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>Held-out R²</th>
+<th>Cross-validated R²</th>
+<th>RMSE</th>
+<th>MAE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Predict the median for everyone</td>
+<td>−0.014</td>
+<td>—</td>
+<td>$51,224</td>
+<td>$36,576</td>
+</tr>
+<tr class="even">
+<td>Skills only</td>
+<td>0.366</td>
+<td>0.299 (sd 0.034)</td>
+<td>$40,930</td>
+<td>$28,751</td>
+</tr>
+<tr class="odd">
+<td><strong>Skills + geography and remote status</strong></td>
+<td><strong>0.373</strong></td>
+<td><strong>0.319</strong> (sd 0.036)</td>
+<td><strong>$40,821</strong></td>
+<td><strong>$28,552</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Two things stand out. The skill mix explains roughly a third of the variation in pay, which is substantial for a model that reads nothing but a list of keywords. And <strong>adding geography barely moves the result</strong> — 0.366 to 0.373. In this industry, what the job asks for matters more than where it is.</p>
+</section>
+<section id="what-the-result-means-in-practical-career-terms" class="level3">
+<h3 class="anchored" data-anchor-id="what-the-result-means-in-practical-career-terms">What the result means in practical career terms</h3>
+<p><img src="figures/fig_salary_coefficients.png" class="img-fluid"></p>
+<p>Coefficients are reported only for the 107 skills appearing in at least 30 of the salaried postings; 72 rarer skills were estimated but are not shown, because a coefficient fitted on a handful of rows is noise rather than a finding.</p>
+<p><strong>Skills associated with higher pay:</strong> advanced analytics (+22%), executive leadership (+20%), data architecture (+19%), technical accounting (+18%), public accounting (+17%), data science (+17%), fixed income (+15%), capital markets (+15%).</p>
+<p><strong>Skills associated with lower pay:</strong> problem solving (−28%), financial data (−19%), customer service (−16%), organizational skills (−12%), Microsoft Office (−12%), financial analysis (−9%), Microsoft Excel (−9%), Power BI (−9%).</p>
+<p>The pattern is not “technical versus non-technical”. It is <strong>specific versus generic</strong>. Compare the pairs: “financial analysis” costs 9 percent, while “fixed income” and “capital markets” each add 15. “Problem solving” costs 28 percent, while “data architecture” adds 19. The same holds for tools — Microsoft Excel appears in 779 of the salaried postings and is associated with lower pay, while Power BI, a real BI tool, carries no premium either.</p>
+<p>A direct comparison of the top and bottom salary quartiles makes the division concrete:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Skill</th>
+<th>Top quartile (≥ $141,500)</th>
+<th>Bottom quartile (≤ $87,500)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Python</td>
+<td>33.0%</td>
+<td>9.8%</td>
+</tr>
+<tr class="even">
+<td>SQL</td>
+<td>35.0%</td>
+<td>19.2%</td>
+</tr>
+<tr class="odd">
+<td>Data science</td>
+<td>12.6%</td>
+<td>0.0%</td>
+</tr>
+<tr class="even">
+<td>Machine learning</td>
+<td>7.6%</td>
+<td>0.0%</td>
+</tr>
+<tr class="odd">
+<td>Microsoft Excel</td>
+<td>25.6%</td>
+<td>51.8%</td>
+</tr>
+<tr class="even">
+<td>Microsoft Office</td>
+<td>5.0%</td>
+<td>27.5%</td>
+</tr>
+</tbody>
+</table>
+<p>Data science and machine learning appear in <strong>no bottom-quartile posting at all</strong>. Excel appears in over half of them.</p>
+<p>The honest limit: two thirds of the variation in pay remains unexplained, and the average error is still $28,500. This model narrows a guess; it does not price a job.</p>
+<hr>
+</section>
+</section>
+<section id="track-2-classification-which-postings-are-reachable" class="level2">
+<h2 class="anchored" data-anchor-id="track-2-classification-which-postings-are-reachable">Track 2 — Classification: Which Postings Are Reachable</h2>
+<section id="what-was-modeled-1" class="level3">
+<h3 class="anchored" data-anchor-id="what-was-modeled-1">What was modeled</h3>
+<p>Whether a posting is entry level or advanced, predicted from its skills. Postings stating a requirement of two years or less are labelled entry level; the rest are advanced. The split is <strong>542 entry against 1,160 advanced</strong>, so the classes are imbalanced and the model was fitted with balanced class weights.</p>
+</section>
+<section id="why-it-matters-for-a-job-seeker-1" class="level3">
+<h3 class="anchored" data-anchor-id="why-it-matters-for-a-job-seeker-1">Why it matters for a job seeker</h3>
+<p>The <a href="./eda.html">Market Baseline</a> established that this is a mid-career market: where a requirement is stated at all, the median is three years. A student leaving a programme is competing for the smaller share. A model that can read seniority from the skill list lets them filter a job board down to the postings actually worth an application.</p>
+</section>
+<section id="what-variables-were-used-1" class="level3">
+<h3 class="anchored" data-anchor-id="what-variables-were-used-1">What variables were used</h3>
+<p>The same 179 skill indicators, fitted on the <strong>1,702 postings (24 percent) that state an experience requirement</strong>, with logistic regression and the penalty chosen by cross-validation.</p>
+</section>
+<section id="how-performance-was-evaluated-1" class="level3">
+<h3 class="anchored" data-anchor-id="how-performance-was-evaluated-1">How performance was evaluated</h3>
+<p>The same held-out quarter, judged on precision and recall for each class rather than on accuracy alone.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Model</th>
+<th>Majority-class baseline</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Accuracy</td>
+<td>0.678</td>
+<td><strong>0.681</strong></td>
+</tr>
+<tr class="even">
+<td>ROC AUC</td>
+<td>0.741</td>
+<td>0.500</td>
+</tr>
+<tr class="odd">
+<td>Entry: precision / recall / F1</td>
+<td>0.50 / <strong>0.67</strong> / 0.57</td>
+<td>— / <strong>0.00</strong> / —</td>
+</tr>
+<tr class="even">
+<td>Advanced: precision / recall / F1</td>
+<td>0.81 / 0.68 / 0.74</td>
+<td>0.68 / 1.00 / 0.81</td>
+</tr>
+</tbody>
+</table>
+<p><img src="figures/fig_seniority_confusion.png" class="img-fluid"></p>
+<p><strong>The model does not beat the baseline on accuracy, and we report that plainly.</strong> It is marginally worse, 0.678 against 0.681. But accuracy is the wrong measure here. The baseline reaches 68 percent by calling every posting advanced, which means it identifies <strong>zero</strong> of the openings a student could apply to. The model finds 91 of 136. For a product whose job is to say “apply here”, that difference is the entire value, and an AUC of 0.741 confirms the signal is real rather than noise.</p>
+<p>The cost is visible in the matrix: 45 entry-level postings were missed, and 92 advanced postings were wrongly flagged as reachable. A candidate using this filter will waste some applications. That is the better error to make — a wasted application costs an hour, a missed opening costs the job.</p>
+</section>
+<section id="what-the-result-means-in-practical-career-terms-1" class="level3">
+<h3 class="anchored" data-anchor-id="what-the-result-means-in-practical-career-terms-1">What the result means in practical career terms</h3>
+<p><img src="figures/fig_seniority_coefficients.png" class="img-fluid"></p>
+<p>Two skills separate completely — every posting listing <strong>data architecture</strong> (52 postings, 100 percent advanced) and <strong>treasury management</strong> (57 postings, 98 percent) falls on the senior side. For these the direction is certain but the magnitude is an artifact, so only the direction is reported.</p>
+<p>Among the rest, the <strong>markers of a senior posting are consistently specific</strong>: data governance (97 percent advanced), information technology (97 percent), bank secrecy act (98 percent), technical accounting (88 percent), general ledger (85 percent), risk analytics (83 percent).</p>
+<p>The entry-level signal is much weaker, and this is itself a finding. Against a base rate of 68 percent advanced, only a few skills sit meaningfully below it: research (28 percent advanced), employee benefits (44 percent), business development (47 percent), data analysis tools (50 percent). Most of the remaining “entry markers” sit within a few points of the base rate. <strong>Postings announce seniority clearly; they do not announce accessibility.</strong></p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>A caution on reading coefficients
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A logistic coefficient is conditional on every other skill in the posting; the raw share of advanced postings is not. For 21 of the 107 skills the two disagree — “sales” carries the strongest entry-level coefficient in the model, yet 69 percent of postings listing it are advanced, slightly above the base rate. Where the two measures conflict, the effect is a product of correlation between skills and is not reported here as a property of the skill. Only skills where both point the same way appear in the lists above.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="what-the-two-models-say-together" class="level2">
+<h2 class="anchored" data-anchor-id="what-the-two-models-say-together">What The Two Models Say Together</h2>
+<p>They agree, and the agreement is the finding.</p>
+<p><strong>Specificity is what the market pays for and promotes on.</strong> Across both models the same division appears: named capabilities — data architecture, data governance, technical accounting, fixed income, capital markets, bank secrecy act — sit in the well-paid and senior postings. Generic descriptors — problem solving, analytical skills, organizational skills, business acumen — sit in the cheap and junior ones. A candidate writing a CV should take this literally: “experienced with financial analysis” is the phrasing of a $90,000 posting, “fixed income attribution” is the phrasing of a $140,000 one.</p>
+<p><strong>There is one skill set that pays well without demanding years.</strong> Machine learning appears in 7.6 percent of top-quartile postings and in none of the bottom quartile, yet on the seniority split it sits at the base rate — 67 percent advanced against 68 percent overall. The same broadly holds for data science. For a student leaving a programme, that combination is the clearest point of leverage in this data: a skill that raises the pay a posting offers without raising the experience it demands.</p>
+<p><strong>Excel is the floor, not the ladder.</strong> It appears in 779 of the 1,741 salaried postings, more than any other skill, and is associated with lower pay in the model and with the bottom quartile in the raw comparison. It is necessary and it is not an advantage.</p>
+<p>These three findings feed the <a href="./career_plan.html">Career Strategy</a> page, where they become specific actions.</p>
+<hr>
+</section>
+<section id="limitations" class="level2">
+<h2 class="anchored" data-anchor-id="limitations">Limitations</h2>
+<p><strong>Both models describe disclosed subsets.</strong> Pay is stated on 25 percent of the panel and experience on 24 percent, and neither group is a random sample — pay-transparency law varies by state, and employers who state requirements may differ systematically from those who do not. Every number here describes the postings that told us, not the market.</p>
+<p><strong>Association is not causation.</strong> Listing Python does not cause a posting to pay more. Python marks a different kind of role, and the role carries the pay. The practical reading is about which postings to target, not about what adding a line to a CV will do on its own.</p>
+<p><strong>The feature set is deliberately narrow.</strong> Only skills are used, because the question was about skills. Employer, title seniority and city are not in the model, which is why the regression leaves two thirds of the variation unexplained.</p>
+<p><strong>Skill names are the provider’s.</strong> They are normalised for case and bracketed qualifiers but not for synonyms, so closely related names are counted separately.</p>
+</section>
+<section id="reproducing-this-step" class="level2">
+<h2 class="anchored" data-anchor-id="reproducing-this-step">Reproducing This Step</h2>
+<ol type="1">
+<li><code>python notebooks/30_build_features.py</code> — parse skills, build the feature matrix</li>
+<li><code>python notebooks/31_regression_salary.py</code> — regression on compensation</li>
+<li><code>python notebooks/32_classify_seniority.py</code> — classification of seniority</li>
+</ol>
+<p>Full numeric output is written to <code>outputs/m5_regression_log.md</code> and <code>outputs/m5_classification_log.md</code>.</p>
 
 
 </section>
