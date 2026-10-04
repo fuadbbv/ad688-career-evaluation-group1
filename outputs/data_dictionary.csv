@@ -53,3 +53,6 @@ TITLE_NAME_IS_SOC,bool,derived in this project,7074,0.0,False,"True where the pr
 STATE_CLEAN,str,derived in this project,5135,27.4,Washington,"US state, with two-letter codes expanded to full names and non-geographic values such as 'United States' and 'Remote' removed"
 REMOTE_CLEAN,str,derived in this project,3126,55.8,Onsite,"Work arrangement, with 'Onsite' and 'On-site' merged and the literal 'Unknown' treated as missing"
 MIN_YEARS_EXP_CLEAN,float64,derived in this project,1702,75.9,1.0,"Minimum years of experience, with the provider's 0-to-1 placeholder band removed"
+EMPLOYER_CLEAN,str,derived in this project,7074,0.0,Amazon,"Canonical employer name, with applicant-tracking hostnames resolved where possible and spelling variants of one firm merged"
+EMPLOYER_UNIDENTIFIED,bool,derived in this project,7074,0.0,False,"True where COMPANY_NAME holds an applicant-tracking hostname rather than a company name, so no employer can be identified"
+IS_AGENCY,bool,derived in this project,7074,0.0,False,"True for staffing agencies and job aggregators, which post on behalf of a hiring firm rather than being the hiring firm"

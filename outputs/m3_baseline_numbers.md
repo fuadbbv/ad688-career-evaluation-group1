@@ -19,6 +19,7 @@ Panel: 7074 postings
 - Experience buckets: <1 49; 1 184; 2 309; 3 354; 4 153; 5-6 413; 7-9 133; 10+ 107
 - Remote status recorded on 3,126 of 7,074 postings (44%)
 - Among labelled postings: Hybrid 48%; Remote 32%; Onsite 20%
-- Distinct employers: 2,461
-- Largest employer: **Amazon** with 298 postings (4.2% of the panel)
-- Top 10 employers account for 13% of all postings
+- Employer identifiable on 6,448 of 7,074 postings (91%)
+- Distinct employers: 2,348
+- Largest employer: **Amazon** with 298 postings (4.6% of identifiable postings)
+- Top 10 employers account for 14%

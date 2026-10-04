@@ -80,6 +80,20 @@ DESCRIPTIONS.update({
         "band removed",
 })
 
+# Columns added by 24_clean_employers.py (Module 5 employer cleanup)
+DERIVED |= {"EMPLOYER_CLEAN", "EMPLOYER_UNIDENTIFIED", "IS_AGENCY"}
+DESCRIPTIONS.update({
+    "EMPLOYER_CLEAN":
+        "Canonical employer name, with applicant-tracking hostnames resolved "
+        "where possible and spelling variants of one firm merged",
+    "EMPLOYER_UNIDENTIFIED":
+        "True where COMPANY_NAME holds an applicant-tracking hostname rather "
+        "than a company name, so no employer can be identified",
+    "IS_AGENCY":
+        "True for staffing agencies and job aggregators, which post on behalf "
+        "of a hiring firm rather than being the hiring firm",
+})
+
 panel = pd.read_csv(PANEL, low_memory=False)
 rows = []
 for col in panel.columns:

@@ -113,6 +113,8 @@ Integration testing in Module 3 exposed four defects that coverage statistics al
 
 Several headline numbers fall as a result. That is the intended outcome: the higher figures counted placeholders as data.
 
+A fifth defect surfaced in Module 5, in the employer field. On 397 postings it holds an applicant-tracking hostname rather than a company name, on 229 it names a staffing agency or job aggregator rather than the hiring firm, and one employer appeared under three spellings. The provider's own `COMPANY_IS_STAFFING` flag cannot be used to find these: it is set on 93 of 7,074 rows and contradicts itself, marking TD as staffing while giving JPMorgan Chase both values. `EMPLOYER_CLEAN`, `EMPLOYER_UNIDENTIFIED` and `IS_AGENCY` record the repair without dropping any rows, so employer concentration is measured on the 6,448 postings where a hiring firm can actually be identified.
+
 ## Data Quality and Limitations
 
 Coverage in the panel of 7,074 postings:
@@ -144,10 +146,11 @@ Against that, geography and skills are close to complete, which means the locati
 
 | | |
 |---|---|
-| **Analytical panel** | **`data/processed/career_market_panel.csv` — 7,074 rows, 54 columns** |
+| **Analytical panel** | **`data/processed/career_market_panel.csv` — 7,074 rows, 57 columns** |
 | Data dictionary | `outputs/data_dictionary.md` and `outputs/data_dictionary.csv` |
 | Build log | `outputs/m3_panel_build_log.md` |
 | Normalization log | `outputs/m3_normalization_log.md` |
+| Employer cleanup log | `outputs/m5_employer_cleanup_log.md` |
 | Baseline numbers | `outputs/m3_baseline_numbers.md` |
 
 The source Parquet files are kept locally and excluded from version control; at roughly a gigabyte they are not needed to reproduce the analysis from the panel.
@@ -159,8 +162,9 @@ The source Parquet files are kept locally and excluded from version control; at 
 3. `python notebooks/19_build_panel_wrds.py` — scope filter, role filter, cleaning
 4. `python notebooks/21_fix_salary.py` — period-aware salary validation
 5. `python notebooks/23_normalize_panel.py` — field normalization
-6. `python notebooks/22_data_dictionary_m3.py` — data dictionary
-7. `python notebooks/15_market_baseline_figures.py` — baseline figures
+6. `python notebooks/24_clean_employers.py` — employer cleanup
+7. `python notebooks/22_data_dictionary_m3.py` — data dictionary
+8. `python notebooks/15_market_baseline_figures.py` — baseline figures
 
 The scripts must run in that order: normalization depends on the salary step, and the dictionary and figures both read the normalized panel.
 

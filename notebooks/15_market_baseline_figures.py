@@ -239,13 +239,19 @@ note("- Among labelled postings: " +
 
 # 8. Top employers
 
-emp = df["COMPANY_NAME"].dropna().value_counts().head(10)
+# Agencies, aggregators and applicant-tracking hostnames are set aside:
+# they are not the hiring firm, so counting them distorts concentration.
+real = df[~df["IS_AGENCY"].fillna(False)
+          & ~df["EMPLOYER_UNIDENTIFIED"].fillna(False)]
+emp = real["EMPLOYER_CLEAN"].dropna().value_counts().head(10)
 hbar(emp, "Top Employers by Posting Volume", "Postings", "fig_top_employers.png",
      color=RED)
-note(f"- Distinct employers: {df['COMPANY_NAME'].nunique():,}")
+note(f"- Employer identifiable on {len(real):,} of {len(df):,} postings "
+     f"({len(real)/len(df):.0%})")
+note(f"- Distinct employers: {real['EMPLOYER_CLEAN'].nunique():,}")
 note(f"- Largest employer: **{emp.index[0]}** with {emp.iloc[0]:,} postings "
-     f"({emp.iloc[0]/len(df):.1%} of the panel)")
-note(f"- Top 10 employers account for {emp.sum()/len(df):.0%} of all postings")
+     f"({emp.iloc[0]/len(real):.1%} of identifiable postings)")
+note(f"- Top 10 employers account for {emp.sum()/len(real):.0%}")
 
 with open(NUMBERS, "w") as handle:
     handle.write("\n".join(lines) + "\n")
