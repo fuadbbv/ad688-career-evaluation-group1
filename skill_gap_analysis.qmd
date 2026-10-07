@@ -2,7 +2,7 @@
 title: "Skill Gap Analysis"
 ---
 
-```{=html}
+```{=html} 
 <style>
 main table {
   width: auto !important;
