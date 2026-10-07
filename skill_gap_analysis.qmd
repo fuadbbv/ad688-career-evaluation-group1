@@ -71,7 +71,19 @@ ratings = pd.DataFrame(
 )
 # rows = members, columns = skills
 df_skills = ratings.T
-ratings
+ratings 
+
+(
+    ratings.style
+    .set_table_attributes('style="width: auto;"')
+    .set_properties(**{"text-align": "center", "padding": "0.5rem 2.5rem"})
+    .set_table_styles([
+        {"selector": "th.col_heading",
+         "props": [("text-align", "center"), ("padding", "0.5rem 2.5rem")]},
+        {"selector": "th.row_heading",
+         "props": [("text-align", "left"), ("padding", "0.5rem 2.5rem 0.5rem 0.75rem")]},
+    ])
+)
 ```
 
 ## Market Demand for Each Skill Area
@@ -124,7 +136,19 @@ demand = pd.DataFrame({
 })
 demand["Share"] = demand["Postings"] / n_postings * 100
 demand = demand.sort_values("Share", ascending=False)
-demand.style.format({"Share": "{:.1f}%", "Postings": "{:,}"})
+
+(
+    demand.style
+    .format({"Share": "{:.1f}%", "Postings": "{:,}"})
+    .set_table_attributes('style="width: auto;"')
+    .set_properties(**{"text-align": "right", "padding": "0.5rem 2.5rem"})
+    .set_table_styles([
+        {"selector": "th.col_heading",
+         "props": [("text-align", "right"), ("padding", "0.5rem 2.5rem")]},
+        {"selector": "th.row_heading",
+         "props": [("text-align", "left"), ("padding", "0.5rem 2.5rem 0.5rem 0.75rem")]},
+    ])
+)
 ```
 
 ```{python}
@@ -257,6 +281,11 @@ pd.DataFrame(rows).set_index("Member")
 The team has a strong average proficiency in Financial Domain Knowledge and Communication, but there is a gap in SQL skills that needs to be addressed. Machine Learning and Cloud Computing are also areas where the team can improve to meet market demand. The learning order table provides a clear roadmap for each member to prioritize their skill development based on market demand and their current proficiency levels.
 
 ### How the team closes the gaps
+The team memebers that each would need to priotritize are listed below
+
+Katie: Cloud Computing, Machine Learning, SQL
+Jonathan: Cloud Computing, Machine Learning, SQL
+Fuad: Cloud Computing, Machine Learning, SQL 
 
 The way our team can close the gaps is a combination of peer learning and external courses. The following are some suggestions: 
 
