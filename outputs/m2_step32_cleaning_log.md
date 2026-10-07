@@ -1,6 +1,6 @@
 # Step 3.2 - Cleaning Core Variables
 
-Generated: 2026-09-16 00:25
+Generated: 2026-09-25 23:32
 Source: `data/interim/jobs_naics523_filtered_20260915.csv.gz`
 Output: `data/processed/career_market_panel.csv`
 

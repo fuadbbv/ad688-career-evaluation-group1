@@ -23,3 +23,8 @@ data/raw/*
 
 # macOS
 .DS_Store
+
+# Curated outputs stay under version control. The analytical panel
+# and the data dictionary are what make the site reproducible
+# without the 1.2 GB source dataset.
+

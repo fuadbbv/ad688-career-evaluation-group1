@@ -4,8 +4,8 @@ import pandas as pd
 
 INTERIM = "data/interim/jobs_naics523_filtered_20260915.csv.gz"
 PANEL = "data/processed/career_market_panel.csv"
-OUT_CSV = "outputs/data_dictionary.csv"
-OUT_MD = "outputs/data_dictionary.md"
+OUT_CSV = "data/archive_m2/legacy_data_dictionary.csv"
+OUT_MD = "data/archive_m2/legacy_data_dictionary.md"
 
 DESCRIPTIONS = {
     "job_id": "Unique posting identifier assigned by the MET API; used to deduplicate",

@@ -4,21 +4,18 @@ title: "Skill Gap Analysis"
 
 ## Purpose
 
-A market-wide list of in-demand skills is not advice until it is compared against a specific person. This page does that comparison: it measures what employers in NAICS 523 ask for, records what each member of the team can actually do, and reports the distance between the two.
+A market-wide list of in-demand skills is not informative until it is compared against an existing sample person or persons. This analysis performs that comparison by measuring what employers in NAICS 523 ask for against records of what each member of the project team can actually do, and reports the distance between the two.
 
 ## Method
 
-Demand comes from the cleaned panel of 7,074 postings, all of which list skills. Supply comes from a self-assessment: each team member rated their own proficiency on nine skill areas, on a five-point scale from beginner to expert. We then checked those nine areas against the postings to see which frequently requested skills fall outside them.
+Demand is identified from 7,074 job postings, all of which list skills. The comparison skills come from an internal self-assessment: each team member rated their own proficiency on nine skill areas, on a five-point scale from beginner to expert. These rankings were then checked against those nine areas from the postings to determine which frequently requested skills fall outside them.
 
-The gap for a given skill is the difference between the level the market requires and the level the individual holds. We set the required level from how often the skill appears in postings.
+The gap for a given skill is the difference between the level the market requires and the level the individual holds. The required level was identified by how often the skill appears in postings.
 
-## Status
 
-In progress for Module 3. The output will be a team skill matrix, a visual comparison against market demand, and a per-person learning order with suggested resources.
+## Status Code
 
-# status code
-
-This is to help setup the python script to create the team matrix in skill gap analysis, and it would lead into a comparison of the teams skills against the market demand for each skill area. The code will read in the cleaned panel of postings, extract the relevant skill information, and then create visualizations to show where the team stands in relation to market expectations.
+This is to establish the python script to create the team matrix in skill gap analysis, and will lead into a comparison of the teams skills against the market demand for each skill area. The code will read in the cleaned panel of postings, extract the relevant skill information, and then create visualizations to show where the team stands in relation to market expectations.
 
 ```{python}
 #| label: sga-setup
@@ -31,16 +28,68 @@ import plotly.express as px
 import plotly.graph_objects as go
 import plotly.io as pio
 
-# Plotly graphs
+#setting pallete for consistent visualizations across all pages
+SOLARIZED_BASE3 = "#fdf6e3"   
+SOLARIZED_BASE2 = "#eee8d5"   
+SOLARIZED_BASE1 = "#93a1a1"   
+SOLARIZED_BASE00 = "#657b83"  
+SOLARIZED_BASE01 = "#586e75"  
+SOLARIZED_BASE02 = "#073642"  
+
+SOLARIZED_ACCENTS = [
+    "#268bd2",  
+    "#cb4b16",  
+    "#2aa198",  
+    "#859900",  
+    "#d33682",  
+    "#b58900",  
+    "#6c71c4",  
+    "#dc322f",  
+]
+
+
 pio.templates["group1"] = go.layout.Template(
     layout=dict(
-        font=dict(family="Arial, sans-serif", size=13),
-        title=dict(x=0.02, font=dict(size=18)),
-        colorway=px.colors.qualitative.Set2,
+        font=dict(family="Arial, sans-serif", size=13, color=SOLARIZED_BASE00),
+        # CHANGE: title centered (x=0.5, xanchor="center") instead of
+        # left-aligned (previously x=0.02, no xanchor).
+        title=dict(
+            x=0.5,
+            xanchor="center",
+            font=dict(size=18, color=SOLARIZED_BASE02, family="Arial, sans-serif"),
+        ),
+        colorway=SOLARIZED_ACCENTS,
+        paper_bgcolor=SOLARIZED_BASE3,
+        plot_bgcolor=SOLARIZED_BASE3,
         margin=dict(l=60, r=30, t=70, b=60),
+        xaxis=dict(
+            gridcolor=SOLARIZED_BASE2,
+            linecolor=SOLARIZED_BASE1,
+            zerolinecolor=SOLARIZED_BASE2,
+            tickfont=dict(color=SOLARIZED_BASE01),
+            title=dict(font=dict(color=SOLARIZED_BASE01)),
+        ),
+        yaxis=dict(
+            gridcolor=SOLARIZED_BASE2,
+            linecolor=SOLARIZED_BASE1,
+            zerolinecolor=SOLARIZED_BASE2,
+            tickfont=dict(color=SOLARIZED_BASE01),
+            title=dict(font=dict(color=SOLARIZED_BASE01)),
+        ),
+        legend=dict(font=dict(color=SOLARIZED_BASE01)),
+        shapes=[
+            dict(
+                type="rect",
+                xref="paper", yref="paper",
+                x0=0, y0=0, x1=1, y1=1,
+                line=dict(color=SOLARIZED_BASE01, width=2),
+                fillcolor="rgba(0,0,0,0)",
+                layer="above",
+            )
+        ],
     )
 )
-pio.templates.default = "plotly_white+group1"
+pio.templates.default = "group1"
 
 Path("figures").mkdir(exist_ok=True)
 
@@ -88,8 +137,7 @@ ratings
 
 ## Market Demand for Each Skill Area
 
-We search `SKILLS_NAME`, the full skill list, rather than
-`SOFTWARE_SKILLS_NAME`. Two of our areas, Communication and Financial Domain Knowledge, are not software and appear only in the full list in order to recieve a fair comparison. The other seven areas are software-related, and the full list is more complete than the software-only list.
+The team searched `SKILLS_NAME`, the full skill list, rather than `SOFTWARE_SKILLS_NAME` to allow a more standard comparison as two of the selected areas- Communication and Financial Domain Knowledge- are not software and appear only in the full skills list. The other seven areas are software-related, and the full list is more complete than the software-only list.
 
 ```{python}
 #| label: sga-demand
@@ -164,13 +212,13 @@ save_fig(fig, "sga_market_demand")
 fig.show()
 ```
 
-## Insights made from the team skill matrix and market demand:
-Financial Domain Knowledge, Communication, and SQL are the most demanded skill areas in the market. The team has a strong average proficiency in Financial Domain Knowledge and Communication, but there is a gap in SQL skills that needs to be addressed. Machine Learning and Cloud Computing are also areas where the team can improve to meet market demand.
+## Insights:
+Financial Domain Knowledge, Communication, and SQL are the most demanded skill areas in this market. The team has a strong average proficiency in Financial Domain Knowledge and Communication, but there is a gap in SQL skills that needs to be addressed. Machine Learning and Cloud Computing are also areas where the team can improve to meet market demand.
 
 
-### Checking the most frequent skills that each area captured
+### Top Skills by Area
 
-This table lists the most frequent posting skills that each area captured. It shows exactly what each area counts so a pattern can be checked for correctness.
+The below table lists the most frequently occurring skills that each area captured. It shows exactly what each area counts so a pattern can be checked for correctness.
 
 ```{python}
 #| label: sga-audit
@@ -188,7 +236,7 @@ pd.DataFrame({
 
 ## Gap Analysis
 
-Market share is converted into a target proficiency. The cut-offs are our own assumptions. Because an area counts a posting if **any** of its skills is listed, broad areas would score higher shares than narrow ones, and the targets should be read with that in mind.
+Market share is converted into a target proficiency. The cut-offs are based on team assumptions. Because an area counts a posting if **any** of its skills is listed, broad areas would score higher shares than narrow ones, and the targets should be read with that in mind.
 
 | Share of postings | Target level |
 |---|---|
@@ -257,8 +305,7 @@ print("No team member meets the target for:", ", ".join(uncovered) or "none")
 
 ## Learning Order
 
-A member's priority for each area is their gap weighted by the area's market
-share.
+Below is a table of team member learning priorities for each area, where each member's priority is determined by their gap weighted by the area's market share.
 
 ```{python}
 #| label: sga-priorities
@@ -278,15 +325,10 @@ pd.DataFrame(rows).set_index("Member")
 
 ### Analysis 
 
-The team has a strong average proficiency in Financial Domain Knowledge and Communication, but there is a gap in SQL skills that needs to be addressed. Machine Learning and Cloud Computing are also areas where the team can improve to meet market demand. The learning order table provides a clear roadmap for each member to prioritize their skill development based on market demand and their current proficiency levels.
+The team has a strong average proficiency in Financial Domain Knowledge and Communication, but there is a gap in SQL and general coding skills that needs to be addressed. Machine Learning and Cloud Computing are also areas where the team can improve to meet market demand. The above learning order table provides a clear roadmap for each member to prioritize their skill development based on market demand and their current proficiency levels.
 
-### How the team closes the gaps
-The team memebers that each would need to priotritize are listed below
+### How to Close the Skill Gap
 
-Katie: Cloud Computing, Machine Learning, SQL
-Jonathan: Cloud Computing, Machine Learning, SQL
-Fuad: Cloud Computing, Machine Learning, SQL 
+The way the team can close the gaps is a combination of peer learning and external courses. The following are some suggestions to start the improvement process: 
 
-The way our team can close the gaps is a combination of peer learning and external courses. The following are some suggestions: 
-
-We can use the other external resources such as coursera learning paths, Udemycourses, and other online resources to fill in the gaps. The team can also consider pairing sessions where members with higher proficiency in certain areas can mentor others. For example, katie can run short pairing sessions for Fuad and Jonathan in Python, SQL, and Machine Learning. Jonathan's financial domain knowledge can support the others in interpreting finance-specific postings. For areas like Cloud Computing or AWS, the team can pick one shared course and use the course EC2 work as practice. 
+External resources can be utilized such as Coursera learning paths, Udemycourses, and other online resources to fill in the gaps. The team can also consider pairing sessions where members with higher proficiency in certain areas can mentor others. For example, Katie can run short pairing sessions for Fuad and Jonathan in Python, SQL, and Machine Learning. Jonathan's financial domain knowledge can support the others in interpreting finance-specific postings. For areas like Cloud Computing or AWS, the team can pick one shared course and use the course EC2 work as practice.

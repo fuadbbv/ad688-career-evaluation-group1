@@ -1,6 +1,6 @@
 # Module 3 - Analytical Panel Build
 
-Generated: 2026-09-22 23:43
+Generated: 2026-09-26 17:46
 Source: WRDS jobs_2026 dataset (504,208 postings, 134 columns)
 Scope: NAICS 523, postings from 2025-09-01 onward
 Output: `data/processed/career_market_panel.csv`

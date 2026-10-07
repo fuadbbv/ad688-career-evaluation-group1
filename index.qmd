@@ -10,7 +10,7 @@ title: "Career Evaluation Product — Group 1"
 | **Career Pathway** | Business Intelligence / Data Analyst |
 | **Industry Code** | NAICS 2022 — **523** Securities, Commodity Contracts, and Other Financial Investments and Related Activities |
 | **Industry Label** | U.S. securities, investment and asset management |
-| **Data Source** | MET Employability Career Match API |
+| **Data Source** | WRDS `jobs_2026` dataset (Module 3); MET Career Match API (Modules 1-2) |
 
 ## Product Question
 
@@ -18,20 +18,20 @@ title: "Career Evaluation Product — Group 1"
 
 ## Why This Industry
 
-Securities, commodity contracts, and other financial investment activities (NAICS 523) run continuous reporting, risk, performance-attribution, and client-analytics functions that are staffed by business intelligence and data analyst roles rather than by research scientists. Because investment analytics is shaped by regulatory reporting and legacy data infrastructure, its skill profile differs from the software sector — SQL, data governance, and domain knowledge often matter as much as machine-learning depth. The subsector is also the single largest source of analytics postings within Finance and Insurance in our data source, which makes the scope both coherent and large enough to support a decision-oriented product.
+Securities, commodity contracts, and other financial investment activities (NAICS 523) run continuous reporting, risk, performance-attribution, and client-analytics functions that are staffed by business intelligence and data analyst roles rather than by research scientists. Because investment analytics is shaped by regulatory reporting and legacy data infrastructure, its skill profile differs from the software sector — SQL, data governance, and domain knowledge often matter as much as machine-learning depth. The subsector is also the single largest source of analytics postings within Finance and Insurance in the data source, which makes the scope both coherent and large enough to support a decision-oriented product.
 
-## Scope Revision (Module 2)
+## Scope Revision 
 
-Module 1 anchored the project to NAICS 5221, Depository Credit Intermediation. When we pulled the data in Module 2, that code returned **59 postings in total**, of which 13 carried salary information — too thin to support skill-gap and compensation analysis later in the project. We measured the neighbouring industry codes and moved the anchor to **NAICS 523**, which keeps the project inside Finance and Insurance while providing **15,176 postings**, of which **6,199** match our career pathway. The measurement and the filter rule are documented on the Data Preparation page.
+Module 1 anchored the project to NAICS 5221, Depository Credit Intermediation. When pulled in Module 2, the data returned **59 postings in total**, of which 13 carried salary information — too thin to support the planned skill-gap and compensation analysis later in the project. Because of  that the team measured the neighbouring industry codes and moved the anchor to **NAICS 523**, which keeps the project inside Finance and Insurance while providing **15,176 postings**, of which **6,199** matched our career pathway. Module 3 rebuilt the panel from the supplied WRDS dataset on the same scope: **24,914 postings** in NAICS 523 and **7,074** after the role filter. The measurement and the filter rule are documented on the Data Preparation page.
 
 ## How To Read This Site
 
-| Page | What it answers |
+| Page | What it provides |
 |---|---|
-| **Project Overview** | Why this question matters and what we expected to find |
-| **Data Preparation** | Where the data comes from, how it was filtered and cleaned, and what its limits are |
-| **Exploratory Analysis** | What the market currently looks like: volume, pay, geography, experience, flexibility, employers |
-| **Skill Gap Analysis** | What employers ask for, measured against what the team can actually do |
+| **Project Overview** | Why the product question matters and anticipated findings|
+| **Data Preparation** | Where the data comes from, how it was filtered and cleaned, and what its limitations are |
+| **Exploratory Analysis** | Current market analysis: volume, pay, geography, experience, flexibility, employers |
+| **Skill Gap Analysis** | What employers ask for, measured against what the team can actually do for a realistic comparison |
 | **Predictive Modeling** | Whether the market splits into segments a candidate can target |
 | **Career Strategy** | Where to apply, what to learn next, how to position |
 
@@ -39,11 +39,11 @@ Each analysis page states how many postings it is based on, because field covera
 
 ## Team
 
-| Name | GitHub | Role this module |
+| Name | GitHub | Role in Modules 4 and 5 |
 |---|---|---|
-| Fuad Babaiev | [fuadbbv](https://github.com/fuadbbv) | Site restructure and navigation; final review and publishing |
-| Katie Bowles | [kmbowles00](https://github.com/kmbowles00) | Exploratory analysis rework; shared visual theme across all charts |
-| Jonathan Chen | [jchenbu](https://github.com/jchenbu) | Skill gap analysis: team skill matrix, heatmap, improvement plan |
+| Fuad Babaiev | [fuadbbv](https://github.com/fuadbbv) | Data cleaning and employer normalisation; final analytics tracks; report assembly and publishing |
+| Katie Bowles | [kmbowles00](https://github.com/kmbowles00) | Market baseline and shared visual theme; final recommendations; site requirements check |
+| Jonathan Chen | [jchenbu](https://github.com/jchenbu) | Skill gap analysis and chart rework; interpretation of the final analytics |
 
 ## Roadmap
 
@@ -51,7 +51,7 @@ Each analysis page states how many postings it is based on, because field covera
 |---|---|---|
 | M1 | Project scope, industry selection, rationale, initial site | Complete |
 | M2 | Data preparation and market baseline | Complete |
-| M3 | Site restructure, enhanced exploratory analysis, skill gap analysis | In progress |
-| M4 | Checkpoint — no new step | |
-| M5 | Final analytics, recommendations, report | |
+| M3 | Site restructure, enhanced exploratory analysis, skill gap analysis | Complete |
+| M4 | Checkpoint — readiness review of Steps 1 to 3 | Complete |
+| M5 | Final analytics, recommendations, report | In progress |
 | M6 | Final presentation | |

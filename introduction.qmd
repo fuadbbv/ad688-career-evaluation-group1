@@ -4,32 +4,67 @@ title: "Introduction"
 
 ## Problem
 
-Students finishing an analytics degree face a market that looks uniform from the outside and is not. Job titles overlap, postings list long and inconsistent skill requirements, and the same title can mean very different work in different industries. A candidate deciding where to apply has no structured way to tell which industry rewards their current profile, which skills would raise their chances most, and what compensation and location trade-offs they are actually facing.
+Students finishing an analytics degree face a market that looks uniform from the outside and is not. Job titles overlap, postings list long and inconsistent skill requirements, and the same title can mean very different work in different industries. A candidate deciding where to apply has no structured way to identify which industry rewards their current profile, which skills would raise their employment chances most, and what compensation and location trade-offs they are actually facing.
 
 ## Rationale
 
 The U.S. Bureau of Labor Statistics projects employment of data scientists to grow 35 percent between 2025 and 2035, far above the average for all occupations, with a 2025 median wage of \$120,230 [@bls2026datascientists]. Aggregate growth of this kind, however, tells an individual job seeker very little: it does not say which industry to target, which skills separate an interview from a rejection, or where an entry-level opening is realistically attainable.
 
-Securities, commodity contracts, and other financial investments (NAICS 523) covers investment banks, brokerages, asset managers, and related financial-investment activities [@census2022naics], and the subsector employed roughly 1.17 million people in the United States as of August 2026 [@bls2026securities]. These firms employ analysts continuously for regulatory reporting, risk, performance measurement, and client analytics, which makes the segment large enough to analyse and specific enough to give actionable advice.
+Securities, commodity contracts, and other financial investments (NAICS 523) cover investment banks, brokerages, asset managers, and related financial-investment activities [@census2022naics]. The subsector employed roughly 1.17 million people in the United States as of August 2026 [@bls2026securities]. These firms employ analysts continuously for regulatory reporting, risk, performance measurement, and client analytics, which makes the segment large enough to analyse and specific enough to give actionable advice.
 
-Prior research supports scoping the analysis to job postings. Content analyses of analytics job advertisements show that employer requirements cluster into distinct technical, analytical, and business-domain groups, and that the mix varies systematically by role and context [@verma2019skills]. Studies of entry-level analytics hiring similarly find a gap between what programmes teach and what employers ask for in postings [@stanton2020entrylevel]. A product that reads postings directly, rather than relying on generic career advice, addresses that gap.
+Prior research supports scoping the analysis to job postings. Content analyses of analytics job advertisements show that employer requirements cluster into distinct technical, analytical, and business-domain groups. The mix varies systematically by role and context [@verma2019skills]. Studies of entry-level analytics hiring similarly find a gap between what programs teach and what employers ask for in postings [@stanton2020entrylevel]. A product that reads postings directly, rather than relying on generic career advice, will address that gap.
 
 ## Scope Revision
 
-The project originally anchored to NAICS 5221, Depository Credit Intermediation. Pulling that slice returned only 59 postings, with salary present on 13 of them, which would not support the compensation and skill-gap analysis planned for Modules 3 and 5. We measured the adjacent industry codes and re-anchored to NAICS 523. The career pathway, the product question, and the underlying argument are unchanged; only the industry scope moved, and it remains inside Finance and Insurance. The evidence behind the decision is reported on the Data Preparation page.
+The project originally anchored to NAICS 5221, Depository Credit Intermediation. Pulling that slice of postings returned only 59 results, with salary present on only 13, which would not support the compensation and skill-gap analysis planned for Modules 3 and 5. The team measured the adjacent industry codes and re-anchored to NAICS 523. The career pathway, the product question, and the underlying argument are unchanged; only the industry scope moved, and it remains inside Finance and Insurance. The evidence behind the decision is reported on the Data Preparation page.
 
 ## Product Framing
 
-The deliverable is a career evaluation product for a job seeker, not a general labour-market report. Every analysis in later modules is included only if it helps a student decide **where to apply**, **what to learn next**, and **how to position themselves** for BI/Data Analyst roles in NAICS 523.
+The deliverable is a career evaluation product for a job seeker, not a general labor-market report. Every analysis in later modules is included only if it helps a student decide **where to apply**, **what to learn next**, and **how to position themselves** for BI/Data Analyst roles in NAICS 523.
 
-## What We Expect to Find
+## Expected Findings
 
 - Postings will emphasise SQL, Excel, and BI tooling (Power BI, Tableau) more consistently than machine-learning frameworks.
 - Regulatory and domain vocabulary (risk, compliance, reporting) will appear frequently enough to act as a differentiator for candidates.
 - Remote openings will be less common than in the software sector, and concentrated in a small number of metropolitan areas.
 - The gap between market demand and a typical student profile will sit in domain knowledge and data governance rather than in programming.
 
-These are expectations, not conclusions; Modules 2 and 3 test them against the MET Employability Career Match data.
+These are expectations, not conclusions; Module 2 tests them against the MET Employability Career Match data; Module 3 retests them on the WRDS dataset supplied for this module.
+
+## What We Found
+
+The expectations above were set before any data was pulled. Three modules
+later, three of the four can be checked against evidence on this site. They
+are reported here as they came out, including where we were wrong.
+
+**SQL and BI tooling over machine learning: confirmed, and by a wide
+margin.** Across the nine skill areas measured on the [Skill Gap
+Analysis](skill_gap_analysis.qmd) page, dashboard and reporting tools appear
+in 22.3 percent of postings and SQL in 18.4 percent, against 2.8 percent for
+machine learning and 3.6 percent for cloud platforms. Reporting skills are
+asked for roughly eight times as often as modelling skills in this industry.
+
+**Domain vocabulary as a differentiator: confirmed, and it is the single
+strongest signal in the data.** Financial and regulatory terminology appears
+in 66.7 percent of postings, the most demanded of the nine areas by a factor
+of nearly three over the runner-up. For a candidate, this is the finding with
+the most leverage: the vocabulary of the industry matters more than any
+individual tool.
+
+**Remote work rarer than in software: contradicted on flexibility, upheld on
+geography.** On the 44 percent of postings that record a work arrangement,
+hybrid leads at 48 percent and fully remote at 32 percent, so four in five
+offer some flexibility — more, not less, than we expected. The second half of
+the prediction held: New York alone carries more postings than the next four
+cities combined, as shown on the [Market Baseline](eda.qmd) page. We report
+the contradiction rather than revise the hypothesis after the fact.
+
+**The gap sits in domain knowledge rather than programming: partly
+confirmed.** Domain knowledge is indeed where the shortfall is largest — no
+member of the team reaches the market target for it. But the prediction was
+wrong to exclude programming: SQL is the second-largest gap, and the data
+governance element we expected to measure never surfaced as a distinguishable
+category in the postings at all.
 
 ## References
 

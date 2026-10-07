@@ -62,6 +62,38 @@ DERIVED = {"TITLE_CLEAN", "SALARY_PERIOD", "ANNUAL_SALARY_FROM",
            "ANNUAL_SALARY_TO", "ANNUAL_SALARY_MID", "SKILLS_COUNT",
            "SOFTWARE_SKILLS_COUNT"}
 
+# Columns added by 23_normalize_panel.py (Module 3 field normalization)
+DERIVED |= {"TITLE_NAME_IS_SOC", "STATE_CLEAN", "REMOTE_CLEAN",
+            "MIN_YEARS_EXP_CLEAN"}
+DESCRIPTIONS.update({
+    "TITLE_NAME_IS_SOC":
+        "True where the provider replaced the advertised job title with the "
+        "occupation name; those rows describe a classification, not a vacancy",
+    "STATE_CLEAN":
+        "US state, with two-letter codes expanded to full names and "
+        "non-geographic values such as 'United States' and 'Remote' removed",
+    "REMOTE_CLEAN":
+        "Work arrangement, with 'Onsite' and 'On-site' merged and the literal "
+        "'Unknown' treated as missing",
+    "MIN_YEARS_EXP_CLEAN":
+        "Minimum years of experience, with the provider's 0-to-1 placeholder "
+        "band removed",
+})
+
+# Columns added by 24_clean_employers.py (Module 5 employer cleanup)
+DERIVED |= {"EMPLOYER_CLEAN", "EMPLOYER_UNIDENTIFIED", "IS_AGENCY"}
+DESCRIPTIONS.update({
+    "EMPLOYER_CLEAN":
+        "Canonical employer name, with applicant-tracking hostnames resolved "
+        "where possible and spelling variants of one firm merged",
+    "EMPLOYER_UNIDENTIFIED":
+        "True where COMPANY_NAME holds an applicant-tracking hostname rather "
+        "than a company name, so no employer can be identified",
+    "IS_AGENCY":
+        "True for staffing agencies and job aggregators, which post on behalf "
+        "of a hiring firm rather than being the hiring firm",
+})
+
 panel = pd.read_csv(PANEL, low_memory=False)
 rows = []
 for col in panel.columns:

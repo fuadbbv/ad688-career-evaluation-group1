@@ -1,6 +1,6 @@
 # Data Dictionary — career_market_panel.csv
 
-7,074 rows, 50 columns. Source: WRDS jobs_2026 dataset, scoped to NAICS 523 and the BI/Data Analyst career pathway.
+7,074 rows, 57 columns. Source: WRDS jobs_2026 dataset, scoped to NAICS 523 and the BI/Data Analyst career pathway.
 
 | Variable | Type | Source | Non-null | Missing % | Description |
 |---|---|---|---|---|---|
@@ -54,3 +54,10 @@
 | `ANNUAL_SALARY_FROM` | float64 | derived in this project | 1,741 | 75.4% | Lower bound, annual postings only |
 | `ANNUAL_SALARY_TO` | float64 | derived in this project | 1,741 | 75.4% | Upper bound, annual postings only |
 | `ANNUAL_SALARY_MID` | float64 | derived in this project | 1,741 | 75.4% | Midpoint of the annual range; the field to use for salary analysis |
+| `TITLE_NAME_IS_SOC` | bool | derived in this project | 7,074 | 0.0% | True where the provider replaced the advertised job title with the occupation name; those rows describe a classification, not a vacancy |
+| `STATE_CLEAN` | str | derived in this project | 5,135 | 27.4% | US state, with two-letter codes expanded to full names and non-geographic values such as 'United States' and 'Remote' removed |
+| `REMOTE_CLEAN` | str | derived in this project | 3,126 | 55.8% | Work arrangement, with 'Onsite' and 'On-site' merged and the literal 'Unknown' treated as missing |
+| `MIN_YEARS_EXP_CLEAN` | float64 | derived in this project | 1,702 | 75.9% | Minimum years of experience, with the provider's 0-to-1 placeholder band removed |
+| `EMPLOYER_CLEAN` | str | derived in this project | 7,074 | 0.0% | Canonical employer name, with applicant-tracking hostnames resolved where possible and spelling variants of one firm merged |
+| `EMPLOYER_UNIDENTIFIED` | bool | derived in this project | 7,074 | 0.0% | True where COMPANY_NAME holds an applicant-tracking hostname rather than a company name, so no employer can be identified |
+| `IS_AGENCY` | bool | derived in this project | 7,074 | 0.0% | True for staffing agencies and job aggregators, which post on behalf of a hiring firm rather than being the hiring firm |
