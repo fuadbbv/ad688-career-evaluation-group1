@@ -2,6 +2,29 @@
 title: "Skill Gap Analysis"
 ---
 
+```{=html}
+<style>
+main table {
+  width: auto !important;
+}
+
+main table th,
+main table td {
+  padding: 0.5rem 2.5rem 0.5rem 0.75rem !important;
+}
+
+main table thead th,
+main table tbody td {
+  text-align: center !important;
+}
+
+main table tbody th {
+  text-align: left !important;
+}
+</style>
+```
+
+
 ## Purpose
 
 A market-wide list of in-demand skills is not informative until it is compared against an existing sample person or persons. This analysis performs that comparison by measuring what employers in NAICS 523 ask for against records of what each member of the project team can actually do, and reports the distance between the two.
@@ -63,6 +86,7 @@ pio.templates["group1"] = go.layout.Template(
         plot_bgcolor=SOLARIZED_BASE3,
         margin=dict(l=60, r=30, t=70, b=60),
         xaxis=dict(
+            automargin=True,
             gridcolor=SOLARIZED_BASE2,
             linecolor=SOLARIZED_BASE1,
             zerolinecolor=SOLARIZED_BASE2,
@@ -70,6 +94,7 @@ pio.templates["group1"] = go.layout.Template(
             title=dict(font=dict(color=SOLARIZED_BASE01)),
         ),
         yaxis=dict(
+            automargin=True,
             gridcolor=SOLARIZED_BASE2,
             linecolor=SOLARIZED_BASE1,
             zerolinecolor=SOLARIZED_BASE2,
@@ -120,19 +145,7 @@ ratings = pd.DataFrame(
 )
 # rows = members, columns = skills
 df_skills = ratings.T
-ratings 
-
-(
-    ratings.style
-    .set_table_attributes('style="width: auto;"')
-    .set_properties(**{"text-align": "center", "padding": "0.5rem 2.5rem"})
-    .set_table_styles([
-        {"selector": "th.col_heading",
-         "props": [("text-align", "center"), ("padding", "0.5rem 2.5rem")]},
-        {"selector": "th.row_heading",
-         "props": [("text-align", "left"), ("padding", "0.5rem 2.5rem 0.5rem 0.75rem")]},
-    ])
-)
+ratings
 ```
 
 ## Market Demand for Each Skill Area
@@ -208,6 +221,8 @@ fig = px.bar(
     labels=dict(Share="% of postings", **{"Skill area": ""}),
     hover_data={"Postings": ":,"},
 )
+fig.update_layout(margin=dict(l=220, b=80))
+fig.update_yaxes(automargin=True)
 save_fig(fig, "sga_market_demand")
 fig.show()
 ```
