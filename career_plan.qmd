@@ -1,19 +1,49 @@
 ---
-title: "Career Strategy"
+title: "Career Strategy and Recommendations"
 ---
 
 ## Purpose
 
 This is where the evidence becomes advice. The preceding pages establish what the market demands and where a candidate currently stands; this page answers the three questions a job seeker actually has: **where to apply, what to learn next, and how to position themselves.**
 
-## What This Page Will Contain
+## Process
 
-The recommendations are built from findings already on the site rather than from general career advice. The baseline established that job titles here are close to unique — 4,000 distinct titles across 7,074 postings, the most common covering under two percent — and that occupational codes are both too sparse and too often wrong to search by. Where an experience requirement is genuinely stated the median is three years, with fewer than one posting in thirty asking for less than a year. Four in five postings that record a work arrangement offer remote or hybrid work, and the employer side is fragmented enough that the largest single employer holds four percent of the market.
+The following recommendations are built from findings already on the site rather than from general career advice. The baseline established that job titles here are close to unique — 4,000 distinct titles across 7,074 postings, the most common covering under two percent — and that occupational codes are both too sparse and too often wrong to search by. Where an experience requirement is genuinely stated the median is three years, with fewer than one posting in thirty asking for less than a year. Four in five postings that record a work arrangement offer remote or hybrid work, and the employer side is fragmented enough that the largest single employer holds four percent of the market.
 
-Those facts point to concrete guidance: search by skills and employers rather than by job title or occupation code, treat the industry as a mid-career market and plan an entry route accordingly, use the available flexibility to widen the geographic net beyond New York, and apply broadly rather than targeting a short list of firms. Each recommendation will be stated together with the evidence it rests on and the limits of that evidence.
+### Be Specific
 
-The skill-gap results will then turn general guidance into a per-person learning order, and the segmentation work on the Predictive Modeling page will identify which parts of the market are reachable now versus after closing specific gaps.
+Based on the findings, the first recommendation is to be specific in a job search. The data shows that job titles are highly unique, which means that using broad or generic titles in a job application may not yield the best results. Instead, focus on the specific titles that align with your skills and experience.
 
-## Status
+The skills tied to higher pay include data architecture, advanced analytics, and technical accounting. More generic skills, such as problem solving, customer service, and financial analysis, are tied to lower pay.
 
-Scheduled for Module 5, once the skill-gap and modelling work is complete.
+### Emphasize Machine Learning and Data Science
+
+Based on the findings throughout this project, machine learning and data science are more likely to result in higher pay with less experience so applicants should explore aquiring or emphasiozing those skills.
+
+### Microsoft Office Does Not Standout
+
+Microsoft Office and specifically Excel, are not standoput skills but establish a baseline for applicants. Excel is the most common skill but is associated with lower pay; it only shows in a small portion of the upper pay job postings. 
+
+A good alternative skill to acquire and add to be a standout applicant is a coding tool like Python and SQL to increase pay threshold.
+
+### Location Has a Lower Weight
+
+Adding geography and remote status does not have a significant impact on job postings. The content of the job outweighs the location listed.
+
+
+### Filter Correctly
+
+The majority of job findings indicate the postings are listed as entry level positions. So, for example, job seekers might rely too heavily on filter results that are removig viable jobs from appearing in their search. 
+
+## Expectations and Actions
+
+All of these findings indicate that applicants need to provide more focus, specific skills, and prioritize certain search features such as job level while discounting others such as location. All of these are simply recommendations to further an applicants success in finding jobs that they qualify for and ideally increasing the probability of a call back, however, applicants must do so truthfully. Falsifying a skill just to be more appealing on an application is not recommended by the team.
+
+To successfully implement these recommendations, applicants and job seekers should:
+
+1. **Reevaluate their application materials and increase specificity**
+2. **Emphasize unique skills that go beyond Microsoft Office**
+3. **Acquire a new skill or certification in machine learning or Python**
+4. **Apply a low weight to locations in listings**
+5. **Filter more broadly keeping in mind that every application is different and filters may narrow the results too much**
+

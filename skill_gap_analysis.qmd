@@ -50,8 +50,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import plotly.io as pio
-import json
-
+from PIL import Image, ImageDraw
 #setting pallete for consistent visualizations across all pages
 SOLARIZED_BASE3 = "#fdf6e3"   
 SOLARIZED_BASE2 = "#eee8d5"   
@@ -75,8 +74,6 @@ SOLARIZED_ACCENTS = [
 pio.templates["group1"] = go.layout.Template(
     layout=dict(
         font=dict(family="Arial, sans-serif", size=13, color=SOLARIZED_BASE00),
-        # CHANGE: title centered (x=0.5, xanchor="center") instead of
-        # left-aligned (previously x=0.02, no xanchor).
         title=dict(
             x=0.5,
             xanchor="center",
@@ -85,7 +82,8 @@ pio.templates["group1"] = go.layout.Template(
         colorway=SOLARIZED_ACCENTS,
         paper_bgcolor=SOLARIZED_BASE3,
         plot_bgcolor=SOLARIZED_BASE3,
-        margin=dict(l=60, r=30, t=70, b=60),
+
+        margin=dict(l=120, r=40, t=90, b=60),
         xaxis=dict(
             automargin=True,
             gridcolor=SOLARIZED_BASE2,
@@ -101,18 +99,9 @@ pio.templates["group1"] = go.layout.Template(
             zerolinecolor=SOLARIZED_BASE2,
             tickfont=dict(color=SOLARIZED_BASE01),
             title=dict(font=dict(color=SOLARIZED_BASE01)),
+            automargin=True,
         ),
         legend=dict(font=dict(color=SOLARIZED_BASE01)),
-        shapes=[
-            dict(
-                type="rect",
-                xref="paper", yref="paper",
-                x0=0, y0=0, x1=1, y1=1,
-                line=dict(color=SOLARIZED_BASE01, width=2),
-                fillcolor="rgba(0,0,0,0)",
-                layer="above",
-            )
-        ],
     )
 )
 pio.templates.default = "group1"
@@ -123,7 +112,18 @@ Path("figures").mkdir(exist_ok=True)
 def save_fig(fig, name):
     """Save a PNG copy to figures/ if possible; otherwise skip quietly."""
     try:
-        fig.write_image(f"figures/{name}.png", scale=2)
+        path = f"figures/{name}.png"
+        fig.write_image(path, scale=2, width=900, height=550)
+        img = Image.open(path).convert("RGB")
+        draw = ImageDraw.Draw(img)
+        border_width = 3
+        w, h = img.size
+        draw.rectangle(
+            [0, 0, w - 1, h - 1],
+            outline=(7, 54, 66),
+            width=border_width,
+        )
+        img.save(path)
     except Exception:
         pass
 ```
@@ -220,7 +220,7 @@ demand = demand.sort_values("Share", ascending=False)
 fig = px.bar(
     demand.reset_index(names="Skill area").sort_values("Share"),
     x="Share", y="Skill area", orientation="h",
-    title=f"Share of {n_postings:,} NAICS 523 Analyst Postings Requiring Each Skill Area",
+    title=f"<b>Share of {n_postings:,} Postings Requiring Each Skill Area</b>",
     labels=dict(Share="% of postings", **{"Skill area": ""}),
     hover_data={"Postings": ":,"},
 )
@@ -280,8 +280,20 @@ fig = px.imshow(
     df_skills,
     text_auto=True, zmin=0, zmax=5, aspect="auto",
     color_continuous_scale="Blues",
-    title="Team Skill Levels Heat Map (1 = beginner, 5 = expert)",
-    labels=dict(x="Skill area (most → least in demand)", y="", color="Level"),
+    title="<b>Team Skill Levels Heat Map (1 = beginner, 5 = expert)</b>",
+    labels=dict(x="", y="", color="Gap"),
+)
+fig.update_layout(
+    title=dict(
+        text="<b>Team Skill Levels Heat Map (1 = beginner, 5 = expert)</b>",
+        x=0.5,
+        xanchor="center",
+        font=dict(size=18, color=SOLARIZED_BASE02, family="Arial, sans-serif"),
+        subtitle=dict(
+            text="Skill area (most → least in demand)",
+            font=dict(size=12, color=SOLARIZED_BASE01),
+        ),
+    )
 )
 save_fig(fig, "sga_team_matrix")
 fig.show()
@@ -290,8 +302,20 @@ fig = px.imshow(
     gap,
     text_auto=True, zmin=0, zmax=5, aspect="auto",
     color_continuous_scale="Reds",
-    title="Skill Gap: Levels Below Market Target",
-    labels=dict(x="Skill area (most → least in demand)", y="", color="Gap"),
+    labels=dict(x="", y="", color="Gap"),
+)
+
+fig.update_layout(
+    title=dict(
+        text="<b>Skill Gap: Levels Below Market Target</b>",
+        x=0.5,
+        xanchor="center",
+        font=dict(size=18, color=SOLARIZED_BASE02, family="Arial, sans-serif"),
+        subtitle=dict(
+            text="Skill area (most → least in demand)",
+            font=dict(size=12, color=SOLARIZED_BASE01),
+        ),
+    )
 )
 save_fig(fig, "sga_gap_matrix")
 fig.show()
@@ -310,7 +334,7 @@ fig = px.bar(
     team_view.reset_index(names="Skill area"),
     x="Skill area", y=["Market target", "Team average", "Team best"],
     barmode="group",
-    title="Team Proficiency vs. Market Target",
+    title="<b>Team Proficiency vs. Market Target</b>",
     labels=dict(value="Proficiency (1–5)", variable="", **{"Skill area": ""}),
 )
 fig.update_yaxes(range=[0, 5.5])

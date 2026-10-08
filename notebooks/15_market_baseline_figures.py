@@ -234,7 +234,7 @@ hbar(remote, "Remote, Hybrid, Onsite or Unrecorded", "Postings",
 known = remote.drop("Unknown", errors="ignore")
 note(f"- Remote status recorded on {known.sum():,} of {len(df):,} postings "
      f"({known.sum()/len(df):.0%})")
-note("- Among labelled postings: " +
+note("- Among labeled postings: " +
      "; ".join(f"{k} {v/known.sum():.0%}" for k, v in known.items()))
 
 # 8. Top employers
