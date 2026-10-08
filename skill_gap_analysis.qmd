@@ -50,6 +50,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import plotly.io as pio
+import json
 
 #setting pallete for consistent visualizations across all pages
 SOLARIZED_BASE3 = "#fdf6e3"   
@@ -115,6 +116,7 @@ pio.templates["group1"] = go.layout.Template(
     )
 )
 pio.templates.default = "group1"
+pd.set_option("display.max_colwidth", None)
 
 Path("figures").mkdir(exist_ok=True)
 
@@ -179,8 +181,9 @@ def clean_skill(name):
     return re.sub(r"\s*\([^)]*\)", "", name).strip().casefold()
 
 skills_per_posting = (
-    panel[SKILL_FIELD].fillna("").str.split(";")
-    .apply(lambda items: {clean_skill(x) for x in items if x.strip()})
+    panel[SKILL_FIELD].fillna("[]")
+    .apply(json.loads)
+    .apply(lambda items: {clean_skill(x) for x in items if str(x).strip()})
 )
 
 # Match each distinct skill name once, then map postings to areas
@@ -228,7 +231,7 @@ fig.show()
 ```
 
 ## Insights:
-Financial Domain Knowledge, Communication, and SQL are the most demanded skill areas in this market. The team has a strong average proficiency in Financial Domain Knowledge and Communication, but there is a gap in SQL skills that needs to be addressed. Machine Learning and Cloud Computing are also areas where the team can improve to meet market demand.
+Financial Domain Knowledge, is the most demanded skills in our dataset with 66.7%. Followed by Communication at 23.5%, and Dashboard/Reporting at 22.3%. Following that are SQL and Python with SQL at 18.4% and Python at 12.2%. Cloud computing, machine learning, git, and AWS are each under 5%.
 
 
 ### Top Skills by Area
@@ -340,10 +343,10 @@ pd.DataFrame(rows).set_index("Member")
 
 ### Analysis 
 
-The team has a strong average proficiency in Financial Domain Knowledge and Communication, but there is a gap in SQL and general coding skills that needs to be addressed. Machine Learning and Cloud Computing are also areas where the team can improve to meet market demand. The above learning order table provides a clear roadmap for each member to prioritize their skill development based on market demand and their current proficiency levels.
+The team meets expectations in seven of the 9 areas Communication and dashboard/reporting but **Financial domain** is the one where every group member should focus on improving due it being the most demanded skill. Fuad and Katie are two levels behind while Jonathan is one level behind. The second skill to focus for the group would be **SQL**. In the group Fuad is below two levels and Jonathan is below one level, while Katie meets the expectations as illustrated by the learning chart. However, the team is doing well in Python, Machine Learning, Cloud Computing, AWS, and Git. 
 
 ### How to Close the Skill Gap
 
 The way the team can close the gaps is a combination of peer learning and external courses. The following are some suggestions to start the improvement process: 
 
-External resources can be utilized such as Coursera learning paths, Udemycourses, and other online resources to fill in the gaps. The team can also consider pairing sessions where members with higher proficiency in certain areas can mentor others. For example, Katie can run short pairing sessions for Fuad and Jonathan in Python, SQL, and Machine Learning. Jonathan's financial domain knowledge can support the others in interpreting finance-specific postings. For areas like Cloud Computing or AWS, the team can pick one shared course and use the course EC2 work as practice.
+External resources can be utilized such as Coursera learning paths, Udemycourses, and other online resources to fill in the gaps. The team can also consider pairing sessions where members with higher proficiency in certain areas can mentor others. For example, Katie can run short pairing sessions for Fuad and Jonathan in SQL. Jonathan can help with Financial Domain Knowledge by walking the team through topics such as financial analysis and risk management. However, no member meets the target in this area, so the whole group needs outside learning as well. We can set goals with a time frame, for example completing a Coursera course on finance or investments within the next three months.
