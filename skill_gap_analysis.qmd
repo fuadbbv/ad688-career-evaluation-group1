@@ -50,7 +50,9 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import plotly.io as pio
+import json
 from PIL import Image, ImageDraw
+
 #setting pallete for consistent visualizations across all pages
 SOLARIZED_BASE3 = "#fdf6e3"   
 SOLARIZED_BASE2 = "#eee8d5"   
@@ -99,7 +101,6 @@ pio.templates["group1"] = go.layout.Template(
             zerolinecolor=SOLARIZED_BASE2,
             tickfont=dict(color=SOLARIZED_BASE01),
             title=dict(font=dict(color=SOLARIZED_BASE01)),
-            automargin=True,
         ),
         legend=dict(font=dict(color=SOLARIZED_BASE01)),
     )
