@@ -24,11 +24,11 @@ Based on the findings throughout this project, machine learning and data science
 
 Microsoft Office and specifically Excel, are not standoput skills but establish a baseline for applicants. Excel is the most common skill but is associated with lower pay; it only shows in a small portion of the upper pay job postings. 
 
-A good alternative skill to acquire and add to be a standout applicant is a coding tool like Python and SQL to increase pay threshold.
-
+A good alternative skill to acquire and add to be a standout applicant is a coding tool like **Python** and **SQL** to increase pay threshold.
+    
 ### Location Has a Lower Weight
 
-Adding geography and remote status does not have a significant impact on job postings. The content of the job outweighs the location listed.
+Adding geography and remote status does not have a significant impact on job postings. The content of the job outweighs the location listed. 
 
 
 ### Filter Correctly
