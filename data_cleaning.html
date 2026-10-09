@@ -64,7 +64,7 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-66b905eaf8fd7b3c0ab794c947ff3da0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-445b8638c3d06994fee0907d791121c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -133,6 +133,10 @@ div.csl-indent {
   <li class="nav-item">
     <a class="nav-link" href="./skill_gap_analysis.html"> 
 <span class="menu-text">Skill Gap Analysis</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./career_evaluation.html"> 
+<span class="menu-text">Evaluation Logic</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./ml_methods.html"> 
@@ -298,7 +302,7 @@ div.csl-indent {
 </tr>
 <tr class="even">
 <td>Build date</td>
-<td>22 September 2026</td>
+<td>4 October 2026</td>
 </tr>
 </tbody>
 </table>
@@ -379,7 +383,7 @@ div.csl-indent {
 <p><strong>Salary.</strong> The provider’s <code>SALARY</code> column turned out to be a free-text summary whose value is an empty placeholder on most rows, so it is kept for reference but never used as a figure. The usable numbers are the structured range, and that range is quoted in different periods — 1,751 annual, 315 hourly, 18 monthly. Each is validated against bounds appropriate to its own period rather than a single annual rule, which had been silently deleting hourly rates as “implausible”. Reversed ranges are swapped, zeros treated as missing, and 20 rows were cleared as out of range across all periods.</p>
 <p>Hourly and monthly rates are kept in their own columns and <strong>are not converted to annual figures</strong>, because the conversion requires an assumption about hours worked that the postings do not supply. <code>ANNUAL_SALARY_MID</code> — the midpoint of the annual range — is the field used for salary analysis, and it is populated on 1,741 postings.</p>
 <p><strong>Experience and education.</strong> Taken directly from the provider’s coded fields. Unlike the earlier panel these are not team estimates, so no parsing decisions were needed.</p>
-<p><strong>Skills.</strong> Arrive as arrays and are stored as semicolon-separated strings across four fields: all skills, named software, specialised skills and transferable skills, plus certifications. Names are not yet normalised, so casing and synonyms remain distinct; that normalisation belongs to the skill-gap work, where it has an analytical purpose.</p>
+<p><strong>Skills.</strong> Arrive as arrays and are stored as JSON-style list strings — for example <code>["Microsoft Excel", "SQL (Programming Language)"]</code> — across four fields: all skills, named software, specialised skills and transferable skills, plus certifications. Names are not yet normalised, so casing and synonyms remain distinct; that normalisation belongs to the skill-gap work, where it has an analytical purpose. Code reading these fields must parse the list rather than splitting on a delimiter.</p>
 <p><strong>Remote status.</strong> Never inferred, and category labels are normalised because the source spells the same category two ways. A posting with no remote label is an absence of information, not evidence of an office requirement.</p>
 <p><strong>Location.</strong> Text fields trimmed of stray whitespace. This dataset carries no coordinates, so the latitude and longitude check from the earlier pipeline does not apply; geography is carried by state, city and metropolitan area.</p>
 <p><strong>Types.</strong> Every column is cast explicitly — dates, booleans, numbers and categories — so later analysis cannot silently treat a number as text.</p>
@@ -391,6 +395,7 @@ div.csl-indent {
 <p><strong>The state field is not only a state field.</strong> It mixes full names with two-letter codes, so New York appeared twice — as “New York” (514) and as “NY” (212) — and it carries 1,202 postings labelled “United States” and 178 labeled “Remote”, a country and a work arrangement. <code>STATE_CLEAN</code> expands the codes and discards the non-geographic values, which lowers real coverage from an apparent 92 percent to an honest <strong>73 percent</strong>.</p>
 <p><strong>Two fields encode “missing” as a value.</strong> <code>REMOTE_TYPE_NAME</code> carries a literal “Unknown” on 1,442 postings alongside 2,506 true nulls, and spells the office category both “Onsite” and “On-site”; <code>REMOTE_CLEAN</code> merges the spellings and treats “Unknown” as missing, leaving 44 percent labelled. <code>MIN_YEARS_EXPERIENCE</code> reports zero years on 2,288 postings, but on 2,143 of them the stated maximum is exactly one — a fixed “0 to 1” band attached to postings titled Senior Financial Analyst, Finance Manager and Accounting Manager. That is a provider default, and left in place it produced a median requirement of zero years across the panel. <code>MIN_YEARS_EXP_CLEAN</code> removes the band, leaving 1,702 postings with a stated requirement and a median of three years.</p>
 <p>Several headline numbers fall as a result. That is the intended outcome: the higher figures counted placeholders as data.</p>
+<p>A fifth defect surfaced in Module 5, in the employer field. On 397 postings it holds an applicant-tracking hostname rather than a company name, on 229 it names a staffing agency or job aggregator rather than the hiring firm, and one employer appeared under three spellings. The provider’s own <code>COMPANY_IS_STAFFING</code> flag cannot be used to find these: it is set on 93 of 7,074 rows and contradicts itself, marking TD as staffing while giving JPMorgan Chase both values. <code>EMPLOYER_CLEAN</code>, <code>EMPLOYER_UNIDENTIFIED</code> and <code>IS_AGENCY</code> record the repair without dropping any rows, so employer concentration is measured on the 6,448 postings where a hiring firm can actually be identified.</p>
 </section>
 </section>
 <section id="data-quality-and-limitations" class="level2">
@@ -464,7 +469,7 @@ div.csl-indent {
 <tbody>
 <tr class="odd">
 <td><strong>Analytical panel</strong></td>
-<td><strong><code>data/processed/career_market_panel.csv</code> — 7,074 rows, 54 columns</strong></td>
+<td><strong><code>data/processed/career_market_panel.csv</code> — 7,074 rows, 57 columns</strong></td>
 </tr>
 <tr class="even">
 <td>Data dictionary</td>
@@ -479,6 +484,10 @@ div.csl-indent {
 <td><code>outputs/m3_normalization_log.md</code></td>
 </tr>
 <tr class="odd">
+<td>Employer cleanup log</td>
+<td><code>outputs/m5_employer_cleanup_log.md</code></td>
+</tr>
+<tr class="even">
 <td>Baseline numbers</td>
 <td><code>outputs/m3_baseline_numbers.md</code></td>
 </tr>
@@ -494,6 +503,7 @@ div.csl-indent {
 <li><code>python notebooks/19_build_panel_wrds.py</code> — scope filter, role filter, cleaning</li>
 <li><code>python notebooks/21_fix_salary.py</code> — period-aware salary validation</li>
 <li><code>python notebooks/23_normalize_panel.py</code> — field normalization</li>
+<li><code>python notebooks/24_clean_employers.py</code> — employer cleanup</li>
 <li><code>python notebooks/22_data_dictionary_m3.py</code> — data dictionary</li>
 <li><code>python notebooks/15_market_baseline_figures.py</code> — baseline figures</li>
 </ol>
