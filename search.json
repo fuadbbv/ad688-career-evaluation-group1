@@ -119,174 +119,6 @@
     "text": "References\n\n\nStanton, W. W., and A. D. Stanton. (2020): “Helping business students acquire the skills needed for a career in analytics: A comprehensive industry assessment of entry-level requirements,” Decision Sciences Journal of Innovative Education,.\n\n\nU.S. Bureau of Labor Statistics. (2026a): “Data Scientists: Occupational Outlook Handbook,”https://www.bls.gov/ooh/math/data-scientists.htm.\n\n\n---. (2026b): “Securities, Commodity Contracts, and Other Financial Investments and Related Activities: NAICS 523,”https://www.bls.gov/iag/tgs/iag523.htm.\n\n\nU.S. Census Bureau. (2022): “North American Industry Classification System (NAICS) 2022, Sector 52: Finance and Insurance,”https://www.census.gov/naics/.\n\n\nVerma, A., K. M. Yurov, P. L. Lane, and Y. V. Yurova. (2019): “An investigation of skill requirements for business and data analytics positions: A content analysis of job advertisements,” Journal of Education for Business, 94."
   },
   {
-    "objectID": "eda.html",
-    "href": "eda.html",
-    "title": "Market Baseline",
-    "section": "",
-    "text": "This is the current state of the market the product advises on: 7,074 postings for Business Intelligence and Data Analyst roles in NAICS 523, Securities, Commodity Contracts and Other Financial Investments, published on or after 1 September 2025.\nEvery figure below is drawn from data/processed/career_market_panel.csv. How that table was built, and where its gaps are, is documented on the Data Preparation page. Coverage varies sharply by field, so each chart states how many postings it is based on. Where a field proved unusable, it is indicated rather than reporting a number that is not supported."
-  },
-  {
-    "objectID": "eda.html#purpose",
-    "href": "eda.html#purpose",
-    "title": "Market Baseline",
-    "section": "",
-    "text": "This is the current state of the market the product advises on: 7,074 postings for Business Intelligence and Data Analyst roles in NAICS 523, Securities, Commodity Contracts and Other Financial Investments, published on or after 1 September 2025.\nEvery figure below is drawn from data/processed/career_market_panel.csv. How that table was built, and where its gaps are, is documented on the Data Preparation page. Coverage varies sharply by field, so each chart states how many postings it is based on. Where a field proved unusable, it is indicated rather than reporting a number that is not supported."
-  },
-  {
-    "objectID": "eda.html#what-the-occupation-codes-do-and-do-not-tell-us",
-    "href": "eda.html#what-the-occupation-codes-do-and-do-not-tell-us",
-    "title": "Market Baseline",
-    "section": "What The Occupation Codes Do— And Do Not— Tell Us",
-    "text": "What The Occupation Codes Do— And Do Not— Tell Us\n\nRead this chart as a finding about the data, not about the market.\nAn occupational code is present on only 2,357 of 7,074 postings, 33 percent. Within that labeled third, Management Analysts account for 1,991 postings. But the coding itself does not survive inspection. Postings titled “Senior Financial Analyst, AWS GTM Finance” and “Sr Financial Analyst, Inbound Finance Insights” are coded as Models, Demonstrators, and Product Promoters — the third-largest occupation on the chart. On 2,165 postings the provider also overwrote the job title with the occupation name, so the title field on those rows describes a classification rather than a vacancy.\nThis is reported instead of being deleted because it justifies a design decision that runs through the whole project. The team’s role filter combines occupational codes with title keywords rather than trusting either alone, and this chart is the evidence for why. It is also a caution for anyone building on the same source: a market study that filtered on SOC codes here would silently describe the wrong population.\nThe practical consequence for a job seeker is narrower but real. Occupational classification in this industry is unreliable enough that filtering job boards by occupation category will both miss relevant roles and surface irrelevant ones."
-  },
-  {
-    "objectID": "eda.html#how-titles-are-written",
-    "href": "eda.html#how-titles-are-written",
-    "title": "Market Baseline",
-    "section": "How Titles Are Written",
-    "text": "How Titles Are Written\n\nRebuilt from the raw posting titles, the panel contains 4,000 distinct titles across 7,074 postings. The most common single title, “senior financial analyst”, appears 122 times — 1.7 percent of the panel.\n\nThe three most frequent titles together account for just 261 postings, under 4 percent of the market.\nTitles here are effectively unique strings. The practical consequence for a candidate is that title-based job alerts are close to useless in this industry: a saved search for “Data Analyst” will miss over ninety percent of the relevant openings. Searching by skills and by employer returns far more of the real market."
-  },
-  {
-    "objectID": "eda.html#what-the-work-pays",
-    "href": "eda.html#what-the-work-pays",
-    "title": "Market Baseline",
-    "section": "What The Work Pays",
-    "text": "What The Work Pays\n\nAmong the 1,741 postings (25 percent) that disclose pay, the median annual midpoint is $112,500, with the middle half falling between $87,500 and $141,500.\nPostings that quote pay hourly or monthly are validated on their own scale rather than deleted as implausible, but they are not converted to annual figures, because the conversion requires an assumption about hours worked that the postings do not supply. This chart therefore covers the postings quoting annual pay.\nTwo cautions belong with the number. First, three postings in four say nothing about pay, and employers who publish ranges are not a random sample — pay-transparency laws apply in some states and not others, so the disclosed group skews toward those jurisdictions and toward larger employers. Second, this is the midpoint of a posted range, not an offer. Read it as an orientation for expectations, not a benchmark to negotiate against."
-  },
-  {
-    "objectID": "eda.html#where-the-jobs-are",
-    "href": "eda.html#where-the-jobs-are",
-    "title": "Market Baseline",
-    "section": "Where The Jobs Are",
-    "text": "Where The Jobs Are\n\nA usable state is recorded on 5,135 postings, 73 percent of the panel. New York leads with 726, followed by California (606), Texas (437), Florida (286) and Illinois (260).\nThat 73 percent is itself the product of cleaning. The raw field mixed full state names with two-letter codes, so New York appeared twice, and it also contained 1,202 postings labelled simply “United States” and 178 labelled “Remote” — a country and a work arrangement, neither of which is a place. Those were removed rather than counted.\n\nAt city level New York is the clear center with 783 postings, ahead of Washington (185), Chicago (136), Atlanta (107) and Seattle (106).\nSecurities and investments remains a concentrated industry geographically. New York alone holds more postings than the next four cities combined, which is a meaningful constraint for a candidate unwilling to relocate — and a meaningful argument for weighting remote-friendly employers."
-  },
-  {
-    "objectID": "eda.html#how-much-experience-is-asked-for",
-    "href": "eda.html#how-much-experience-is-asked-for",
-    "title": "Market Baseline",
-    "section": "How Much Experience Is Asked For",
-    "text": "How Much Experience Is Asked For\n\nA stated experience requirement survives on 1,702 postings, 24 percent of the panel. Among those, the median is three years and the middle half falls between two and five.\nThe coverage here is low for a reason worth recording. The raw field reported a requirement of zero years on 2,288 postings, but on 2,143 of them the stated maximum was exactly one year — a fixed “0 to 1” band attached to postings titled Senior Financial Analyst, Finance Manager and Accounting Manager. That is a provider default, not a market signal, and leaving it in produced a median of zero years. To prevent this, the placeholder band was removed and instead the smaller, reliable subset was reported.\nOn that subset, the market reads as mid-career but not closed: only 49 postings ask for less than a year, while 413 ask for five to six and 107 ask for ten or more. A student targeting this industry directly out of a program is competing for a narrow band of openings. The realistic paths are the small entry segment, adjacent industries with more junior demand, or roles where demonstrable skills substitute for years served. The Skill Gap Analysis page tests which skills most effectively close that distance."
-  },
-  {
-    "objectID": "eda.html#remote-hybrid-or-onsite",
-    "href": "eda.html#remote-hybrid-or-onsite",
-    "title": "Market Baseline",
-    "section": "Remote, Hybrid Or Onsite",
-    "text": "Remote, Hybrid Or Onsite\n\nA work arrangement is recorded on 3,126 postings, 44 percent of the panel. Among those, hybrid leads at 48 percent, fully remote at 32 percent and onsite at 20 percent.\nThis contradicts the expectation was set out in the Project Overview, where it was predicted that remote openings in finance would be rarer than in the software sector. On the labeled subset, four in five analytics postings in this industry offer some flexibility. The contradiction is reported rather than an adjustment to the hypothesis after the fact.\nThe caveat is the unlabelled majority. “Unknown” is shown as its own bar and never folded into “onsite”, because an unlabelled posting is an absence of information, not evidence of an office requirement."
-  },
-  {
-    "objectID": "eda.html#who-is-hiring",
-    "href": "eda.html#who-is-hiring",
-    "title": "Market Baseline",
-    "section": "Who Is Hiring",
-    "text": "Who Is Hiring\n\nBefore this section can say anything, the employer field needs cleaning. On 397 postings (6 percent) it holds an applicant-tracking hostname such as Eofe.fa.us2.oraclecloud.com instead of a company name, and on a further 229 (3 percent) it names a staffing agency or job aggregator rather than the firm doing the hiring. Three spellings of JPMorgan Chase were also being counted as three separate employers. All of these are flagged and set aside, which leaves 6,448 postings, 91 percent of the panel, with an identifiable employer.\nOn that subset the market is highly fragmented: 2,348 distinct employers. The largest, Amazon, accounts for 298 postings — 4.6 percent — followed by Citi at 2.2 percent, then U.S. Bank and JPMorgan Chase at 1.3 percent each. The top ten employers together hold 14 percent.\nThe strategic read changed once the employer names were cleaned. Before the merge, no firm appeared to hold more than a few percent and the only advice was to apply broadly. With the variants resolved a recognisable core emerges: Citi, U.S. Bank, JPMorgan Chase, PNC and State Street each run a steady analytics pipeline in this industry, and together with Amazon they account for roughly one posting in ten. Breadth still matters, because the other nine in ten are spread across 2,348 employers, but a candidate now has a short list worth following directly as well. Amazon’s position at the top is also a reminder that industry assignment follows the employer record rather than the specific business unit, so some postings sit in NAICS 523 for reasons that are not obvious from the company name."
-  },
-  {
-    "objectID": "eda.html#what-this-means-for-the-product",
-    "href": "eda.html#what-this-means-for-the-product",
-    "title": "Market Baseline",
-    "section": "What This Means For The Product",
-    "text": "What This Means For The Product\nFive things a candidate should take from this baseline:\n\nSearch by skills and employers, not by title or occupation. There are 4,000 distinct titles, the most common covers under two percent of the market, and the occupational codes are demonstrably wrong on a large share of postings.\nExpect a mid-career market. Where a requirement is stated, the median is three years and fewer than one posting in thirty asks for less than a year.\nFlexibility is available. Four in five labeled postings are remote or hybrid, which widens the geographic options considerably.\nNew York dominates, but not exclusively. It holds more postings than the next four cities combined; remote-friendly employers are the counterweight.\nTreat salary figures as orientation. They come from the one posting in four that discloses pay.\n\nThe Skill Gap Analysis page turns these observations into a personal assessment: which skills separate the postings a given candidate can win from the ones they cannot, and what to learn first.\n\nFigures and chart design by Katie Bowles. Field normalization and the Module 3 data-quality review by Fuad Babaiev."
-  },
-  {
-    "objectID": "career_plan.html",
-    "href": "career_plan.html",
-    "title": "Career Strategy and Recommendations",
-    "section": "",
-    "text": "This is where the evidence becomes advice. The preceding pages establish what the market demands and where a candidate currently stands; this page answers the three questions a job seeker actually has: where to apply, what to learn next, and how to position themselves."
-  },
-  {
-    "objectID": "career_plan.html#purpose",
-    "href": "career_plan.html#purpose",
-    "title": "Career Strategy and Recommendations",
-    "section": "",
-    "text": "This is where the evidence becomes advice. The preceding pages establish what the market demands and where a candidate currently stands; this page answers the three questions a job seeker actually has: where to apply, what to learn next, and how to position themselves."
-  },
-  {
-    "objectID": "career_plan.html#process",
-    "href": "career_plan.html#process",
-    "title": "Career Strategy and Recommendations",
-    "section": "Process",
-    "text": "Process\nThe following recommendations are built from findings already on the site rather than from general career advice. The baseline established that job titles here are close to unique — 4,000 distinct titles across 7,074 postings, the most common covering under two percent — and that occupational codes are both too sparse and too often wrong to search by. Where an experience requirement is genuinely stated the median is three years, with fewer than one posting in thirty asking for less than a year. Four in five postings that record a work arrangement offer remote or hybrid work, and the employer side is fragmented enough that the largest single employer holds four percent of the market.\n\nBe Specific\nBased on the findings, the first recommendation is to be specific in a job search. The data shows that job titles are highly unique, which means that using broad or generic titles in a job application may not yield the best results. Instead, focus on the specific titles that align with your skills and experience.\nThe skills tied to higher pay include data architecture, advanced analytics, and technical accounting. More generic skills, such as problem solving, customer service, and financial analysis, are tied to lower pay.\n\n\nEmphasize Machine Learning and Data Science\nBased on the findings throughout this project, machine learning and data science are more likely to result in higher pay with less experience so applicants should explore aquiring or emphasiozing those skills.\n\n\nMicrosoft Office Does Not Standout\nMicrosoft Office and specifically Excel, are not standoput skills but establish a baseline for applicants. Excel is the most common skill but is associated with lower pay; it only shows in a small portion of the upper pay job postings.\nA good alternative skill to acquire and add to be a standout applicant is a coding tool like Python and SQL to increase pay threshold.\n\n\nLocation Has a Lower Weight\nAdding geography and remote status does not have a significant impact on job postings. The content of the job outweighs the location listed.\n\n\nFilter Correctly\nThe majority of job findings indicate the postings are listed as entry level positions. So, for example, job seekers might rely too heavily on filter results that are removig viable jobs from appearing in their search."
-  },
-  {
-    "objectID": "career_plan.html#expectations-and-actions",
-    "href": "career_plan.html#expectations-and-actions",
-    "title": "Career Strategy and Recommendations",
-    "section": "Expectations and Actions",
-    "text": "Expectations and Actions\nAll of these findings indicate that applicants need to provide more focus, specific skills, and prioritize certain search features such as job level while discounting others such as location. All of these are simply recommendations to further an applicants success in finding jobs that they qualify for and ideally increasing the probability of a call back, however, applicants must do so truthfully. Falsifying a skill just to be more appealing on an application is not recommended by the team.\nTo successfully implement these recommendations, applicants and job seekers should:\n\nReevaluate their application materials and increase specificity\nEmphasize unique skills that go beyond Microsoft Office\nAcquire a new skill or certification in machine learning or Python\nApply a low weight to locations in listings\nFilter more broadly keeping in mind that every application is different and filters may narrow the results too much"
-  },
-  {
-    "objectID": "career_evaluation.html",
-    "href": "career_evaluation.html",
-    "title": "Evaluation Logic",
-    "section": "",
-    "text": "The other pages produce evidence. This one states the rules that turn that evidence into advice for one specific person, so a reader can judge the reasoning rather than take the conclusions on trust.\nThe product answers one question: given this market and this candidate, what should they do next? Getting from a market to a person takes six steps."
-  },
-  {
-    "objectID": "career_evaluation.html#what-this-page-is",
-    "href": "career_evaluation.html#what-this-page-is",
-    "title": "Evaluation Logic",
-    "section": "",
-    "text": "The other pages produce evidence. This one states the rules that turn that evidence into advice for one specific person, so a reader can judge the reasoning rather than take the conclusions on trust.\nThe product answers one question: given this market and this candidate, what should they do next? Getting from a market to a person takes six steps."
-  },
-  {
-    "objectID": "career_evaluation.html#step-1-define-the-market",
-    "href": "career_evaluation.html#step-1-define-the-market",
-    "title": "Evaluation Logic",
-    "section": "Step 1 — Define the market",
-    "text": "Step 1 — Define the market\nScope is fixed before anything is measured: NAICS 523, analytics roles, postings from 1 September 2025 onward. The rule for what counts as an analytics role combines occupational codes with title keywords, because on this source neither works alone. The Data Preparation page documents the filter and what it excludes.\nResult: a panel of 7,074 postings."
-  },
-  {
-    "objectID": "career_evaluation.html#step-2-measure-what-the-market-asks-for",
-    "href": "career_evaluation.html#step-2-measure-what-the-market-asks-for",
-    "title": "Evaluation Logic",
-    "section": "Step 2 — Measure what the market asks for",
-    "text": "Step 2 — Measure what the market asks for\nDemand is the share of postings listing a skill. Nine skill areas, each defined by an explicit pattern over the skill field, measured on all 7,074 postings. No weighting by employer size or recency: a posting is a posting."
-  },
-  {
-    "objectID": "career_evaluation.html#step-3-measure-what-the-candidate-has",
-    "href": "career_evaluation.html#step-3-measure-what-the-candidate-has",
-    "title": "Evaluation Logic",
-    "section": "Step 3 — Measure what the candidate has",
-    "text": "Step 3 — Measure what the candidate has\nSelf-assessment on the same nine areas, on a five-point scale from beginner to expert. This is the weakest link in the chain and we say so: it is self-reported, uncalibrated, and three people rating themselves is not a sample. It is a template for a candidate to fill in, not a measurement."
-  },
-  {
-    "objectID": "career_evaluation.html#step-4-convert-demand-into-a-required-level",
-    "href": "career_evaluation.html#step-4-convert-demand-into-a-required-level",
-    "title": "Evaluation Logic",
-    "section": "Step 4 — Convert demand into a required level",
-    "text": "Step 4 — Convert demand into a required level\nMarket share is mapped to a target proficiency, so that demand and ability are expressed in the same units and can be subtracted. The cut-offs are our choice, not something the data dictates:\n\n\n\nShare of postings\nTarget level\n\n\n\n\n50% or more\n5\n\n\n30–50%\n4\n\n\n15–30%\n3\n\n\n5–15%\n2\n\n\nunder 5%\n1\n\n\n\nBecause an area counts a posting if any of its skills appears, broad areas score higher shares than narrow ones. Targets should be read with that in mind."
-  },
-  {
-    "objectID": "career_evaluation.html#step-5-compute-the-gap-and-order-the-work",
-    "href": "career_evaluation.html#step-5-compute-the-gap-and-order-the-work",
-    "title": "Evaluation Logic",
-    "section": "Step 5 — Compute the gap and order the work",
-    "text": "Step 5 — Compute the gap and order the work\nThe gap is the target minus the level held, floored at zero. Learning priority is the gap weighted by the area’s market share, so closing a small gap in a heavily demanded area beats closing a large gap in a rare one. The Skill Gap Analysis page applies this and produces a per-person learning order."
-  },
-  {
-    "objectID": "career_evaluation.html#step-6-refuse-what-the-data-cannot-support",
-    "href": "career_evaluation.html#step-6-refuse-what-the-data-cannot-support",
-    "title": "Evaluation Logic",
-    "section": "Step 6 — Refuse what the data cannot support",
-    "text": "Step 6 — Refuse what the data cannot support\nThe same discipline runs through every page. Where the evidence will not carry a conclusion, we report the limit instead of the conclusion:\n\nOccupation codes are present on a third of postings and misclassify senior finance roles where present, so no finding rests on them.\nMissing work arrangement is never read as “onsite”. Absence of information is not information.\nA provider placeholder of 0-to-1 years attached to senior postings was removed rather than averaged in, which cut usable experience data from 56 percent to 24 percent and moved the median from zero years to three.\nModel coefficients are reported only for skills with at least 30 supporting postings, and only where the conditional estimate and the raw share agree."
-  },
-  {
-    "objectID": "career_evaluation.html#where-the-models-fit",
-    "href": "career_evaluation.html#where-the-models-fit",
-    "title": "Evaluation Logic",
-    "section": "Where the Models Fit",
-    "text": "Where the Models Fit\nSteps 1 to 5 describe a candidate against the market. The Predictive Modeling page asks the harder question — which skills actually separate a better opportunity from a worse one — and answers it two ways: by pay, with a regression, and by reachability, with a classifier. Their output feeds the Career Strategy page, where the gap analysis and the models combine into specific actions."
-  },
-  {
-    "objectID": "career_evaluation.html#what-this-product-does-not-do",
-    "href": "career_evaluation.html#what-this-product-does-not-do",
-    "title": "Evaluation Logic",
-    "section": "What This Product Does Not Do",
-    "text": "What This Product Does Not Do\nIt does not predict whether an individual will be hired. It does not price a particular job. It does not rank employers by anything other than posting volume. And because every skill measure comes from job advertisements, it describes what employers write down, which is not the same as what they actually require."
-  },
-  {
     "objectID": "data_cleaning.html",
     "href": "data_cleaning.html",
     "title": "Data Preparation",
@@ -362,6 +194,174 @@
     "title": "Data Preparation",
     "section": "References",
     "text": "References"
+  },
+  {
+    "objectID": "career_evaluation.html",
+    "href": "career_evaluation.html",
+    "title": "Evaluation Logic",
+    "section": "",
+    "text": "The other pages produce evidence. This one states the rules that turn that evidence into advice for one specific person, so a reader can judge the reasoning rather than take the conclusions on trust.\nThe product answers one question: given this market and this candidate, what should they do next? Getting from a market to a person takes six steps."
+  },
+  {
+    "objectID": "career_evaluation.html#what-this-page-is",
+    "href": "career_evaluation.html#what-this-page-is",
+    "title": "Evaluation Logic",
+    "section": "",
+    "text": "The other pages produce evidence. This one states the rules that turn that evidence into advice for one specific person, so a reader can judge the reasoning rather than take the conclusions on trust.\nThe product answers one question: given this market and this candidate, what should they do next? Getting from a market to a person takes six steps."
+  },
+  {
+    "objectID": "career_evaluation.html#step-1-define-the-market",
+    "href": "career_evaluation.html#step-1-define-the-market",
+    "title": "Evaluation Logic",
+    "section": "Step 1 — Define the market",
+    "text": "Step 1 — Define the market\nScope is fixed before anything is measured: NAICS 523, analytics roles, postings from 1 September 2025 onward. The rule for what counts as an analytics role combines occupational codes with title keywords, because on this source neither works alone. The Data Preparation page documents the filter and what it excludes.\nResult: a panel of 7,074 postings."
+  },
+  {
+    "objectID": "career_evaluation.html#step-2-measure-what-the-market-asks-for",
+    "href": "career_evaluation.html#step-2-measure-what-the-market-asks-for",
+    "title": "Evaluation Logic",
+    "section": "Step 2 — Measure what the market asks for",
+    "text": "Step 2 — Measure what the market asks for\nDemand is the share of postings listing a skill. Nine skill areas, each defined by an explicit pattern over the skill field, measured on all 7,074 postings. No weighting by employer size or recency: a posting is a posting."
+  },
+  {
+    "objectID": "career_evaluation.html#step-3-measure-what-the-candidate-has",
+    "href": "career_evaluation.html#step-3-measure-what-the-candidate-has",
+    "title": "Evaluation Logic",
+    "section": "Step 3 — Measure what the candidate has",
+    "text": "Step 3 — Measure what the candidate has\nSelf-assessment on the same nine areas, on a five-point scale from beginner to expert. This is the weakest link in the chain and we say so: it is self-reported, uncalibrated, and three people rating themselves is not a sample. It is a template for a candidate to fill in, not a measurement."
+  },
+  {
+    "objectID": "career_evaluation.html#step-4-convert-demand-into-a-required-level",
+    "href": "career_evaluation.html#step-4-convert-demand-into-a-required-level",
+    "title": "Evaluation Logic",
+    "section": "Step 4 — Convert demand into a required level",
+    "text": "Step 4 — Convert demand into a required level\nMarket share is mapped to a target proficiency, so that demand and ability are expressed in the same units and can be subtracted. The cut-offs are our choice, not something the data dictates:\n\n\n\nShare of postings\nTarget level\n\n\n\n\n50% or more\n5\n\n\n30–50%\n4\n\n\n15–30%\n3\n\n\n5–15%\n2\n\n\nunder 5%\n1\n\n\n\nBecause an area counts a posting if any of its skills appears, broad areas score higher shares than narrow ones. Targets should be read with that in mind."
+  },
+  {
+    "objectID": "career_evaluation.html#step-5-compute-the-gap-and-order-the-work",
+    "href": "career_evaluation.html#step-5-compute-the-gap-and-order-the-work",
+    "title": "Evaluation Logic",
+    "section": "Step 5 — Compute the gap and order the work",
+    "text": "Step 5 — Compute the gap and order the work\nThe gap is the target minus the level held, floored at zero. Learning priority is the gap weighted by the area’s market share, so closing a small gap in a heavily demanded area beats closing a large gap in a rare one. The Skill Gap Analysis page applies this and produces a per-person learning order."
+  },
+  {
+    "objectID": "career_evaluation.html#step-6-refuse-what-the-data-cannot-support",
+    "href": "career_evaluation.html#step-6-refuse-what-the-data-cannot-support",
+    "title": "Evaluation Logic",
+    "section": "Step 6 — Refuse what the data cannot support",
+    "text": "Step 6 — Refuse what the data cannot support\nThe same discipline runs through every page. Where the evidence will not carry a conclusion, we report the limit instead of the conclusion:\n\nOccupation codes are present on a third of postings and misclassify senior finance roles where present, so no finding rests on them.\nMissing work arrangement is never read as “onsite”. Absence of information is not information.\nA provider placeholder of 0-to-1 years attached to senior postings was removed rather than averaged in, which cut usable experience data from 56 percent to 24 percent and moved the median from zero years to three.\nModel coefficients are reported only for skills with at least 30 supporting postings, and only where the conditional estimate and the raw share agree."
+  },
+  {
+    "objectID": "career_evaluation.html#where-the-models-fit",
+    "href": "career_evaluation.html#where-the-models-fit",
+    "title": "Evaluation Logic",
+    "section": "Where the Models Fit",
+    "text": "Where the Models Fit\nSteps 1 to 5 describe a candidate against the market. The Predictive Modeling page asks the harder question — which skills actually separate a better opportunity from a worse one — and answers it two ways: by pay, with a regression, and by reachability, with a classifier. Their output feeds the Career Strategy page, where the gap analysis and the models combine into specific actions."
+  },
+  {
+    "objectID": "career_evaluation.html#what-this-product-does-not-do",
+    "href": "career_evaluation.html#what-this-product-does-not-do",
+    "title": "Evaluation Logic",
+    "section": "What This Product Does Not Do",
+    "text": "What This Product Does Not Do\nIt does not predict whether an individual will be hired. It does not price a particular job. It does not rank employers by anything other than posting volume. And because every skill measure comes from job advertisements, it describes what employers write down, which is not the same as what they actually require."
+  },
+  {
+    "objectID": "career_plan.html",
+    "href": "career_plan.html",
+    "title": "Career Strategy and Recommendations",
+    "section": "",
+    "text": "This is where the evidence becomes advice. The preceding pages establish what the market demands and where a candidate currently stands; this page answers the three questions a job seeker actually has: where to apply, what to learn next, and how to position themselves."
+  },
+  {
+    "objectID": "career_plan.html#purpose",
+    "href": "career_plan.html#purpose",
+    "title": "Career Strategy and Recommendations",
+    "section": "",
+    "text": "This is where the evidence becomes advice. The preceding pages establish what the market demands and where a candidate currently stands; this page answers the three questions a job seeker actually has: where to apply, what to learn next, and how to position themselves."
+  },
+  {
+    "objectID": "career_plan.html#process",
+    "href": "career_plan.html#process",
+    "title": "Career Strategy and Recommendations",
+    "section": "Process",
+    "text": "Process\nThe following recommendations are built from findings already on the site rather than from general career advice. The baseline established that job titles here are close to unique — 4,000 distinct titles across 7,074 postings, the most common covering under two percent — and that occupational codes are both too sparse and too often wrong to search by. Where an experience requirement is genuinely stated the median is three years, with fewer than one posting in thirty asking for less than a year. Four in five postings that record a work arrangement offer remote or hybrid work, and the employer side is fragmented enough that the largest single employer holds four percent of the market.\n\nBe Specific\nBased on the findings, the first recommendation is to be specific in a job search. The data shows that job titles are highly unique, which means that using broad or generic titles in a job application may not yield the best results. Instead, focus on the specific titles that align with your skills and experience.\nThe skills tied to higher pay include data architecture, advanced analytics, and technical accounting. More generic skills, such as problem solving, customer service, and financial analysis, are tied to lower pay.\n\n\nEmphasize Machine Learning and Data Science\nBased on the findings throughout this project, machine learning and data science are more likely to result in higher pay with less experience so applicants should explore aquiring or emphasiozing those skills.\n\n\nMicrosoft Office Does Not Standout\nMicrosoft Office and specifically Excel, are not standoput skills but establish a baseline for applicants. Excel is the most common skill but is associated with lower pay; it only shows in a small portion of the upper pay job postings.\nA good alternative skill to acquire and add to be a standout applicant is a coding tool like Python and SQL to increase pay threshold.\n\n\nLocation Has a Lower Weight\nAdding geography and remote status does not have a significant impact on job postings. The content of the job outweighs the location listed.\n\n\nFilter Correctly\nThe majority of job findings indicate the postings are listed as entry level positions. So, for example, job seekers might rely too heavily on filter results that are removig viable jobs from appearing in their search."
+  },
+  {
+    "objectID": "career_plan.html#expectations-and-actions",
+    "href": "career_plan.html#expectations-and-actions",
+    "title": "Career Strategy and Recommendations",
+    "section": "Expectations and Actions",
+    "text": "Expectations and Actions\nAll of these findings indicate that applicants need to provide more focus, specific skills, and prioritize certain search features such as job level while discounting others such as location. All of these are simply recommendations to further an applicants success in finding jobs that they qualify for and ideally increasing the probability of a call back, however, applicants must do so truthfully. Falsifying a skill just to be more appealing on an application is not recommended by the team.\nTo successfully implement these recommendations, applicants and job seekers should:\n\nReevaluate their application materials and increase specificity\nEmphasize unique skills that go beyond Microsoft Office\nAcquire a new skill or certification in machine learning or Python\nApply a low weight to locations in listings\nFilter more broadly keeping in mind that every application is different and filters may narrow the results too much"
+  },
+  {
+    "objectID": "eda.html",
+    "href": "eda.html",
+    "title": "Market Baseline",
+    "section": "",
+    "text": "This is the current state of the market the product advises on: 7,074 postings for Business Intelligence and Data Analyst roles in NAICS 523, Securities, Commodity Contracts and Other Financial Investments, published on or after 1 September 2025.\nEvery figure below is drawn from data/processed/career_market_panel.csv. How that table was built, and where its gaps are, is documented on the Data Preparation page. Coverage varies sharply by field, so each chart states how many postings it is based on. Where a field proved unusable, it is indicated rather than reporting a number that is not supported."
+  },
+  {
+    "objectID": "eda.html#purpose",
+    "href": "eda.html#purpose",
+    "title": "Market Baseline",
+    "section": "",
+    "text": "This is the current state of the market the product advises on: 7,074 postings for Business Intelligence and Data Analyst roles in NAICS 523, Securities, Commodity Contracts and Other Financial Investments, published on or after 1 September 2025.\nEvery figure below is drawn from data/processed/career_market_panel.csv. How that table was built, and where its gaps are, is documented on the Data Preparation page. Coverage varies sharply by field, so each chart states how many postings it is based on. Where a field proved unusable, it is indicated rather than reporting a number that is not supported."
+  },
+  {
+    "objectID": "eda.html#what-the-occupation-codes-do-and-do-not-tell-us",
+    "href": "eda.html#what-the-occupation-codes-do-and-do-not-tell-us",
+    "title": "Market Baseline",
+    "section": "What The Occupation Codes Do— And Do Not— Tell Us",
+    "text": "What The Occupation Codes Do— And Do Not— Tell Us\n\nRead this chart as a finding about the data, not about the market.\nAn occupational code is present on only 2,357 of 7,074 postings, 33 percent. Within that labeled third, Management Analysts account for 1,991 postings. But the coding itself does not survive inspection. Postings titled “Senior Financial Analyst, AWS GTM Finance” and “Sr Financial Analyst, Inbound Finance Insights” are coded as Models, Demonstrators, and Product Promoters — the third-largest occupation on the chart. On 2,165 postings the provider also overwrote the job title with the occupation name, so the title field on those rows describes a classification rather than a vacancy.\nThis is reported instead of being deleted because it justifies a design decision that runs through the whole project. The team’s role filter combines occupational codes with title keywords rather than trusting either alone, and this chart is the evidence for why. It is also a caution for anyone building on the same source: a market study that filtered on SOC codes here would silently describe the wrong population.\nThe practical consequence for a job seeker is narrower but real. Occupational classification in this industry is unreliable enough that filtering job boards by occupation category will both miss relevant roles and surface irrelevant ones."
+  },
+  {
+    "objectID": "eda.html#how-titles-are-written",
+    "href": "eda.html#how-titles-are-written",
+    "title": "Market Baseline",
+    "section": "How Titles Are Written",
+    "text": "How Titles Are Written\n\nRebuilt from the raw posting titles, the panel contains 4,000 distinct titles across 7,074 postings. The most common single title, “senior financial analyst”, appears 122 times — 1.7 percent of the panel.\n\nThe three most frequent titles together account for just 261 postings, under 4 percent of the market.\nTitles here are effectively unique strings. The practical consequence for a candidate is that title-based job alerts are close to useless in this industry: a saved search for “Data Analyst” will miss over ninety percent of the relevant openings. Searching by skills and by employer returns far more of the real market."
+  },
+  {
+    "objectID": "eda.html#what-the-work-pays",
+    "href": "eda.html#what-the-work-pays",
+    "title": "Market Baseline",
+    "section": "What The Work Pays",
+    "text": "What The Work Pays\n\nAmong the 1,741 postings (25 percent) that disclose pay, the median annual midpoint is $112,500, with the middle half falling between $87,500 and $141,500.\nPostings that quote pay hourly or monthly are validated on their own scale rather than deleted as implausible, but they are not converted to annual figures, because the conversion requires an assumption about hours worked that the postings do not supply. This chart therefore covers the postings quoting annual pay.\nTwo cautions belong with the number. First, three postings in four say nothing about pay, and employers who publish ranges are not a random sample — pay-transparency laws apply in some states and not others, so the disclosed group skews toward those jurisdictions and toward larger employers. Second, this is the midpoint of a posted range, not an offer. Read it as an orientation for expectations, not a benchmark to negotiate against."
+  },
+  {
+    "objectID": "eda.html#where-the-jobs-are",
+    "href": "eda.html#where-the-jobs-are",
+    "title": "Market Baseline",
+    "section": "Where The Jobs Are",
+    "text": "Where The Jobs Are\n\nA usable state is recorded on 5,135 postings, 73 percent of the panel. New York leads with 726, followed by California (606), Texas (437), Florida (286) and Illinois (260).\nThat 73 percent is itself the product of cleaning. The raw field mixed full state names with two-letter codes, so New York appeared twice, and it also contained 1,202 postings labelled simply “United States” and 178 labelled “Remote” — a country and a work arrangement, neither of which is a place. Those were removed rather than counted.\n\nAt city level New York is the clear center with 783 postings, ahead of Washington (185), Chicago (136), Atlanta (107) and Seattle (106).\nSecurities and investments remains a concentrated industry geographically. New York alone holds more postings than the next four cities combined, which is a meaningful constraint for a candidate unwilling to relocate — and a meaningful argument for weighting remote-friendly employers."
+  },
+  {
+    "objectID": "eda.html#how-much-experience-is-asked-for",
+    "href": "eda.html#how-much-experience-is-asked-for",
+    "title": "Market Baseline",
+    "section": "How Much Experience Is Asked For",
+    "text": "How Much Experience Is Asked For\n\nA stated experience requirement survives on 1,702 postings, 24 percent of the panel. Among those, the median is three years and the middle half falls between two and five.\nThe coverage here is low for a reason worth recording. The raw field reported a requirement of zero years on 2,288 postings, but on 2,143 of them the stated maximum was exactly one year — a fixed “0 to 1” band attached to postings titled Senior Financial Analyst, Finance Manager and Accounting Manager. That is a provider default, not a market signal, and leaving it in produced a median of zero years. To prevent this, the placeholder band was removed and instead the smaller, reliable subset was reported.\nOn that subset, the market reads as mid-career but not closed: only 49 postings ask for less than a year, while 413 ask for five to six and 107 ask for ten or more. A student targeting this industry directly out of a program is competing for a narrow band of openings. The realistic paths are the small entry segment, adjacent industries with more junior demand, or roles where demonstrable skills substitute for years served. The Skill Gap Analysis page tests which skills most effectively close that distance."
+  },
+  {
+    "objectID": "eda.html#remote-hybrid-or-onsite",
+    "href": "eda.html#remote-hybrid-or-onsite",
+    "title": "Market Baseline",
+    "section": "Remote, Hybrid Or Onsite",
+    "text": "Remote, Hybrid Or Onsite\n\nA work arrangement is recorded on 3,126 postings, 44 percent of the panel. Among those, hybrid leads at 48 percent, fully remote at 32 percent and onsite at 20 percent.\nThis contradicts the expectation was set out in the Project Overview, where it was predicted that remote openings in finance would be rarer than in the software sector. On the labeled subset, four in five analytics postings in this industry offer some flexibility. The contradiction is reported rather than an adjustment to the hypothesis after the fact.\nThe caveat is the unlabelled majority. “Unknown” is shown as its own bar and never folded into “onsite”, because an unlabelled posting is an absence of information, not evidence of an office requirement."
+  },
+  {
+    "objectID": "eda.html#who-is-hiring",
+    "href": "eda.html#who-is-hiring",
+    "title": "Market Baseline",
+    "section": "Who Is Hiring",
+    "text": "Who Is Hiring\n\nBefore this section can say anything, the employer field needs cleaning. On 397 postings (6 percent) it holds an applicant-tracking hostname such as Eofe.fa.us2.oraclecloud.com instead of a company name, and on a further 229 (3 percent) it names a staffing agency or job aggregator rather than the firm doing the hiring. Three spellings of JPMorgan Chase were also being counted as three separate employers. All of these are flagged and set aside, which leaves 6,448 postings, 91 percent of the panel, with an identifiable employer.\nOn that subset the market is highly fragmented: 2,348 distinct employers. The largest, Amazon, accounts for 298 postings — 4.6 percent — followed by Citi at 2.2 percent, then U.S. Bank and JPMorgan Chase at 1.3 percent each. The top ten employers together hold 14 percent.\nThe strategic read changed once the employer names were cleaned. Before the merge, no firm appeared to hold more than a few percent and the only advice was to apply broadly. With the variants resolved a recognisable core emerges: Citi, U.S. Bank, JPMorgan Chase, PNC and State Street each run a steady analytics pipeline in this industry, and together with Amazon they account for roughly one posting in ten. Breadth still matters, because the other nine in ten are spread across 2,348 employers, but a candidate now has a short list worth following directly as well. Amazon’s position at the top is also a reminder that industry assignment follows the employer record rather than the specific business unit, so some postings sit in NAICS 523 for reasons that are not obvious from the company name."
+  },
+  {
+    "objectID": "eda.html#what-this-means-for-the-product",
+    "href": "eda.html#what-this-means-for-the-product",
+    "title": "Market Baseline",
+    "section": "What This Means For The Product",
+    "text": "What This Means For The Product\nFive things a candidate should take from this baseline:\n\nSearch by skills and employers, not by title or occupation. There are 4,000 distinct titles, the most common covers under two percent of the market, and the occupational codes are demonstrably wrong on a large share of postings.\nExpect a mid-career market. Where a requirement is stated, the median is three years and fewer than one posting in thirty asks for less than a year.\nFlexibility is available. Four in five labeled postings are remote or hybrid, which widens the geographic options considerably.\nNew York dominates, but not exclusively. It holds more postings than the next four cities combined; remote-friendly employers are the counterweight.\nTreat salary figures as orientation. They come from the one posting in four that discloses pay.\n\nThe Skill Gap Analysis page turns these observations into a personal assessment: which skills separate the postings a given candidate can win from the ones they cannot, and what to learn first.\n\nFigures and chart design by Katie Bowles. Field normalization and the Module 3 data-quality review by Fuad Babaiev."
   },
   {
     "objectID": "index.html",
