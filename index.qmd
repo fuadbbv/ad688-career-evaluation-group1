@@ -39,7 +39,7 @@ Each analysis page states how many postings it is based on, because field covera
 
 ## Team
 
-| Name | GitHub | Role in Modules 4 and 5 |
+| Name | GitHub | Contribution |
 |---|---|---|
 | Fuad Babaiev | [fuadbbv](https://github.com/fuadbbv) | Data cleaning and employer normalisation; final analytics tracks; report assembly and publishing |
 | Katie Bowles | [kmbowles00](https://github.com/kmbowles00) | Market baseline and shared visual theme; final recommendations; site requirements check |
@@ -53,5 +53,5 @@ Each analysis page states how many postings it is based on, because field covera
 | M2 | Data preparation and market baseline | Complete |
 | M3 | Site restructure, enhanced exploratory analysis, skill gap analysis | Complete |
 | M4 | Checkpoint — readiness review of Steps 1 to 3 | Complete |
-| M5 | Final analytics, recommendations, report | In progress |
-| M6 | Final presentation | |
+| M5 | Final analytics, recommendations, report | Complete |
+| M6 | Final presentation | Complete |

@@ -2,6 +2,7 @@
 format:
   docx:
     number-sections: false
+    reference-doc: assets/report_style.docx
 ---
 
 by Fuad Babaiev, Katie Bowles, Jonathan Chen
